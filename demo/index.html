@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Classic CSS - Topbar Specimen</title>
+    <link rel="stylesheet" href="../classic.css">
+  </head>
+  <body class="layout-topbar">
+    <header>
+      <nav aria-label="Primary">
+        <a href="index.html"><strong>classic.css</strong></a>
+        <ul>
+          <li><a href="index.html" aria-current="page">Specimen</a></li>
+          <li><a href="forms.html">Forms</a></li>
+          <li><a href="components.html">Components</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <nav aria-label="breadcrumb">
+        <ol>
+          <li><a href="index.html">Library</a></li>
+          <li><a href="index.html">Fixtures</a></li>
+          <li aria-current="page">Topbar Specimen</li>
+        </ol>
+      </nav>
+
+      <section class="split" aria-labelledby="intro-title">
+        <div>
+          <p class="badge" data-variant="info">Topbar layout</p>
+          <h1 id="intro-title">A deeper document specimen.</h1>
+          <p class="lead">This page uses the top-bar layout and pushes prose, lists, tables, figures, article chrome, inline semantics, and utility layouts through one stylesheet.</p>
+        </div>
+        <div class="toolbar" aria-label="Specimen actions">
+          <a href="forms.html" role="button">Test Forms</a>
+          <a href="components.html" role="button" class="secondary">View Components</a>
+          <a href="#density-table" role="button" class="outline">Jump to Table</a>
+        </div>
+      </section>
+
+      <section class="grid grid-tight" aria-label="Layout summary">
+        <div class="stat">
+          <small>Layout</small>
+          <strong>Top</strong>
+          <span class="status">Sticky bar</span>
+        </div>
+        <div class="stat">
+          <small>Content</small>
+          <strong>38</strong>
+          <span class="status" data-variant="info">Elements</span>
+        </div>
+        <div class="stat">
+          <small>Mode</small>
+          <strong>OS 9</strong>
+          <span class="status" data-variant="warning">Platinum</span>
+        </div>
+      </section>
+
+      <section class="grid" aria-labelledby="principles-title">
+        <article>
+          <header>
+            <h2 id="principles-title">Library Principles</h2>
+            <p class="muted">The quick design brief, tested as normal content.</p>
+          </header>
+          <ol>
+            <li>Style semantic HTML before requiring classes.</li>
+            <li>Make interactive controls look tactile, raised, and focusable.</li>
+            <li>Use ARIA attributes for stateful styling where behavior belongs in a paired script.</li>
+            <li>Keep layouts predictable across topbar, sidebar, and mobile scroll shells.</li>
+          </ol>
+          <footer>
+            <small>Updated <time datetime="2026-05-13">May 13, 2026</time>.</small>
+          </footer>
+        </article>
+
+        <article>
+          <header>
+            <h2>Type Scale</h2>
+            <p class="muted">Heading stack, inline text, and rhythm.</p>
+          </header>
+          <h1>Heading One</h1>
+          <h2>Heading Two</h2>
+          <h3>Heading Three</h3>
+          <h4>Heading Four</h4>
+          <h5>Heading Five</h5>
+          <h6>Heading Six</h6>
+          <p>Body text can include <a href="#">links</a>, <mark>marked text</mark>, <strong>strong text</strong>, <em>emphasis</em>, <abbr title="HyperText Markup Language">HTML</abbr>, <code>inline code</code>, <kbd>Tab</kbd>, and <samp>sample output</samp>.</p>
+        </article>
+      </section>
+
+      <section class="with-sidebar" aria-labelledby="content-title">
+        <aside class="surface">
+          <nav aria-label="Section">
+            <ul class="stack stack-sm">
+              <li><a href="#content-title" aria-current="page">Article</a></li>
+              <li><a href="#figure-title">Figure</a></li>
+              <li><a href="#density-table">Table</a></li>
+              <li><a href="#code-title">Code</a></li>
+            </ul>
+          </nav>
+        </aside>
+
+        <div class="stack">
+          <article>
+            <header>
+              <h2 id="content-title">Long-Form Article</h2>
+              <p class="muted">A realistic article with mixed semantic content.</p>
+            </header>
+            <p>Classic interfaces should make structure obvious. This paragraph checks rhythm, contrast, and spacing against adjacent lists, quoted material, and dense metadata.</p>
+            <blockquote>
+              <p>Depth can be a usability affordance when it tells the eye what is interactive, grouped, or foregrounded.</p>
+              <footer><small>Design note from the mockup brief</small></footer>
+            </blockquote>
+            <div class="grid">
+              <section>
+                <h3>Unordered List</h3>
+                <ul>
+                  <li>Controls need clear raised and pressed states.</li>
+                  <li>Panels should have visible edges without looking decorative.</li>
+                  <li>Mobile should collapse to readable vertical flow.</li>
+                </ul>
+              </section>
+              <section>
+                <h3>Definition List</h3>
+                <dl>
+                  <dt>Surface</dt>
+                  <dd>A bounded area with a visible edge and slight elevation.</dd>
+                  <dt>Focus</dt>
+                  <dd>An unmistakable outline that survives dense layouts.</dd>
+                  <dt>Measure</dt>
+                  <dd>A line length tuned for reading rather than filling all available width.</dd>
+                </dl>
+              </section>
+            </div>
+            <footer>
+              <address>
+                Maintained by <a href="mailto:classic@example.test">Classic CSS Working Notes</a>
+              </address>
+            </footer>
+          </article>
+
+          <article>
+            <header>
+              <h2 id="figure-title">Figure and Media</h2>
+              <p class="muted">Inline SVG stands in for screenshots, diagrams, or product images.</p>
+            </header>
+            <figure>
+              <svg viewBox="0 0 760 260" role="img" aria-labelledby="mock-window-title mock-window-desc">
+                <title id="mock-window-title">Classic window diagram</title>
+                <desc id="mock-window-desc">A platinum window with a top bar, sidebar, and content pane.</desc>
+                <rect width="760" height="260" fill="#c7c7c7"></rect>
+                <rect x="28" y="24" width="704" height="212" fill="#eeeeee" stroke="#242424" stroke-width="2"></rect>
+                <rect x="30" y="26" width="700" height="30" fill="#d7d7d7"></rect>
+                <rect x="48" y="74" width="150" height="138" fill="#dddddd" stroke="#4c4c4c"></rect>
+                <rect x="222" y="74" width="462" height="34" fill="#ffffff" stroke="#4c4c4c"></rect>
+                <rect x="222" y="126" width="462" height="86" fill="#ffffff" stroke="#4c4c4c"></rect>
+                <circle cx="54" cy="41" r="7" fill="#8b2828"></circle>
+                <circle cx="76" cy="41" r="7" fill="#835f12"></circle>
+                <circle cx="98" cy="41" r="7" fill="#2f6a3c"></circle>
+              </svg>
+              <figcaption>SVG, figure, caption, and image scaling should behave without additional page CSS.</figcaption>
+            </figure>
+          </article>
+
+          <article>
+            <header>
+              <h2 id="density-table">Dense Table</h2>
+              <p class="muted">Wide tables should scroll horizontally on small screens.</p>
+            </header>
+            <table>
+              <caption class="visually-hidden">Classic CSS element coverage table</caption>
+              <thead>
+                <tr>
+                  <th>Element</th>
+                  <th>Purpose</th>
+                  <th>Default Treatment</th>
+                  <th>State Hook</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>article</code></td>
+                  <td>Independent content block</td>
+                  <td>Raised panel with header and footer support</td>
+                  <td>None</td>
+                  <td><span class="status">Ready</span></td>
+                </tr>
+                <tr>
+                  <td><code>details</code></td>
+                  <td>Native disclosure</td>
+                  <td>Low elevation disclosure block</td>
+                  <td><code>open</code></td>
+                  <td><span class="status" data-variant="warning">Review</span></td>
+                </tr>
+                <tr>
+                  <td><code>button</code></td>
+                  <td>Primary command</td>
+                  <td>Beveled physical control</td>
+                  <td><code>aria-pressed</code>, <code>aria-busy</code></td>
+                  <td><span class="status">Ready</span></td>
+                </tr>
+                <tr>
+                  <td><code>input</code></td>
+                  <td>Form entry</td>
+                  <td>Sunken text field or custom native control</td>
+                  <td><code>aria-invalid</code></td>
+                  <td><span class="status" data-variant="info">Expanded</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+
+          <article>
+            <header>
+              <h2 id="code-title">Code and Preformatted Text</h2>
+              <p class="muted">Tests overflow, monospace color, and keyboard hints.</p>
+            </header>
+            <p>Use <kbd>Tab</kbd> and <kbd>Shift</kbd> + <kbd>Tab</kbd> to inspect focus states in the test pages.</p>
+            <pre><code>button[aria-busy="true"] {
+  pointer-events: none;
+}
+
+body.layout-sidebar {
+  grid-template-columns: 16rem minmax(0, 1fr);
+}</code></pre>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <small>Classic CSS mockup pages share a single stylesheet: <code>classic.css</code>.</small>
+    </footer>
+  </body>
+</html>

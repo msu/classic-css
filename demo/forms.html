@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Classic CSS - Forms</title>
+    <link rel="stylesheet" href="../classic.css">
+  </head>
+  <body class="layout-scroll">
+    <header>
+      <nav aria-label="Primary">
+        <a href="index.html"><strong>classic.css</strong></a>
+        <ul>
+          <li><a href="index.html">Specimen</a></li>
+          <li><a href="forms.html" aria-current="page">Forms</a></li>
+          <li><a href="components.html">Components</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section aria-labelledby="forms-title">
+        <p class="badge" data-variant="success">Vertical scroll layout</p>
+        <h1 id="forms-title">Form Fixture</h1>
+        <p class="lead">This page uses the vertical-scroll layout and exercises text inputs, native controls, validation states, disabled states, switches, ranges, and grouped actions.</p>
+      </section>
+
+      <article>
+        <header>
+          <h2>Minimal Markup Set</h2>
+          <p class="muted">Multiple bare text/control pairs should continue down the same two-column table.</p>
+        </header>
+        <form action="#" method="get">
+          Title
+          <input name="bare-title" placeholder="Course title">
+
+          Slug
+          <input name="bare-slug" value="classic-css-forms">
+
+          Level
+          <select name="bare-level">
+            <option>Introductory</option>
+            <option>Intermediate</option>
+            <option>Advanced</option>
+          </select>
+
+          Summary
+          <textarea name="bare-summary" placeholder="One or two sentences"></textarea>
+
+          <button type="submit">Save</button>
+          <button type="reset" class="secondary">Reset</button>
+        </form>
+      </article>
+
+      <article>
+        <header>
+          <h2>Label Pairs</h2>
+          <p class="muted">Direct labels and controls should align in the same two-column form table.</p>
+        </header>
+        <form action="#" method="get">
+          <label for="pair-title">Title</label>
+          <input id="pair-title" name="pair-title" placeholder="Hypermedia Systems">
+
+          <label for="pair-owner">Owner</label>
+          <input id="pair-owner" name="pair-owner" placeholder="Course staff">
+
+          <label for="pair-status">Status</label>
+          <select id="pair-status" name="pair-status">
+            <option>Draft</option>
+            <option>Ready</option>
+            <option>Archived</option>
+          </select>
+
+          <label for="pair-notes">Notes</label>
+          <textarea id="pair-notes" name="pair-notes" placeholder="Internal notes"></textarea>
+
+          <button type="submit">Submit Pair Form</button>
+        </form>
+      </article>
+
+      <form action="#" method="get">
+        <fieldset>
+          <legend>Identity</legend>
+          <div class="field-row">
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" autocomplete="name" placeholder="Ada Lovelace" required>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="ada@example.com" aria-invalid="false">
+              <small>Valid state is driven by <code>aria-invalid="false"</code>.</small>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="username">Username</label>
+              <input id="username" name="username" value="classic-css" autocomplete="username">
+            </div>
+            <div class="field">
+              <label for="password">Password</label>
+              <input id="password" name="password" type="password" value="not-a-real-password" autocomplete="new-password">
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="site">Website</label>
+              <input id="site" name="site" type="url" placeholder="https://example.test">
+            </div>
+            <div class="field">
+              <label for="phone">Telephone</label>
+              <input id="phone" name="phone" type="tel" placeholder="555-0100">
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Project Details</legend>
+          <div class="field">
+            <label for="role">Role</label>
+            <select id="role" name="role">
+              <option>Instructor</option>
+              <option>Student</option>
+              <option>Administrator</option>
+              <option>Maintainer</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="topic">Topic</label>
+            <input id="topic" name="topic" list="topics" placeholder="Choose or type a topic">
+            <datalist id="topics">
+              <option value="Hypermedia">
+              <option value="CSS Library">
+              <option value="Accessibility">
+              <option value="Courseware">
+            </datalist>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="start-date">Start date</label>
+              <input id="start-date" name="start-date" type="date" value="2026-05-13">
+            </div>
+            <div class="field">
+              <label for="start-time">Start time</label>
+              <input id="start-time" name="start-time" type="time" value="09:30">
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="week">Week</label>
+              <input id="week" name="week" type="week">
+            </div>
+            <div class="field">
+              <label for="quantity">Seats</label>
+              <input id="quantity" name="quantity" type="number" min="1" max="120" value="24">
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Validation States</legend>
+          <div class="field">
+            <label for="handle">Public handle</label>
+            <input id="handle" name="handle" value="classic-css!" aria-invalid="true">
+            <small>Invalid state is driven by <code>aria-invalid="true"</code>.</small>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="readonly">Readonly field</label>
+              <input id="readonly" name="readonly" value="Stable value" readonly>
+            </div>
+            <div class="field">
+              <label for="disabled">Disabled field</label>
+              <input id="disabled" name="disabled" value="Locked example" disabled>
+            </div>
+          </div>
+          <div class="field">
+            <label for="search">Search</label>
+            <input id="search" name="search" type="search" placeholder="Search this fixture">
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Native Controls</legend>
+          <label class="check">
+            <input type="checkbox" name="updates" checked>
+            Send release notes
+          </label>
+          <label class="check">
+            <input type="checkbox" name="experiments">
+            Enable experimental components
+          </label>
+          <label class="check">
+            <input type="checkbox" name="disabled-check" disabled>
+            Disabled checkbox
+          </label>
+
+          <hr>
+
+          <label class="check">
+            <input type="radio" name="density" checked>
+            Comfortable density
+          </label>
+          <label class="check">
+            <input type="radio" name="density">
+            Compact density
+          </label>
+          <label class="check">
+            <input type="radio" name="density" disabled>
+            Disabled density
+          </label>
+
+          <hr>
+
+          <label class="switch">
+            <input type="checkbox" name="classic-platinum" checked>
+            Use classic platinum controls
+          </label>
+
+          <div class="field">
+            <label for="priority">Priority</label>
+            <input id="priority" name="priority" type="range" min="0" max="10" value="6">
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="color">Accent color</label>
+              <input id="color" name="color" type="color" value="#1c4f9a">
+            </div>
+            <div class="field">
+              <label for="attachment">Attachment</label>
+              <input id="attachment" name="attachment" type="file">
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Message</legend>
+          <div class="field">
+            <label for="subject">Subject</label>
+            <input id="subject" name="subject" placeholder="Styling feedback">
+          </div>
+          <div class="field">
+            <label for="message">Notes</label>
+            <textarea id="message" name="message" placeholder="What should this stylesheet make easier?"></textarea>
+          </div>
+        </fieldset>
+
+        <div class="toolbar" aria-label="Form actions">
+          <button type="submit">Submit</button>
+          <button type="button" class="secondary">Save Draft</button>
+          <button type="button" class="outline" aria-pressed="true">Pinned</button>
+          <button type="button" aria-busy="true">Working</button>
+          <button type="reset" class="ghost">Reset</button>
+          <button type="button" disabled>Disabled</button>
+        </div>
+      </form>
+    </main>
+
+    <footer>
+      <small>Form page for <code>classic.css</code>.</small>
+    </footer>
+  </body>
+</html>
