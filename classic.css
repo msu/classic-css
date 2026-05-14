@@ -130,9 +130,9 @@
 @layer base {
   body {
     background:
-      linear-gradient(90deg, rgba(255, 255, 255, 0.22) 1px, transparent 1px),
-      repeating-linear-gradient(0deg, var(--background) 0 2px, var(--background-accent) 2px 4px);
-    background-size: 32px 32px, auto;
+      linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+      repeating-linear-gradient(0deg, var(--background) 0 4px, var(--background-accent) 4px 8px);
+    background-size: 48px 48px, auto;
     color: var(--text);
     font-family: var(--font-sans);
     font-size: 1rem;
@@ -820,7 +820,9 @@
     border-color: var(--highlight) var(--button-edge) var(--button-edge) var(--highlight);
     border-style: solid;
     border-width: 2px;
-    border-radius: 0;
+    border-radius: 10px;
+    border-top-right-radius: 10.75px;
+    border-bottom-left-radius: 10.75px;
     box-shadow:
       1px 1px 0 var(--button-face-light) inset,
       -1px -1px 0 var(--button-groove) inset;
@@ -831,7 +833,7 @@
     justify-content: center;
     min-height: var(--control-height);
     min-width: 2.75rem;
-    padding: 0.58rem 0.9rem;
+    padding: 0.5rem 0.9rem 0.56rem;
     text-align: center;
     text-decoration: none;
     user-select: none;
