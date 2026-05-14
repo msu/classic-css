@@ -13,6 +13,8 @@
 ## Files
 
 - `classic.css`: the library stylesheet.
+- `classic.enhance.js`: optional progressive-enhancement helpers for semantic markup.
+- `classic.commands.js`: optional command palette for semantic landmark navigation.
 - `demo/index.html`: topbar layout specimen for prose, tables, figures, lists, code, and document structure.
 - `demo/forms.html`: form fixture for bare text/input pairs, label/input pairs, fieldsets, validation states, and native controls.
 - `demo/components.html`: sidebar layout fixture for buttons, tabs, notices, menus, stats, dialogs, disclosure, progress, and pagination.
@@ -24,6 +26,13 @@ Link the stylesheet directly:
 
 ```html
 <link rel="stylesheet" href="classic.css">
+```
+
+Optional enhancements:
+
+```html
+<script src="classic.enhance.js"></script>
+<script src="classic.commands.js"></script>
 ```
 
 The stylesheet is designed to work with normal HTML:
@@ -42,6 +51,46 @@ Bare form text is visually placed in the left column and controls land in the ri
 <input id="name" name="name">
 ```
 
+The library helper automatically converts bare text/control pairs into labels (default-on). To opt out for a specific form, use <code>data-classic-no-autolabels</code>:
+
+```html
+<script src="classic.enhance.js"></script>
+<form>
+  Name
+  <input name="name">
+</form>
+
+<form data-classic-no-autolabels>
+  Name
+  <input name="name">
+</form>
+```
+
+The command palette opens with `Ctrl+K` (or `Cmd+K` on macOS). Type commands like `nav`, `main`, `forms`, `search`, `footer`, or `top` to jump to semantic landmarks.
+
+You can add custom semantic aliases:
+
+```html
+<section id="billing" data-classic-jump="billing invoices payments">
+  ...
+</section>
+```
+
+You can also register custom commands in script:
+
+```html
+<script>
+  window.ClassicCommands.register({
+    name: "billing",
+    aliases: ["invoice", "payments"],
+    description: "Jump to billing section",
+    run() {
+      document.querySelector("#billing")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  });
+</script>
+```
+
 ## Layouts
 
 Apply one of these classes to `body`:
@@ -51,6 +100,17 @@ Apply one of these classes to `body`:
 - `layout-scroll`: narrow vertical scrolling layout for mobile-style forms and focused flows.
 
 On narrow screens, topbar and sidebar layouts collapse into a vertical scroll flow.
+
+Theme presets can also be applied to `body`:
+
+- `theme-platinum`: original cool-gray look.
+- `theme-paper`: warmer paper-like neutrals.
+- `theme-terminal-office`: muted green office-terminal vibe.
+
+Density presets can be applied to any wrapper (including `body`):
+
+- `density-calm`: roomier controls and spacing rhythm.
+- `density-compact`: tighter controls and spacing rhythm.
 
 ## Class Reference
 
@@ -89,6 +149,9 @@ Useful states:
 - `split`: two-sided row that wraps on small screens.
 - `with-sidebar`: local two-column content/sidebar layout.
 - `surface`: bordered raised panel.
+- `elev-flat`: low elevation treatment.
+- `elev-raised`: medium elevation treatment.
+- `elev-window`: strongest "window chrome" elevation treatment.
 - `band`: full-width horizontal section band.
 - `bleed`: let an element escape the centered page width.
 
@@ -101,11 +164,13 @@ Forms default to a two-column table layout. The left column is right-aligned and
 - `check`: checkbox/radio label row.
 - `switch`: custom switch row.
 
-Validation states are driven with ARIA:
+Validation states support both ARIA and native HTML validity:
 
 ```html
 <input aria-invalid="true">
 <input aria-invalid="false">
+<input type="email" required>
+<input pattern="[a-z0-9-]+" required>
 ```
 
 ### Components
@@ -118,6 +183,13 @@ Validation states are driven with ARIA:
 - `pagination`: pagination list.
 - `avatar`: circular initials marker.
 - `stat`: compact metric panel.
+- `window`: window chrome container.
+- `window-titlebar`: title row for window containers.
+- `window-pane`: padded body pane for window containers.
+- `window-statusbar`: status/footer row for window containers.
+- `split-pane`: two-column pane split for app-like layouts.
+- `empty-state`: neutral empty-content panel.
+- `skeleton`: animated loading placeholder.
 - `dialog-preview`: displays a `dialog` inline for demos.
 
 ### Text Utilities
