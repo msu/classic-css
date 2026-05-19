@@ -1,29 +1,43 @@
 (function () {
   'use strict';
 
-  var HOTKEY = 'k';
-  var palette = null;
-  var input = null;
-  var list = null;
-  var commands = [];
-  var visible = [];
-  var activeIndex = 0;
+  const HOTKEY = 'k';
+  let palette = null;
+  let input = null;
+  let list = null;
+  let commands = [];
+  let customCommands = [];
+  let visible = [];
+  let activeIndex = 0;
+  let lastFocused = null;
 
-  function isTypingContext(el) {
-    return el && (el.matches('input, textarea, select') || el.isContentEditable);
+  function isTypingContext(element) {
+    return element && (element.matches('input, textarea, select') || element.isContentEditable);
   }
 
-  function ensureId(el, prefix) {
-    if (!el.id) {
-      el.id = prefix + '-' + Math.random().toString(36).slice(2, 9);
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, function (char) {
+      return {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      }[char];
+    });
+  }
+
+  function ensureId(element, prefix) {
+    if (!element.id) {
+      element.id = prefix + '-' + Math.random().toString(36).slice(2, 9);
     }
-    return el.id;
+    return element.id;
   }
 
   function focusTarget(target) {
-    var focusable = target.matches('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])')
-      ? target
-      : target.querySelector('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    const focusable = target.matches('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])')
+        ? target
+        : target.querySelector('a, button, input, select, textarea, [tabindex]:not([tabindex="-1"])');
 
     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
@@ -32,7 +46,7 @@
       return;
     }
 
-    var hadTabIndex = target.hasAttribute('tabindex');
+    const hadTabIndex = target.hasAttribute('tabindex');
     if (!hadTabIndex) {
       target.setAttribute('tabindex', '-1');
     }
@@ -46,19 +60,89 @@
   }
 
   function addCommand(name, aliases, target, description) {
-    if (!target) return;
+    /*
+      Add a destination to the control menu:
+        - name is the title it will show up as
+        - aliases are alternative search titles
+        - target is the element that will be focussed
+        - description will show up, right aligned, for additional context
+
+     */
+    if (!name || !target) return;
     commands.push({
-      name: name,
-      aliases: aliases,
+      name: String(name),
+      aliases: Array.isArray(aliases) ? aliases.map(String) : [],
       target: target,
-      description: description,
+      description: description || '',
       run: function () {
         focusTarget(target);
       }
     });
   }
 
+  function restoreFocus() {
+    if (lastFocused && document.contains(lastFocused)) {
+      lastFocused.focus({ preventScroll: true });
+    }
+    lastFocused = null;
+  }
+
+  function getLabelledByText(element) {
+    const labelledBy = element.getAttribute('aria-labelledby');
+    if (!labelledBy) return '';
+    return labelledBy
+      .split(/\s+/)
+      .map(function (id) {
+        const label = document.getElementById(id);
+        return label ? label.textContent.trim() : '';
+      })
+      .filter(Boolean)
+      .join(' ');
+  }
+
+  function getJumpLabel(element) {
+    return (
+      element.getAttribute('data-jump-label') ||
+      element.getAttribute('aria-label') ||
+      getLabelledByText(element) ||
+      element.id
+    ).trim();
+  }
+
+  function collectJumpableTargets() {
+    document.querySelectorAll('[data-jumpable]').forEach(function (el) {
+      const label = getJumpLabel(el);
+      const raw = (
+        el.getAttribute('data-jumpable') ||
+        el.getAttribute('data-jump-aliases') ||
+        label
+      ).trim().toLowerCase();
+
+      const aliases = raw.split(/\s+/).filter(Boolean);
+      const name = (el.getAttribute('data-jump-label') || aliases.shift() || label).trim();
+
+      if (!name) return;
+      addCommand(name, aliases, el, el.getAttribute('data-jump-description') || 'Jump target');
+    });
+  }
+
+  function collectCustomCommands() {
+    customCommands.forEach(function (command) {
+      if (!command || !command.name || typeof command.run !== 'function') return;
+      commands.push({
+        name: String(command.name),
+        aliases: Array.isArray(command.aliases) ? command.aliases.map(String) : [],
+        description: command.description || 'Custom command',
+        run: command.run
+      });
+    });
+  }
+
   function collectCommands() {
+    /*
+      Adds general navigation commands plus explicit jump targets declared with
+      data-jumpable.
+     */
     commands = [];
 
     addCommand('top', ['home', 'start'], document.body, 'Jump to top of page');
@@ -68,41 +152,35 @@
     addCommand('forms', ['form'], document.querySelector('form'), 'Jump to first form');
     addCommand('footer', ['end'], document.querySelector('footer'), 'Jump to footer');
 
-    document.querySelectorAll('h1[id], h2[id], h3[id]').forEach(function (heading) {
-      var key = heading.textContent.trim().toLowerCase();
-      if (!key) return;
-      addCommand(key, [heading.id.toLowerCase()], heading, 'Jump to section heading');
-    });
-
-    document.querySelectorAll('[data-classic-jump]').forEach(function (el) {
-      var raw = (el.getAttribute('data-classic-jump') || '').trim().toLowerCase();
-      if (!raw) return;
-      var tokens = raw.split(/\s+/).filter(Boolean);
-      addCommand(tokens[0], tokens.slice(1), el, 'Custom jump target');
-    });
+    collectJumpableTargets();
+    collectCustomCommands();
   }
 
   function renderList(items) {
     list.innerHTML = '';
     if (!items.length) {
-      var emptyItem = document.createElement('li');
+      const emptyItem = document.createElement('li');
       emptyItem.className = 'classic-command-empty';
       emptyItem.innerHTML = '<strong>No matching commands</strong><small class="muted">Try: nav, main, forms, footer, top</small>';
       list.appendChild(emptyItem);
       return;
     }
 
-    items.forEach(function (cmd, idx) {
-      var li = document.createElement('li');
-      var btn = document.createElement('button');
+    items.forEach(function (command, index) {
+      const li = document.createElement('li');
+      li.id = 'classic-command-option-' + index;
+      li.setAttribute('role', 'option');
+      li.setAttribute('aria-selected', String(index === activeIndex));
+
+      const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'secondary classic-command-item';
       btn.style.width = '100%';
-      btn.setAttribute('aria-selected', String(idx === activeIndex));
-      btn.innerHTML = '<span>' + cmd.name + '</span><small class="muted">' + cmd.description + '</small>';
+      btn.tabIndex = -1;
+      btn.innerHTML = '<span>' + escapeHtml(command.name) + '</span><small class="muted">' + escapeHtml(command.description) + '</small>';
       btn.addEventListener('click', function () {
         closePalette();
-        cmd.run();
+        command.run();
       });
       li.appendChild(btn);
       list.appendChild(li);
@@ -110,21 +188,24 @@
   }
 
   function updateFilter() {
-    var q = input.value.trim().toLowerCase();
-    visible = commands.filter(function (cmd) {
-      if (!q) return true;
-      if (cmd.name.indexOf(q) !== -1) return true;
-      return cmd.aliases.some(function (a) { return a.indexOf(q) !== -1; });
+    const query = input.value.trim().toLowerCase();
+    visible = commands.filter(function (command) {
+      if (!query) return true; // Empty query gets all commands
+      if (command.name.indexOf(query) !== -1) return true; // Command name contains query
+      return command.aliases.some(function (alias) { return alias.indexOf(query) !== -1; }); // Command Alias contains query
     });
-    activeIndex = 0;
+    activeIndex = 0; // Reset selected element
     renderList(visible.slice(0, 12));
+    updateActiveDescendant();
   }
 
   function openPalette() {
+    lastFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     collectCommands();
     input.value = '';
     updateFilter();
     palette.showModal();
+    input.setAttribute('aria-expanded', 'true');
     input.focus();
   }
 
@@ -134,15 +215,26 @@
 
   function runActive() {
     if (!visible.length) return;
-    var cmd = visible[Math.max(0, Math.min(activeIndex, visible.length - 1))];
+    const command = visible[Math.max(0, Math.min(activeIndex, visible.length - 1))]; // Bounds active [0,commandSize]
     closePalette();
-    cmd.run();
+    command.run();
   }
 
   function moveActive(delta) {
     if (!visible.length) return;
-    activeIndex = (activeIndex + delta + visible.length) % visible.length;
+    const renderedCount = Math.min(visible.length, 12);
+    activeIndex = (activeIndex + delta + renderedCount) % renderedCount;
     renderList(visible.slice(0, 12));
+    updateActiveDescendant();
+  }
+
+  function updateActiveDescendant() {
+    if (!input) return;
+    if (!visible.length) {
+      input.removeAttribute('aria-activedescendant');
+      return;
+    }
+    input.setAttribute('aria-activedescendant', 'classic-command-option-' + activeIndex);
   }
 
   function buildPalette() {
@@ -151,23 +243,28 @@
     palette.setAttribute('aria-label', 'Command palette');
     ensureId(palette, 'classic-command-palette');
 
-    var title = document.createElement('div');
+    const title = document.createElement('div');
     title.className = 'window-titlebar';
     title.innerHTML = '<span>Command Palette</span><small class="muted">Esc to close</small>';
 
-    var pane = document.createElement('div');
+    const pane = document.createElement('div');
     pane.className = 'window-pane stack stack-sm';
 
     input = document.createElement('input');
     input.type = 'text';
     input.placeholder = 'Type a command (e.g. nav, main, forms, footer)';
     input.setAttribute('aria-label', 'Command input');
+    input.setAttribute('role', 'combobox');
+    input.setAttribute('aria-expanded', 'false');
+    input.setAttribute('aria-controls', 'classic-command-list');
+    input.setAttribute('aria-autocomplete', 'list');
 
     list = document.createElement('ul');
     list.className = 'menu';
     list.setAttribute('role', 'listbox');
+    list.id = 'classic-command-list';
 
-    var footer = document.createElement('div');
+    const footer = document.createElement('div');
     footer.className = 'window-statusbar';
     footer.textContent = 'Ctrl+K / Cmd+K to open, Enter to run';
 
@@ -194,17 +291,29 @@
         closePalette();
       }
     });
+
+    palette.addEventListener('close', function () {
+      input.setAttribute('aria-expanded', 'false');
+      restoreFocus();
+    });
   }
 
+  window.ClassicCommands = {
+    register: function (command) {
+      customCommands.push(command);
+    }
+  };
+
   document.addEventListener('keydown', function (event) {
-    var openHotkey = (event.ctrlKey || event.metaKey) && !event.shiftKey && !event.altKey && event.key.toLowerCase() === HOTKEY;
+    const openHotkey = (event.ctrlKey || event.metaKey) && !event.shiftKey && !event.altKey && event.key.toLowerCase() === HOTKEY;
     if (openHotkey && !isTypingContext(document.activeElement)) {
       event.preventDefault();
       if (!palette) buildPalette();
-      if (palette.open) {
-        closePalette();
-      } else {
+
+      if (!palette.open) { // Toggle command menu on HOTKEY
         openPalette();
+      } else {
+        closePalette();
       }
       return;
     }

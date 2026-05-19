@@ -5,10 +5,37 @@
 ## Goals
 
 - Style semantic HTML reasonably well by default.
-- Keep the core library to one CSS file.
+- Keep the core visual library to one CSS file.
 - Make forms, buttons, panels, tables, nav, and common document elements usable without heavy class markup.
 - Provide ARIA-friendly state hooks such as `aria-current`, `aria-invalid`, `aria-pressed`, and `aria-busy`.
-- Support three page shells: topbar, sidebar, and mobile-style vertical scroll.
+- Support three-page shells: topbar, sidebar, and mobile-style vertical scroll.
+
+## Markup Philosophy
+
+Start with semantic HTML. Reach for classes only when HTML does not already have the concept you need, or when you are choosing a visual variant.
+
+Good default markup:
+
+```html
+<article>
+  <header>
+    <h2>Lesson Notes</h2>
+  </header>
+  <p>Classic CSS styles the document structure directly.</p>
+</article>
+
+<form>
+  <label for="name">Name</label>
+  <input id="name" name="name">
+</form>
+```
+
+Opt-in classes are for extras:
+
+```html
+<div class="notice" data-variant="warning">Check the required fields.</div>
+<button class="secondary">Save Draft</button>
+```
 
 ## Files
 
@@ -18,24 +45,50 @@
 - `demo/index.html`: topbar layout specimen for prose, tables, figures, lists, code, and document structure.
 - `demo/forms.html`: form fixture for bare text/input pairs, label/input pairs, fieldsets, validation states, and native controls.
 - `demo/components.html`: sidebar layout fixture for buttons, tabs, notices, menus, stats, dialogs, disclosure, progress, and pagination.
-- `PROJECT-BRIEF.md`: the original project brief.
 
 ## Usage
 
-Link the stylesheet directly:
+Link the stylesheet directly. This is the whole visual baseline:
 
 ```html
 <link rel="stylesheet" href="classic.css">
 ```
 
-Optional enhancements:
+Optional scripts add behavior, not the core look:
 
 ```html
 <script src="classic.enhance.js"></script>
 <script src="classic.commands.js"></script>
 ```
 
-The stylesheet is designed to work with normal HTML:
+## CSS and JS Boundary
+
+`classic.css` owns presentation:
+
+- semantic element styling
+- layouts and responsive collapse
+- form table alignment
+- button/input/panel chrome
+- ARIA and data-attribute visual states
+
+`classic.enhance.js` owns optional markup repair:
+
+- converts bare form text before controls into real labels
+- gives generated labels a matching input `id`
+- can be disabled per form with `data-classic-no-autolabels`
+
+`classic.commands.js` owns optional command-palette behavior:
+
+- opens with `Ctrl+K` or `Cmd+K`
+- jumps to semantic landmarks such as `nav`, `main`, `forms`, `search`, `footer`, and `top`
+- adds explicit section jumps from `data-jumpable`
+- accepts custom commands through `window.ClassicCommands.register(...)`
+
+The CSS should still be useful if neither script is loaded.
+
+## Forms and Labels
+
+The stylesheet can visually place bare form text in the left column:
 
 ```html
 <form>
@@ -44,14 +97,14 @@ The stylesheet is designed to work with normal HTML:
 </form>
 ```
 
-Bare form text is visually placed in the left column and controls land in the right column. For actual click-to-focus label behavior, use real labels:
+For actual click-to-focus label behavior, use real labels:
 
 ```html
 <label for="name">Name</label>
 <input id="name" name="name">
 ```
 
-The library helper automatically converts bare text/control pairs into labels (default-on). To opt out for a specific form, use <code>data-classic-no-autolabels</code>:
+Or load `classic.enhance.js`, which converts bare text/control pairs into labels by default:
 
 ```html
 <script src="classic.enhance.js"></script>
@@ -59,22 +112,42 @@ The library helper automatically converts bare text/control pairs into labels (d
   Name
   <input name="name">
 </form>
+```
 
+To opt out for a specific form, use `data-classic-no-autolabels`:
+
+```html
 <form data-classic-no-autolabels>
   Name
   <input name="name">
 </form>
 ```
 
-The command palette opens with `Ctrl+K` (or `Cmd+K` on macOS). Type commands like `nav`, `main`, `forms`, `search`, `footer`, or `top` to jump to semantic landmarks.
+## Command Palette
 
-You can add custom semantic aliases:
+The command palette opens with `Ctrl+K` or `Cmd+K`. Type commands like `nav`, `main`, `forms`, `search`, `footer`, or `top` to jump to semantic landmarks.
+
+Command palette section jumps are explicit. Mark a destination with `data-jumpable`.
 
 ```html
-<section id="billing" data-classic-jump="billing invoices payments">
+<section
+  id="billing"
+  data-jumpable
+  data-jump-label="Billing"
+  data-jump-aliases="invoices payments"
+  data-jump-description="Jump to billing section">
   ...
 </section>
 ```
+
+Jump attributes:
+
+- `data-jumpable`: opt this element into the command palette.
+- `data-jump-label`: command text shown in the palette.
+- `data-jump-aliases`: extra search terms.
+- `data-jump-description`: right-side context text in the palette.
+
+If `data-jump-label` is omitted, the command palette falls back to `aria-label`, then `aria-labelledby`, then `id`. Unlabeled jump targets are skipped.
 
 You can also register custom commands in script:
 
@@ -90,6 +163,15 @@ You can also register custom commands in script:
   });
 </script>
 ```
+
+## Accessibility Notes
+
+- Prefer real labels for forms. Bare form text is only visual until `classic.enhance.js` upgrades it.
+- Keep visible focus states intact. The stylesheet uses `:focus-visible` for keyboard navigation.
+- Use ARIA states only for state, not decoration: `aria-current`, `aria-invalid`, `aria-pressed`, and `aria-busy` should reflect real UI state.
+- Use `data-jumpable` only on meaningful destinations with a label, ARIA label, or stable `id`.
+- The command palette restores focus to the element that opened it and exposes results as a combobox/listbox pair.
+- Motion is reduced when the user has `prefers-reduced-motion: reduce`.
 
 ## Layouts
 
@@ -107,7 +189,7 @@ Theme presets can also be applied to `body`:
 - `theme-paper`: warmer paper-like neutrals.
 - `theme-terminal-office`: muted green office-terminal vibe.
 
-Density presets can be applied to any wrapper (including `body`):
+Density presets can be applied to any wrapper, including `body`:
 
 - `density-calm`: roomier controls and spacing rhythm.
 - `density-compact`: tighter controls and spacing rhythm.
@@ -151,7 +233,7 @@ Useful states:
 - `surface`: bordered raised panel.
 - `elev-flat`: low elevation treatment.
 - `elev-raised`: medium elevation treatment.
-- `elev-window`: strongest "window chrome" elevation treatment.
+- `elev-window`: strongest window-chrome elevation treatment.
 - `band`: full-width horizontal section band.
 - `bleed`: let an element escape the centered page width.
 
@@ -173,7 +255,9 @@ Validation states support both ARIA and native HTML validity:
 <input pattern="[a-z0-9-]+" required>
 ```
 
-### Components
+### Optional Component Classes
+
+These are not automatic semantic defaults. Add the class when you want the component treatment.
 
 - `notice`: inset message block. Use `data-variant="info|success|warning|danger"`.
 - `badge` / `tag`: small inline status labels. Use `data-variant` for color.
@@ -181,7 +265,7 @@ Validation states support both ARIA and native HTML validity:
 - `toolbar`: compact command group.
 - `menu`: command list.
 - `pagination`: pagination list.
-- `avatar`: circular initials marker.
+- `avatar`: circular-initials marker.
 - `stat`: compact metric panel.
 - `window`: window chrome container.
 - `window-titlebar`: title row for window containers.
