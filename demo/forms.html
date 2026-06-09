@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -32,10 +32,10 @@
         </header>
         <form action="#" method="get">
           Title
-          <input name="bare-title" placeholder="Course title">
+          <input name="bare-title" type="text" placeholder="Course title">
 
           Slug
-          <input name="bare-slug" value="classic-css-forms">
+          <input name="bare-slug" type="text" value="classic-css-forms">
 
           Level
           <select name="bare-level">
@@ -59,10 +59,10 @@
         </header>
         <form action="#" method="get">
           <label for="pair-title">Title</label>
-          <input id="pair-title" name="pair-title" placeholder="Hypermedia Systems">
+          <input id="pair-title" name="pair-title" type="text" placeholder="Hypermedia Systems">
 
           <label for="pair-owner">Owner</label>
-          <input id="pair-owner" name="pair-owner" placeholder="Course staff">
+          <input id="pair-owner" name="pair-owner" type="text" placeholder="Course staff">
 
           <label for="pair-status">Status</label>
           <select id="pair-status" name="pair-status">
@@ -84,7 +84,7 @@
           <div class="field-row">
             <div class="field">
               <label for="name">Name</label>
-              <input id="name" name="name" autocomplete="name" placeholder="Ada Lovelace" required>
+              <input id="name" name="name" type="text" autocomplete="name" placeholder="Ada Lovelace" required>
             </div>
             <div class="field">
               <label for="email">Email</label>
@@ -96,7 +96,7 @@
           <div class="field-row">
             <div class="field">
               <label for="username">Username</label>
-              <input id="username" name="username" value="classic-css" autocomplete="username">
+              <input id="username" name="username" type="text" value="classic-css" autocomplete="username">
             </div>
             <div class="field">
               <label for="password">Password</label>
@@ -130,12 +130,12 @@
 
           <div class="field">
             <label for="topic">Topic</label>
-            <input id="topic" name="topic" list="topics" placeholder="Choose or type a topic">
+            <input id="topic" name="topic" type="text" list="topics" placeholder="Choose or type a topic">
             <datalist id="topics">
-              <option value="Hypermedia">
-              <option value="CSS Library">
-              <option value="Accessibility">
-              <option value="Courseware">
+              <option value="Hypermedia"></option>
+              <option value="CSS Library"></option>
+              <option value="Accessibility"></option>
+              <option value="Courseware"></option>
             </datalist>
           </div>
 
@@ -166,17 +166,17 @@
           <legend>Validation States</legend>
           <div class="field">
             <label for="handle">Public handle</label>
-            <input id="handle" name="handle" value="classic-css!" aria-invalid="true">
+            <input id="handle" name="handle" type="text" value="classic-css!" aria-invalid="true">
             <small>Invalid state is driven by <code>aria-invalid="true"</code>.</small>
           </div>
           <div class="field-row">
             <div class="field">
               <label for="readonly">Readonly field</label>
-              <input id="readonly" name="readonly" value="Stable value" readonly>
+              <input id="readonly" name="readonly" type="text" value="Stable value" readonly>
             </div>
             <div class="field">
               <label for="disabled">Disabled field</label>
-              <input id="disabled" name="disabled" value="Locked example" disabled>
+              <input id="disabled" name="disabled" type="text" value="Locked example" disabled>
             </div>
           </div>
           <div class="field">
@@ -243,7 +243,7 @@
           <legend>Message</legend>
           <div class="field">
             <label for="subject">Subject</label>
-            <input id="subject" name="subject" placeholder="Styling feedback">
+            <input id="subject" name="subject" type="text" placeholder="Styling feedback">
           </div>
           <div class="field">
             <label for="message">Notes</label>
@@ -251,7 +251,7 @@
           </div>
         </fieldset>
 
-        <div class="toolbar" aria-label="Form actions">
+        <div class="toolbar" role="group" aria-label="Form actions">
           <button type="submit">Submit</button>
           <button type="button" class="secondary">Save Draft</button>
           <button type="button" class="outline" aria-pressed="true">Pinned</button>

@@ -161,6 +161,9 @@
     if (!items.length) {
       const emptyItem = document.createElement('li');
       emptyItem.className = 'classic-command-empty';
+      emptyItem.setAttribute('role', 'option');
+      emptyItem.setAttribute('aria-disabled', 'true');
+      emptyItem.setAttribute('aria-selected', 'false');
       emptyItem.innerHTML = '<strong>No matching commands</strong><small class="muted">Try: nav, main, forms, footer, top</small>';
       list.appendChild(emptyItem);
       return;
@@ -171,18 +174,15 @@
       li.id = 'classic-command-option-' + index;
       li.setAttribute('role', 'option');
       li.setAttribute('aria-selected', String(index === activeIndex));
-
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'secondary classic-command-item';
-      btn.style.width = '100%';
-      btn.tabIndex = -1;
-      btn.innerHTML = '<span>' + escapeHtml(command.name) + '</span><small class="muted">' + escapeHtml(command.description) + '</small>';
-      btn.addEventListener('click', function () {
+      li.addEventListener('click', function () {
         closePalette();
         command.run();
       });
-      li.appendChild(btn);
+
+      const option = document.createElement('span');
+      option.className = 'classic-command-item';
+      option.innerHTML = '<span>' + escapeHtml(command.name) + '</span><small class="muted">' + escapeHtml(command.description) + '</small>';
+      li.appendChild(option);
       list.appendChild(li);
     });
   }

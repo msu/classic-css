@@ -45,7 +45,7 @@
         cursor: pointer;
     }
 
-    /* Jump targets account for sticky top bars. */
+    /* Jump targets leave room around classic page chrome. */
     :target {
         scroll-margin-block: 6rem;
     }
@@ -65,8 +65,8 @@
         --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
 
         /* Core surfaces and text */
-        --background: #f3f4f6;
-        --background-accent: #ebedf0;
+        --background: #fbfbf8;
+        --background-accent: #f0f1f2;
         --surface: #ffffff;
         --surface-2: #f7f8fa;
         --surface-3: #eef1f4;
@@ -93,16 +93,25 @@
         --lowlight: #777777;
         --button-face: #d7d7d7;
         --button-face-light: #f8f8f8;
+        --button-face-hover: #e4e4e4;
         --button-face-mid: #c9c9c9;
         --button-face-dark: #9d9d9d;
         --button-edge: #242424;
         --button-groove: #6d6d6d;
+        --button-secondary-face: #c9d1d8;
+        --button-secondary-face-hover: #d7e0e7;
+        --button-secondary-face-pressed: #b7c0c8;
+        --button-secondary-edge: #4d5963;
+        --button-secondary-highlight: #f7fbff;
         --button-blue-face: #dce7fb;
         --button-blue-mid: #9db7e3;
         --button-blue-dark: #5b7eb8;
+        --terminal-bg: #050505;
+        --terminal-border: #2c2c2c;
+        --terminal-text: #f7f3e8;
 
         /* Interaction and elevation */
-        --focus: rgba(28, 79, 154, 0.34);
+        --focus: #1c4f9a;
         --selection: rgba(28, 79, 154, 0.18);
         --shadow-color: rgba(0, 0, 0, 0.28);
         --shadow-tight:
@@ -142,14 +151,11 @@
         --control-height: 2.55rem;
         --line-height: 1.55;
 
-        /* Elevation aliases for opt-in surface classes */
-        --surface-elev-1: var(--surface);
+        /* Elevation aliases for opt-in surfaces */
         --surface-elev-2: linear-gradient(180deg, color-mix(in srgb, var(--surface) 88%, var(--highlight)), var(--surface));
         --surface-elev-3: linear-gradient(180deg, color-mix(in srgb, var(--surface) 78%, var(--highlight)), var(--surface-2));
-        --elev-border-1: var(--border);
         --elev-border-2: var(--border-strong);
         --elev-border-3: color-mix(in srgb, var(--border-strong) 84%, #000000);
-        --elev-shadow-1: var(--shadow-tight);
         --elev-shadow-2: var(--shadow-raised);
         --elev-shadow-3:
             1px 1px 0 var(--highlight) inset,
@@ -159,31 +165,6 @@
             8px 8px 20px rgba(0, 0, 0, 0.18);
     }
 
-    /* Theme presets override tokens only. */
-    body.theme-platinum {
-        --primary: #1c4f9a;
-        --accent: #8a3a24;
-    }
-
-    body.theme-paper {
-        --background: #ddd8ca;
-        --background-accent: #cec8b9;
-        --surface: #f3efe2;
-        --surface-2: #e4dece;
-        --surface-3: #d4ccba;
-        --primary: #315b6d;
-        --accent: #8a4b2f;
-    }
-
-    body.theme-terminal-office {
-        --background: #c9d0c4;
-        --background-accent: #b8c0b1;
-        --surface: #dde4d8;
-        --surface-2: #ccd5c8;
-        --surface-3: #bec7ba;
-        --primary: #2d5f3b;
-        --accent: #5a3f26;
-    }
 }
 
 @layer base {
@@ -237,26 +218,26 @@
         color: var(--text);
         font-family: var(--font-sans);
         font-weight: 700;
-        letter-spacing: 0.01em;
+        letter-spacing: 0;
         line-height: 1.08;
         margin: 0 0 var(--space-3);
         text-wrap: balance;
     }
 
     h1 {
-        font-size: clamp(2.3rem, 4vw, 3.35rem);
+        font-size: 2.35rem;
     }
 
     h2 {
-        font-size: clamp(1.7rem, 2.7vw, 2.4rem);
+        font-size: 1.75rem;
     }
 
     h3 {
-        font-size: clamp(1.35rem, 1.9vw, 1.75rem);
+        font-size: 1.35rem;
     }
 
     h4 {
-        font-size: clamp(1.08rem, 1.2vw, 1.28rem);
+        font-size: 1.08rem;
     }
 
     h5,
@@ -268,9 +249,22 @@
 
     @media (min-width: 48rem) {
 
-        h1,
-        h2 {
+        h1 {
+            font-size: 3.2rem;
             line-height: 1.04;
+        }
+
+        h2 {
+            font-size: 2.3rem;
+            line-height: 1.04;
+        }
+
+        h3 {
+            font-size: 1.65rem;
+        }
+
+        h4 {
+            font-size: 1.25rem;
         }
     }
 
@@ -297,25 +291,6 @@
         text-decoration-color: color-mix(in srgb, var(--primary) 35%, transparent);
         text-decoration-thickness: 0.08em;
         text-underline-offset: 0.18em;
-    }
-
-    /* Density presets */
-    .density-calm {
-        --control-height: 2.75rem;
-        --line-height: 1.62;
-        --space-2: 0.58rem;
-        --space-3: 0.9rem;
-        --space-4: 1.15rem;
-        --space-5: 1.72rem;
-    }
-
-    .density-compact {
-        --control-height: 2.2rem;
-        --line-height: 1.42;
-        --space-2: 0.38rem;
-        --space-3: 0.62rem;
-        --space-4: 0.88rem;
-        --space-5: 1.22rem;
     }
 
     a:hover {
@@ -380,11 +355,12 @@
     }
 
     pre {
-        background: #181713;
-        border: 1px solid #332f27;
+        background: var(--terminal-bg);
+        border: 1px solid var(--terminal-border);
         border-radius: var(--radius-2);
         box-shadow: var(--shadow-raised);
-        color: #f5ead8;
+        color: var(--terminal-text);
+        line-height: 1.55;
         overflow: auto;
         padding: var(--space-4);
     }
@@ -393,6 +369,7 @@
         background: transparent;
         border: 0;
         color: inherit;
+        font-size: 0.95em;
         padding: 0;
     }
 
@@ -465,13 +442,11 @@
     body.layout-sidebar,
     body.layout-scroll {
         min-height: 100vh;
-        --sticky-stack-offset: 0;
     }
 
     body.layout-topbar {
         display: grid;
         grid-template-rows: auto 1fr auto;
-        --sticky-stack-offset: 5rem;
     }
 
     /* Topbar shell */
@@ -498,19 +473,6 @@
             1px 1px 0 var(--highlight) inset,
             0 2px 0 rgba(0, 0, 0, 0.18);
         padding: var(--space-2) max(1rem, calc((100vw - var(--container-wide)) / 2));
-        position: static;
-        top: auto;
-        z-index: auto;
-    }
-
-    /* Generic sticky helpers for any element */
-    .sticky-top {
-        position: sticky;
-        top: var(--sticky-top, var(--sticky-stack-offset, 0));
-        z-index: 20;
-    }
-
-    .sticky-normal {
         position: static;
         top: auto;
         z-index: auto;
@@ -630,20 +592,6 @@
         width: min(100%, var(--container-narrow));
     }
 
-    /* Generic layout helpers */
-    .container {
-        width: min(100%, var(--container));
-        margin-inline: auto;
-    }
-
-    .narrow {
-        width: min(100%, var(--container-narrow));
-    }
-
-    .wide {
-        width: min(100%, var(--container-wide));
-    }
-
     .stack {
         display: flex;
         flex-direction: column;
@@ -699,21 +647,6 @@
             position: static;
         }
 
-        body.layout-topbar>header nav,
-        body.layout-topbar>header nav ul,
-        body.layout-topbar>header nav ol,
-        body.layout-sidebar>header nav,
-        body.layout-sidebar>header nav ul,
-        body.layout-sidebar>header nav ol {
-            align-items: stretch;
-            flex-direction: column;
-        }
-
-        body.layout-topbar>header nav a,
-        body.layout-sidebar>header nav a {
-            display: block;
-        }
-
         body.layout-topbar>main,
         body.layout-sidebar>main {
             padding: var(--space-4) 0.75rem var(--space-6);
@@ -737,77 +670,15 @@
             flex-direction: column;
         }
 
-        .toolbar {
-            align-items: stretch;
-            flex-direction: column;
-        }
-
-        .toolbar button,
-        .toolbar [role="button"],
-        .toolbar .button {
-            width: 100%;
-        }
-
-        form,
-        fieldset,
-        .field {
-            grid-template-columns: 1fr;
-        }
-
-        form>small,
-        fieldset>small,
-        .field>small,
-        .field>p,
-        .check,
-        .switch,
-        form> :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button),
-        form> :is(input:not([type="checkbox"], [type="radio"], [type="range"], [type="button"], [type="submit"], [type="reset"]), select, textarea, progress, meter),
-        fieldset> :is(input:not([type="checkbox"], [type="radio"], [type="range"], [type="button"], [type="submit"], [type="reset"]), select, textarea, progress, meter),
-        .field> :is(input:not([type="checkbox"], [type="radio"], [type="range"], [type="button"], [type="submit"], [type="reset"]), select, textarea, progress, meter) {
-            grid-column: 1;
-        }
-
-        form>label:not(.check, .switch),
-        fieldset>label:not(.check, .switch),
-        .field>label {
-            justify-self: start;
-            padding-top: 0;
-            text-align: left;
-        }
     }
 
-    /* Opt-in surfaces */
+    /* Opt-in surface */
     .surface {
         background: var(--surface-elev-2);
         border: 1px solid var(--elev-border-2);
         border-radius: var(--radius-3);
         box-shadow: var(--elev-shadow-2);
         padding: var(--space-5);
-    }
-
-    .elev-flat {
-        background: var(--surface-elev-1);
-        border: 1px solid var(--elev-border-1);
-        box-shadow: var(--elev-shadow-1);
-    }
-
-    .elev-raised {
-        background: var(--surface-elev-2);
-        border: 1px solid var(--elev-border-2);
-        box-shadow: var(--elev-shadow-2);
-    }
-
-    .elev-window {
-        background: var(--surface-elev-3);
-        border: 1px solid var(--elev-border-3);
-        box-shadow: var(--elev-shadow-3);
-    }
-
-    .band {
-        background: color-mix(in srgb, var(--surface) 86%, var(--background-accent));
-        border-block: 1px solid var(--border);
-        margin-inline: calc(50% - 50vw);
-        padding: var(--space-6) max(1rem, calc(50vw - var(--container) / 2));
     }
 }
 
@@ -849,6 +720,7 @@
     }
 
     nav a:not([role="button"]):not(.brand) {
+        align-items: center;
         background: var(--button-face);
         border: 1px solid;
         border-color: var(--highlight) var(--button-edge) var(--button-edge) var(--highlight);
@@ -871,6 +743,49 @@
         border: 1px solid color-mix(in srgb, var(--primary) 48%, var(--border-strong));
         box-shadow: var(--shadow-tight);
         color: var(--primary);
+    }
+
+    body.layout-topbar>header nav a:not([role="button"]),
+    body.layout-sidebar>header nav a:not([role="button"]) {
+        align-items: center;
+        background: transparent;
+        border: 0;
+        border-radius: var(--radius-1);
+        box-shadow: none;
+        display: inline-flex;
+        font-weight: 700;
+        min-height: 2rem;
+        min-width: 0;
+        padding: 0.35rem 0.55rem;
+        text-align: left;
+    }
+
+    body.layout-topbar>header nav a:not([role="button"]):hover,
+    body.layout-sidebar>header nav a:not([role="button"]):hover {
+        background: color-mix(in srgb, var(--primary) 10%, transparent);
+        color: var(--primary);
+    }
+
+    body.layout-topbar>header nav a[aria-current="page"],
+    body.layout-sidebar>header nav a[aria-current="page"] {
+        background: var(--primary);
+        color: var(--primary-text);
+    }
+
+    body.layout-topbar>header nav .brand,
+    body.layout-sidebar>header nav .brand {
+        letter-spacing: 0;
+        padding-left: 0;
+    }
+
+    body.layout-topbar>header nav .brand:hover,
+    body.layout-sidebar>header nav .brand:hover {
+        background: transparent;
+    }
+
+    body.layout-topbar>header nav .brand strong,
+    body.layout-sidebar>header nav .brand strong {
+        color: inherit;
     }
 
     body.layout-sidebar>.sidebar nav,
@@ -949,21 +864,14 @@
     }
 
     /* Buttons */
-    button,
-    input[type="button"],
-    input[type="submit"],
-    input[type="reset"],
-    [role="button"],
-    .button {
+    :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button) {
         align-items: center;
         appearance: none;
         background: var(--button-face);
         border-color: var(--highlight) var(--button-edge) var(--button-edge) var(--highlight);
         border-style: solid;
         border-width: 2px;
-
         border-radius: 10px;
-
         box-shadow:
             1px 1px 0 var(--button-face-light) inset,
             -1px -1px 0 var(--button-groove) inset;
@@ -980,23 +888,13 @@
         user-select: none;
     }
 
-    button:hover,
-    input[type="button"]:hover,
-    input[type="submit"]:hover,
-    input[type="reset"]:hover,
-    [role="button"]:hover,
-    .button:hover {
-        background: #e4e4e4;
+    :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button):hover {
+        background: var(--button-face-hover);
         color: var(--text);
         text-decoration: none;
     }
 
-    button:active,
-    input[type="button"]:active,
-    input[type="submit"]:active,
-    input[type="reset"]:active,
-    [role="button"]:active,
-    .button:active {
+    :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button):active {
         background: var(--button-face-mid);
         border-color: var(--button-edge) var(--highlight) var(--highlight) var(--button-edge);
         box-shadow:
@@ -1005,12 +903,7 @@
         transform: translate(1px, 1px);
     }
 
-    button[aria-pressed="true"],
-    input[type="button"][aria-pressed="true"],
-    input[type="submit"][aria-pressed="true"],
-    input[type="reset"][aria-pressed="true"],
-    [role="button"][aria-pressed="true"],
-    .button[aria-pressed="true"] {
+    :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button)[aria-pressed="true"] {
         background: var(--button-face-mid);
         border-color: var(--button-edge) var(--highlight) var(--highlight) var(--button-edge);
         box-shadow:
@@ -1019,95 +912,64 @@
         transform: translate(1px, 1px);
     }
 
-    button.secondary,
-    input.secondary,
-    [role="button"].secondary,
-    .button.secondary {
-        background: var(--surface-2);
-        border-color: var(--highlight) var(--button-edge) var(--button-edge) var(--highlight);
+    :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button).secondary {
+        background: var(--button-secondary-face);
+        border-color: var(--button-secondary-highlight) var(--button-secondary-edge) var(--button-secondary-edge) var(--button-secondary-highlight);
         color: var(--text);
     }
 
-    button.secondary:hover,
-    input.secondary:hover,
-    [role="button"].secondary:hover,
-    .button.secondary:hover {
-        background: #e6e6e6;
+    :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button).secondary:hover {
+        background: var(--button-secondary-face-hover);
         color: var(--text);
     }
 
-    button.contrast,
-    input.contrast,
-    [role="button"].contrast,
-    .button.contrast {
+    :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button).contrast {
         background: #2f2f2f;
         border-color: #777777 #050505 #050505 #777777;
         color: #ffffff;
         text-shadow: 0 -1px 0 #000000;
     }
 
-    button.outline,
-    input.outline,
-    [role="button"].outline,
-    .button.outline {
+    :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button).outline {
         background: var(--button-blue-face);
         border-color: var(--highlight) var(--primary-active) var(--primary-active) var(--highlight);
         color: #0d2d61;
     }
 
-    button.secondary:active,
-    input.secondary:active,
-    [role="button"].secondary:active,
-    .button.secondary:active {
-        background: var(--button-face-mid);
-        border-color: var(--button-edge) var(--highlight) var(--highlight) var(--button-edge);
+    :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button).secondary:active {
+        background: var(--button-secondary-face-pressed);
+        border-color: var(--button-secondary-edge) var(--button-secondary-highlight) var(--button-secondary-highlight) var(--button-secondary-edge);
     }
 
-    button.outline:active,
-    input.outline:active,
-    [role="button"].outline:active,
-    .button.outline:active {
+    :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button).outline:active {
         background: var(--button-blue-mid);
         border-color: var(--primary-active) var(--highlight) var(--highlight) var(--primary-active);
     }
 
-    button.contrast:active,
-    input.contrast:active,
-    [role="button"].contrast:active,
-    .button.contrast:active {
+    :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button).contrast:active {
         background: #1b1b1b;
         border-color: #050505 #777777 #777777 #050505;
     }
 
-    button.ghost,
-    input.ghost,
-    [role="button"].ghost,
-    .button.ghost {
+    :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button).ghost {
         background: transparent;
         border-color: transparent;
         box-shadow: none;
         color: var(--primary);
     }
 
-    button.ghost:active,
-    input.ghost:active,
-    [role="button"].ghost:active,
-    .button.ghost:active {
+    :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button).ghost:active {
         background: transparent;
         border-color: transparent;
         box-shadow: none;
     }
 
-    button[aria-busy="true"],
-    [role="button"][aria-busy="true"],
-    .button[aria-busy="true"] {
+    :is(button, [role="button"], .button)[aria-busy="true"] {
         pointer-events: none;
         position: relative;
     }
 
-    button[aria-busy="true"]::before,
-    [role="button"][aria-busy="true"]::before,
-    .button[aria-busy="true"]::before {
+    :is(button, [role="button"], .button)[aria-busy="true"]::before {
         animation: classic-spin 0.8s linear infinite;
         border: 2px solid currentColor;
         border-right-color: transparent;
@@ -1513,8 +1375,7 @@
         border-left-color: var(--variant);
     }
 
-    .badge,
-    .tag {
+    .badge {
         align-items: center;
         background: var(--surface-2);
         border: 1px solid var(--border);
@@ -1529,8 +1390,7 @@
         white-space: nowrap;
     }
 
-    .badge[data-variant],
-    .tag[data-variant] {
+    .badge[data-variant] {
         background: color-mix(in srgb, var(--variant) 14%, var(--surface));
         border-color: color-mix(in srgb, var(--variant) 45%, var(--border));
         color: var(--variant);
@@ -1593,6 +1453,8 @@
     }
 
     /* Tabs and toolbars */
+    nav.tabs,
+    .tabs,
     [role="tablist"] {
         border-bottom: 1px solid var(--border);
         display: flex;
@@ -1600,6 +1462,8 @@
         gap: var(--space-1);
     }
 
+    nav.tabs a.tab,
+    .tab,
     [role="tab"] {
         background: var(--surface-2);
         border: 1px solid var(--border);
@@ -1610,6 +1474,8 @@
         text-decoration: none;
     }
 
+    nav.tabs a.tab[aria-current="page"],
+    .tab[aria-current="page"],
     [role="tab"][aria-selected="true"] {
         background: var(--surface);
         color: var(--primary);
@@ -1665,6 +1531,34 @@
         .toolbar [role="button"],
         .toolbar .button {
             width: 100%;
+        }
+
+        form,
+        fieldset,
+        .field {
+            grid-template-columns: 1fr;
+            text-align: left;
+        }
+
+        form>small,
+        fieldset>small,
+        .field>small,
+        .field>p,
+        .check,
+        .switch,
+        form> :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button),
+        form> :is(input:not([type="checkbox"], [type="radio"], [type="range"], [type="button"], [type="submit"], [type="reset"]), select, textarea, progress, meter),
+        fieldset> :is(input:not([type="checkbox"], [type="radio"], [type="range"], [type="button"], [type="submit"], [type="reset"]), select, textarea, progress, meter),
+        .field> :is(input:not([type="checkbox"], [type="radio"], [type="range"], [type="button"], [type="submit"], [type="reset"]), select, textarea, progress, meter) {
+            grid-column: 1;
+        }
+
+        form>label:not(.check, .switch),
+        fieldset>label:not(.check, .switch),
+        .field>label {
+            justify-self: start;
+            padding-top: 0;
+            text-align: left;
         }
     }
 
@@ -1761,7 +1655,7 @@
         font-size: 0.92rem;
         font-weight: 700;
         justify-content: space-between;
-        letter-spacing: 0.02em;
+        letter-spacing: 0;
         padding: 0.45rem 0.7rem;
         text-transform: uppercase;
     }
@@ -1801,12 +1695,30 @@
         overflow: auto;
     }
 
+    .classic-command-palette [role="option"] {
+        cursor: pointer;
+    }
+
+    .classic-command-palette [role="option"]:hover .classic-command-item {
+        background: var(--button-secondary-face-hover);
+    }
+
     .classic-command-item {
         align-items: flex-start;
+        background: var(--button-secondary-face);
+        border: 2px solid;
+        border-color: var(--button-secondary-highlight) var(--button-secondary-edge) var(--button-secondary-edge) var(--button-secondary-highlight);
+        border-radius: var(--radius-2);
+        box-shadow: 1px 1px 0 var(--button-face-light) inset, -1px -1px 0 var(--button-groove) inset;
+        color: var(--text);
         display: flex;
         flex-wrap: wrap;
         gap: 0.35rem 0.65rem;
+        justify-content: space-between;
+        min-height: 2.15rem;
+        padding: 0.5rem 0.65rem;
         text-align: left;
+        width: 100%;
     }
 
     .classic-command-palette [role="option"][aria-selected="true"] .classic-command-item {
@@ -1825,15 +1737,6 @@
         padding: var(--space-4);
         place-items: center;
         text-align: center;
-    }
-
-    .split-pane {
-        display: grid;
-        grid-template-columns: minmax(12rem, 16rem) minmax(0, 1fr);
-    }
-
-    .split-pane> :first-child {
-        border-right: 1px solid var(--border);
     }
 
     /* Dialogs and app primitives */
@@ -1887,36 +1790,6 @@
         line-height: 1;
     }
 
-    .empty-state {
-        align-items: center;
-        background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 90%, var(--highlight)), var(--surface));
-        border: 1px dashed color-mix(in srgb, var(--border) 88%, var(--primary) 12%);
-        border-radius: var(--radius-3);
-        color: var(--muted);
-        display: grid;
-        justify-items: center;
-        min-height: 9rem;
-        padding: var(--space-5);
-        text-align: center;
-    }
-
-    .skeleton {
-        animation: classic-pulse 1.5s ease-in-out infinite;
-        background: linear-gradient(90deg, var(--surface-2), color-mix(in srgb, var(--surface-2) 70%, var(--highlight)), var(--surface-2));
-        background-size: 200% 100%;
-        border-radius: var(--radius-2);
-        color: transparent;
-    }
-
-    @keyframes classic-pulse {
-        0% {
-            background-position: 200% 0;
-        }
-
-        100% {
-            background-position: -200% 0;
-        }
-    }
 }
 
 @layer utilities {
@@ -1945,15 +1818,15 @@
     }
 
     /* Interaction polish */
-    :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button, .menu a, .menu button, .pagination a, [role="tab"], nav a) {
+    :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button, .menu a, .menu button, .pagination a, .tab, [role="tab"], nav a) {
         transition: transform 120ms ease, box-shadow 130ms ease, filter 140ms ease, background 150ms ease, color 130ms ease;
     }
 
-    :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button, .menu a, .menu button, .pagination a, [role="tab"], nav a):hover {
+    :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button, .menu a, .menu button, .pagination a, .tab, [role="tab"], nav a):hover {
         filter: saturate(1.04);
     }
 
-    :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button, .menu a, .menu button, .pagination a, [role="tab"], nav a):active {
+    :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button, .menu a, .menu button, .pagination a, .tab, [role="tab"], nav a):active {
         transform: translate(1px, 1px);
     }
 
@@ -1980,7 +1853,4 @@
         width: 1px;
     }
 
-    .bleed {
-        margin-inline: calc(50% - 50vw);
-    }
 }

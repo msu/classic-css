@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -18,8 +18,8 @@
       </nav>
     </header>
 
-    <aside class="sidebar" aria-label="Component sections">
-      <nav>
+    <aside class="sidebar">
+      <nav aria-label="Component sections">
         <ul>
           <li><a href="#components-title" aria-current="page">Overview</a></li>
           <li><a href="#stats">Stats</a></li>
@@ -41,7 +41,7 @@
           <h1 id="components-title">Component Fixture</h1>
           <p class="lead">This page uses the sidebar layout while testing buttons, tabs, notices, menus, pagination, stats, progress indicators, dialogs, and compact app surfaces.</p>
         </div>
-        <div class="toolbar" aria-label="Component actions">
+        <div class="toolbar" role="group" aria-label="Component actions">
           <button type="button">New</button>
           <button type="button" class="secondary">Export</button>
           <button type="button" class="outline">Share</button>
@@ -89,7 +89,7 @@
               <button type="button" aria-pressed="true">Pressed</button>
               <button type="button" aria-busy="true">Working</button>
               <button type="button" disabled>Disabled</button>
-              <a href="#buttons" role="button">Anchor Button</a>
+              <a href="#buttons" class="button">Anchor Button</a>
             </div>
           </div>
         </article>
@@ -111,14 +111,14 @@
         <article id="tabs" data-jumpable data-jump-label="Tabs" data-jump-aliases="tablist panels">
           <header>
             <h2>Tabs</h2>
-            <p class="muted">Styled with ARIA roles and selected state.</p>
+            <p class="muted">Styled as ordinary links for static demos; scripted tabs can use ARIA roles later.</p>
           </header>
-          <div role="tablist" aria-label="Example tabs">
-            <a href="#tabs" role="tab" aria-selected="true">Overview</a>
-            <a href="#tabs" role="tab" aria-selected="false">Activity</a>
-            <a href="#tabs" role="tab" aria-selected="false">Settings</a>
-            <a href="#tabs" role="tab" aria-selected="false">History</a>
-          </div>
+          <nav class="tabs" aria-label="Example sections">
+            <a class="tab" href="#tabs" aria-current="page">Overview</a>
+            <a class="tab" href="#tabs">Activity</a>
+            <a class="tab" href="#tabs">Settings</a>
+            <a class="tab" href="#tabs">History</a>
+          </nav>
           <div class="surface">
             <p>This panel is a static mockup. Behavior can be added by a small paired script later.</p>
             <div class="cluster">
@@ -135,10 +135,10 @@
             <h2>Menus and Toolbar</h2>
             <p class="muted">Command lists, shortcut text, and compact tool surfaces.</p>
           </header>
-          <div class="toolbar" aria-label="Editor toolbar">
-            <button type="button" aria-pressed="true">B</button>
-            <button type="button">I</button>
-            <button type="button">U</button>
+          <div class="toolbar" role="toolbar" aria-label="Editor toolbar">
+            <button type="button" aria-label="Bold" aria-pressed="true">B</button>
+            <button type="button" aria-label="Italic">I</button>
+            <button type="button" aria-label="Underline">U</button>
             <button type="button" class="secondary">Link</button>
             <button type="button" class="secondary">Code</button>
           </div>
@@ -187,8 +187,8 @@
             <h2>Dialog</h2>
             <p class="muted">A static preview of native dialog styling.</p>
           </header>
-          <dialog class="dialog-preview" open>
-            <h3>Confirm Publish</h3>
+          <dialog class="dialog-preview" aria-labelledby="dialog-title" open>
+            <h3 id="dialog-title">Confirm Publish</h3>
             <p>This mock dialog uses the same styles as a native modal while staying in document flow for testing.</p>
             <div class="cluster">
               <button type="button">Publish</button>

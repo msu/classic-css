@@ -183,26 +183,19 @@ Apply one of these classes to `body`:
 
 On narrow screens, topbar and sidebar layouts collapse into a vertical scroll flow.
 
-Theme presets can also be applied to `body`:
-
-- `theme-platinum`: original cool-gray look.
-- `theme-paper`: warmer paper-like neutrals.
-- `theme-terminal-office`: muted green office-terminal vibe.
-
-Density presets can be applied to any wrapper, including `body`:
-
-- `density-calm`: roomier controls and spacing rhythm.
-- `density-compact`: tighter controls and spacing rhythm.
-
 ## Class Reference
 
 Most plain HTML elements are styled directly. These classes are available when you need a specific layout, variant, or component.
+
+### Navigation
+
+Header navigation links in topbar and sidebar layouts render as compact menu-bar items. Use `brand` on the site or package identity link to keep it visually separate from page navigation.
 
 ### Button Variants
 
 Buttons style automatically on `button`, button-like inputs, `[role="button"]`, and `.button`.
 
-- `secondary`: muted gray command button.
+- `secondary`: cool-gray command button.
 - `outline`: pale blue alternate button.
 - `contrast`: dark high-contrast button.
 - `ghost`: link-like button without bevel chrome.
@@ -222,7 +215,6 @@ Useful states:
 
 ### Layout Helpers
 
-- `container`, `narrow`, `wide`: constrain content width.
 - `grid`: responsive card/content grid.
 - `grid-tight`: tighter grid gap.
 - `stack`: vertical flow with consistent spacing.
@@ -231,11 +223,6 @@ Useful states:
 - `split`: two-sided row that wraps on small screens.
 - `with-sidebar`: local two-column content/sidebar layout.
 - `surface`: bordered raised panel.
-- `elev-flat`: low elevation treatment.
-- `elev-raised`: medium elevation treatment.
-- `elev-window`: strongest window-chrome elevation treatment.
-- `band`: full-width horizontal section band.
-- `bleed`: let an element escape the centered page width.
 
 ### Forms
 
@@ -260,7 +247,7 @@ Validation states support both ARIA and native HTML validity:
 These are not automatic semantic defaults. Add the class when you want the component treatment.
 
 - `notice`: inset message block. Use `data-variant="info|success|warning|danger"`.
-- `badge` / `tag`: small inline status labels. Use `data-variant` for color.
+- `badge`: small inline status label. Use `data-variant` for color.
 - `status`: inline status with a dot. Use `data-variant` for color.
 - `toolbar`: compact command group.
 - `menu`: command list.
@@ -271,9 +258,6 @@ These are not automatic semantic defaults. Add the class when you want the compo
 - `window-titlebar`: title row for window containers.
 - `window-pane`: padded body pane for window containers.
 - `window-statusbar`: status/footer row for window containers.
-- `split-pane`: two-column pane split for app-like layouts.
-- `empty-state`: neutral empty-content panel.
-- `skeleton`: animated loading placeholder.
 - `dialog-preview`: displays a `dialog` inline for demos.
 
 ### Text Utilities
