@@ -75,6 +75,7 @@ Optional scripts add behavior, not the core look:
 
 - converts bare form text before controls into real labels
 - gives generated labels a matching input `id`
+- adds a hamburger toggle to layout header navigation on narrow screens
 - can be disabled per form with `data-classic-no-autolabels`
 
 `classic.commands.js` owns optional command-palette behavior:
@@ -181,7 +182,7 @@ Apply one of these classes to `body`:
 - `layout-sidebar`: top navigation, left sidebar, and main content area.
 - `layout-scroll`: narrow vertical scrolling layout for mobile-style forms and focused flows.
 
-On narrow screens, topbar and sidebar layouts collapse into a vertical scroll flow.
+All three layouts use a menu-bar header. On narrow screens, topbar and sidebar layouts collapse into a vertical scroll flow; with `classic.enhance.js` loaded, header navigation collapses behind a hamburger toggle.
 
 ## Class Reference
 
@@ -189,7 +190,7 @@ Most plain HTML elements are styled directly. These classes are available when y
 
 ### Navigation
 
-Header navigation links in topbar and sidebar layouts render as compact menu-bar items. Use `brand` on the site or package identity link to keep it visually separate from page navigation.
+Header navigation links in topbar, sidebar, and scroll layouts render as compact menu-bar items. Use `brand` on the site or package identity link to keep it visually separate from page navigation. Load `classic.enhance.js` to collapse layout header navigation into a hamburger menu on narrow screens.
 
 ### Button Variants
 

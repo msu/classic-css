@@ -469,7 +469,8 @@
     }
 
     body.layout-topbar>header,
-    body.layout-sidebar>header {
+    body.layout-sidebar>header,
+    body.layout-scroll>header {
         background:
             linear-gradient(180deg, var(--highlight), transparent 58%),
             linear-gradient(180deg, #dddddd, #c6c6c6);
@@ -484,7 +485,8 @@
     }
 
     body.layout-topbar>header>nav,
-    body.layout-sidebar>header>nav {
+    body.layout-sidebar>header>nav,
+    body.layout-scroll>header>nav {
         margin-inline: auto;
         width: min(100%, var(--container-wide));
     }
@@ -570,25 +572,9 @@
         overflow-x: hidden;
     }
 
-    body.layout-scroll>header,
     body.layout-scroll>main,
     body.layout-scroll>footer {
         padding-inline: 0.75rem;
-    }
-
-    body.layout-scroll>header {
-        padding-block: var(--space-3);
-    }
-
-    body.layout-scroll>header nav,
-    body.layout-scroll>header nav ul,
-    body.layout-scroll>header nav ol {
-        align-items: stretch;
-        flex-direction: column;
-    }
-
-    body.layout-scroll>header nav a {
-        display: block;
     }
 
     body.layout-scroll>main {
@@ -647,7 +633,8 @@
         }
 
         body.layout-topbar>header,
-        body.layout-sidebar>header {
+        body.layout-sidebar>header,
+        body.layout-scroll>header {
             padding: var(--space-3) 0.75rem;
             position: static;
         }
@@ -728,7 +715,6 @@
         max-width: none;
     }
 
-    body.layout-scroll>header nav a:not([role="button"]):not(.brand),
     body.layout-sidebar>.sidebar nav a:not([role="button"]):not(.brand) {
         align-items: center;
         background: var(--button-face);
@@ -746,27 +732,15 @@
         user-select: none;
     }
 
-    body.layout-scroll>header nav a:not([role="button"]):not(.brand) {
-        justify-content: center;
-        text-align: center;
-    }
-
     body.layout-sidebar>.sidebar nav a:not([role="button"]):not(.brand) {
         justify-content: flex-start;
         text-align: left;
     }
 
-    body.layout-scroll>header nav a[aria-current="page"]:not([role="button"]):not(.brand),
     body.layout-sidebar>.sidebar nav a[aria-current="page"]:not([role="button"]):not(.brand) {
         background: color-mix(in srgb, var(--primary) 8%, var(--surface));
         border-color: color-mix(in srgb, var(--primary) 35%, var(--border));
         color: var(--primary-active);
-    }
-
-    body.layout-scroll>header nav a[aria-current="page"]:not([role="button"]):not(.brand) {
-        box-shadow:
-            0 -2px 0 var(--primary) inset,
-            1px 1px 0 var(--highlight) inset;
     }
 
     body.layout-sidebar>.sidebar nav a[aria-current="page"]:not([role="button"]):not(.brand) {
@@ -776,7 +750,8 @@
     }
 
     body.layout-topbar>header nav a:not([role="button"]),
-    body.layout-sidebar>header nav a:not([role="button"]) {
+    body.layout-sidebar>header nav a:not([role="button"]),
+    body.layout-scroll>header nav a:not([role="button"]) {
         align-items: center;
         background: transparent;
         border: 0;
@@ -791,13 +766,15 @@
     }
 
     body.layout-topbar>header nav a:not([role="button"]):hover,
-    body.layout-sidebar>header nav a:not([role="button"]):hover {
+    body.layout-sidebar>header nav a:not([role="button"]):hover,
+    body.layout-scroll>header nav a:not([role="button"]):hover {
         background: color-mix(in srgb, var(--primary) 10%, transparent);
         color: var(--primary);
     }
 
     body.layout-topbar>header nav a[aria-current="page"],
-    body.layout-sidebar>header nav a[aria-current="page"] {
+    body.layout-sidebar>header nav a[aria-current="page"],
+    body.layout-scroll>header nav a[aria-current="page"] {
         background: transparent;
         color: var(--primary);
         text-decoration: underline;
@@ -806,71 +783,66 @@
     }
 
     body.layout-topbar>header nav .brand,
-    body.layout-sidebar>header nav .brand {
+    body.layout-sidebar>header nav .brand,
+    body.layout-scroll>header nav .brand {
         letter-spacing: 0;
         padding-left: 0;
     }
 
     body.layout-topbar>header nav .brand:hover,
-    body.layout-sidebar>header nav .brand:hover {
+    body.layout-sidebar>header nav .brand:hover,
+    body.layout-scroll>header nav .brand:hover {
         background: transparent;
     }
 
     body.layout-topbar>header nav .brand strong,
-    body.layout-sidebar>header nav .brand strong {
+    body.layout-sidebar>header nav .brand strong,
+    body.layout-scroll>header nav .brand strong {
         color: inherit;
     }
 
     body.layout-sidebar>.sidebar nav,
     body.layout-sidebar>.sidebar nav ul,
-    body.layout-sidebar>.sidebar nav ol,
-    body.layout-scroll>header nav,
-    body.layout-scroll>header nav ul,
-    body.layout-scroll>header nav ol {
+    body.layout-sidebar>.sidebar nav ol {
         align-items: stretch;
         flex-direction: column;
         justify-content: flex-start;
         width: 100%;
     }
 
-    body.layout-sidebar>.sidebar nav a,
-    body.layout-scroll>header nav a {
+    body.layout-sidebar>.sidebar nav a {
         width: 100%;
+    }
+
+    button.classic-nav-toggle {
+        display: none;
+    }
+
+    button.classic-nav-toggle::before {
+        background:
+            linear-gradient(currentColor, currentColor) 0 0 / 100% 2px no-repeat,
+            linear-gradient(currentColor, currentColor) 0 50% / 100% 2px no-repeat,
+            linear-gradient(currentColor, currentColor) 0 100% / 100% 2px no-repeat;
+        content: "";
+        display: block;
+        height: 0.8rem;
+        width: 1.1rem;
+    }
+
+    button.classic-nav-toggle[aria-expanded="true"] {
+        background: var(--button-face-mid);
+        border-color: var(--button-edge) var(--highlight) var(--highlight) var(--button-edge);
+        box-shadow:
+            1px 1px 0 var(--button-groove) inset,
+            -1px -1px 0 var(--button-face-light) inset;
     }
 
     @media (min-width: 48.001rem) {
 
-        body.layout-scroll>header {
-            margin-inline: auto;
-            padding-inline: 0;
-            width: min(100% - 2rem, var(--container-narrow));
-        }
-
-        body.layout-scroll>header nav,
-        body.layout-scroll>header nav ul,
-        body.layout-scroll>header nav ol {
-            align-items: center;
-            flex-direction: row;
-        }
-
-        body.layout-scroll>header nav {
-            justify-content: space-between;
-        }
-
-        body.layout-scroll>header nav ul,
-        body.layout-scroll>header nav ol {
-            justify-content: flex-end;
-            width: auto;
-        }
-
-        body.layout-scroll>header nav a {
-            width: auto;
-        }
-
-        body.layout-scroll>header nav a:not([role="button"]):not(.brand) {
-            min-height: 2.05rem;
-            min-width: 0;
-            padding: 0.32rem 0.58rem;
+        body.layout-topbar>header nav.classic-nav-enhanced button.classic-nav-toggle,
+        body.layout-sidebar>header nav.classic-nav-enhanced button.classic-nav-toggle,
+        body.layout-scroll>header nav.classic-nav-enhanced button.classic-nav-toggle {
+            display: none;
         }
     }
 
@@ -1583,7 +1555,10 @@
         body.layout-topbar>header nav ol,
         body.layout-sidebar>header nav,
         body.layout-sidebar>header nav ul,
-        body.layout-sidebar>header nav ol {
+        body.layout-sidebar>header nav ol,
+        body.layout-scroll>header nav,
+        body.layout-scroll>header nav ul,
+        body.layout-scroll>header nav ol {
             align-items: stretch;
             flex-direction: column;
             justify-content: flex-start;
@@ -1591,8 +1566,58 @@
         }
 
         body.layout-topbar>header nav a,
-        body.layout-sidebar>header nav a {
+        body.layout-sidebar>header nav a,
+        body.layout-scroll>header nav a {
             display: block;
+        }
+
+        body.layout-topbar>header nav.classic-nav-enhanced,
+        body.layout-sidebar>header nav.classic-nav-enhanced,
+        body.layout-scroll>header nav.classic-nav-enhanced {
+            align-items: center;
+            display: grid;
+            gap: var(--space-2);
+            grid-template-columns: minmax(0, 1fr) auto;
+        }
+
+        body.layout-topbar>header nav.classic-nav-enhanced .brand,
+        body.layout-sidebar>header nav.classic-nav-enhanced .brand,
+        body.layout-scroll>header nav.classic-nav-enhanced .brand {
+            display: inline-flex;
+            min-width: 0;
+        }
+
+        body.layout-topbar>header nav.classic-nav-enhanced>ul,
+        body.layout-topbar>header nav.classic-nav-enhanced>ol,
+        body.layout-sidebar>header nav.classic-nav-enhanced>ul,
+        body.layout-sidebar>header nav.classic-nav-enhanced>ol,
+        body.layout-scroll>header nav.classic-nav-enhanced>ul,
+        body.layout-scroll>header nav.classic-nav-enhanced>ol {
+            grid-column: 1 / -1;
+        }
+
+        body.layout-topbar>header nav.classic-nav-enhanced .classic-nav-toggle,
+        body.layout-sidebar>header nav.classic-nav-enhanced .classic-nav-toggle,
+        body.layout-scroll>header nav.classic-nav-enhanced .classic-nav-toggle {
+            display: inline-flex;
+            justify-self: end;
+            min-height: 2.2rem;
+            padding: 0.38rem 0.55rem;
+        }
+
+        body.layout-topbar>header nav.classic-nav-enhanced .classic-nav-toggle[aria-expanded="false"]~ul,
+        body.layout-topbar>header nav.classic-nav-enhanced .classic-nav-toggle[aria-expanded="false"]~ol,
+        body.layout-sidebar>header nav.classic-nav-enhanced .classic-nav-toggle[aria-expanded="false"]~ul,
+        body.layout-sidebar>header nav.classic-nav-enhanced .classic-nav-toggle[aria-expanded="false"]~ol,
+        body.layout-scroll>header nav.classic-nav-enhanced .classic-nav-toggle[aria-expanded="false"]~ul,
+        body.layout-scroll>header nav.classic-nav-enhanced .classic-nav-toggle[aria-expanded="false"]~ol {
+            display: none;
+        }
+
+        body.layout-topbar>header nav.classic-nav-enhanced li a,
+        body.layout-sidebar>header nav.classic-nav-enhanced li a,
+        body.layout-scroll>header nav.classic-nav-enhanced li a {
+            width: 100%;
         }
 
         .toolbar {
