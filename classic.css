@@ -65,7 +65,7 @@
         --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
 
         /* Core surfaces and text */
-        --background: #fbfbf8;
+        --background: #fbfbfb;
         --background-accent: #f0f1f2;
         --surface: #ffffff;
         --surface-2: #f7f8fa;
@@ -719,30 +719,51 @@
         max-width: none;
     }
 
-    nav a:not([role="button"]):not(.brand) {
+    body.layout-scroll>header nav a:not([role="button"]):not(.brand),
+    body.layout-sidebar>.sidebar nav a:not([role="button"]):not(.brand) {
         align-items: center;
         background: var(--button-face);
         border: 1px solid;
         border-color: var(--highlight) var(--button-edge) var(--button-edge) var(--highlight);
-        border-radius: 10px 11px 10px 11px;
+        border-radius: var(--radius-3);
         box-shadow:
             1px 1px 0 var(--button-face-light) inset,
             -1px -1px 0 var(--button-groove) inset;
-        display: inline-flex;
+        display: flex;
         font-weight: 700;
-        justify-content: center;
-        min-height: var(--control-height);
+        min-height: 2.35rem;
         min-width: 2.75rem;
-        padding: 0.45rem 0.65rem;
-        text-align: center;
+        padding: 0.42rem 0.7rem;
         user-select: none;
     }
 
-    nav a[aria-current="page"] {
-        background: linear-gradient(180deg, color-mix(in srgb, var(--primary) 14%, var(--button-face-light)), var(--button-face));
-        border: 1px solid color-mix(in srgb, var(--primary) 48%, var(--border-strong));
-        box-shadow: var(--shadow-tight);
-        color: var(--primary);
+    body.layout-scroll>header nav a:not([role="button"]):not(.brand) {
+        justify-content: center;
+        text-align: center;
+    }
+
+    body.layout-sidebar>.sidebar nav a:not([role="button"]):not(.brand) {
+        justify-content: flex-start;
+        text-align: left;
+    }
+
+    body.layout-scroll>header nav a[aria-current="page"]:not([role="button"]):not(.brand),
+    body.layout-sidebar>.sidebar nav a[aria-current="page"]:not([role="button"]):not(.brand) {
+        background: color-mix(in srgb, var(--primary) 8%, var(--surface));
+        border-color: color-mix(in srgb, var(--primary) 35%, var(--border));
+        color: var(--primary-active);
+    }
+
+    body.layout-scroll>header nav a[aria-current="page"]:not([role="button"]):not(.brand) {
+        box-shadow:
+            0 -2px 0 var(--primary) inset,
+            1px 1px 0 var(--highlight) inset;
+    }
+
+    body.layout-sidebar>.sidebar nav a[aria-current="page"]:not([role="button"]):not(.brand) {
+        box-shadow:
+            3px 0 0 var(--primary) inset,
+            1px 1px 0 var(--highlight) inset;
     }
 
     body.layout-topbar>header nav a:not([role="button"]),
@@ -768,8 +789,11 @@
 
     body.layout-topbar>header nav a[aria-current="page"],
     body.layout-sidebar>header nav a[aria-current="page"] {
-        background: var(--primary);
-        color: var(--primary-text);
+        background: transparent;
+        color: var(--primary);
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 0.38rem;
     }
 
     body.layout-topbar>header nav .brand,
@@ -802,7 +826,43 @@
 
     body.layout-sidebar>.sidebar nav a,
     body.layout-scroll>header nav a {
-        display: block;
+        width: 100%;
+    }
+
+    @media (min-width: 48.001rem) {
+
+        body.layout-scroll>header {
+            margin-inline: auto;
+            padding-inline: 0;
+            width: min(100% - 2rem, var(--container-narrow));
+        }
+
+        body.layout-scroll>header nav,
+        body.layout-scroll>header nav ul,
+        body.layout-scroll>header nav ol {
+            align-items: center;
+            flex-direction: row;
+        }
+
+        body.layout-scroll>header nav {
+            justify-content: space-between;
+        }
+
+        body.layout-scroll>header nav ul,
+        body.layout-scroll>header nav ol {
+            justify-content: flex-end;
+            width: auto;
+        }
+
+        body.layout-scroll>header nav a {
+            width: auto;
+        }
+
+        body.layout-scroll>header nav a:not([role="button"]):not(.brand) {
+            min-height: 2.05rem;
+            min-width: 0;
+            padding: 0.32rem 0.58rem;
+        }
     }
 
     [aria-label="breadcrumb"] ol {
@@ -835,23 +895,21 @@
 
     article>header,
     article>footer {
-        background:
-            linear-gradient(180deg, rgba(255, 255, 255, 0.62), transparent 45%),
-            linear-gradient(180deg, color-mix(in srgb, var(--surface-2) 88%, var(--highlight)), var(--surface-3));
-        border-color: var(--border);
+        background: linear-gradient(180deg, color-mix(in srgb, var(--surface-2) 70%, var(--highlight)), color-mix(in srgb, var(--surface-2) 70%, var(--surface)));
+        border-color: color-mix(in srgb, var(--border) 72%, var(--surface));
         margin-inline: calc(var(--space-5) * -1);
         padding-inline: var(--space-5);
     }
 
     article>header {
-        border-bottom: 1px solid var(--border);
+        border-bottom: 1px solid color-mix(in srgb, var(--border) 72%, var(--surface));
         margin-bottom: var(--space-4);
         margin-top: calc(var(--space-5) * -1);
         padding-block: var(--space-4);
     }
 
     article>footer {
-        border-top: 1px solid var(--border);
+        border-top: 1px solid color-mix(in srgb, var(--border) 72%, var(--surface));
         margin-bottom: calc(var(--space-5) * -1);
         margin-top: var(--space-5);
         padding-block: var(--space-4);
@@ -871,7 +929,7 @@
         border-color: var(--highlight) var(--button-edge) var(--button-edge) var(--highlight);
         border-style: solid;
         border-width: 2px;
-        border-radius: 10px;
+        border-radius: var(--radius-3);
         box-shadow:
             1px 1px 0 var(--button-face-light) inset,
             -1px -1px 0 var(--button-groove) inset;
@@ -1377,29 +1435,23 @@
 
     .badge {
         align-items: center;
-        background: var(--surface-2);
+        background: color-mix(in srgb, var(--surface-2) 72%, var(--surface));
         border: 1px solid var(--border);
-        border-radius: 999px;
+        border-radius: var(--radius-1);
         color: var(--muted-strong);
         display: inline-flex;
         font-size: 0.82rem;
         font-weight: 700;
         line-height: 1;
-        min-height: 1.55rem;
-        padding: 0.25rem 0.55rem;
+        min-height: 1.35rem;
+        padding: 0.18rem 0.48rem;
         white-space: nowrap;
     }
 
     .badge[data-variant] {
-        background: color-mix(in srgb, var(--variant) 14%, var(--surface));
-        border-color: color-mix(in srgb, var(--variant) 45%, var(--border));
+        background: color-mix(in srgb, var(--variant) 7%, var(--surface));
+        border-color: color-mix(in srgb, var(--variant) 34%, var(--border));
         color: var(--variant);
-    }
-
-    .badge {
-        border-radius: 9999px;
-        min-height: 0;
-        padding: 0.2rem 0.7rem;
     }
 
     .status {
@@ -1411,15 +1463,15 @@
     .status::before {
         background: var(--success);
         border-radius: 50%;
-        box-shadow: 0 0 0 3px color-mix(in srgb, var(--success) 18%, transparent);
+        box-shadow: 0 0 0 2px color-mix(in srgb, var(--success) 14%, transparent);
         content: "";
-        height: 0.65rem;
-        width: 0.65rem;
+        height: 0.55rem;
+        width: 0.55rem;
     }
 
     .status[data-variant]::before {
         background: var(--variant);
-        box-shadow: 0 0 0 3px color-mix(in srgb, var(--variant) 18%, transparent);
+        box-shadow: 0 0 0 2px color-mix(in srgb, var(--variant) 14%, transparent);
     }
 
     /* Disclosure and meters */
@@ -1456,7 +1508,7 @@
     nav.tabs,
     .tabs,
     [role="tablist"] {
-        border-bottom: 1px solid var(--border);
+        border-bottom: 1px solid color-mix(in srgb, var(--border) 78%, var(--surface));
         display: flex;
         flex-wrap: wrap;
         gap: var(--space-1);
@@ -1465,12 +1517,12 @@
     nav.tabs a.tab,
     .tab,
     [role="tab"] {
-        background: var(--surface-2);
-        border: 1px solid var(--border);
+        background: color-mix(in srgb, var(--surface-2) 70%, var(--surface));
+        border: 1px solid color-mix(in srgb, var(--border) 78%, var(--surface));
         border-bottom: 0;
         border-radius: var(--radius-2) var(--radius-2) 0 0;
         color: var(--muted-strong);
-        padding: 0.6rem 0.85rem;
+        padding: 0.52rem 0.78rem;
         text-decoration: none;
     }
 
@@ -1478,7 +1530,8 @@
     .tab[aria-current="page"],
     [role="tab"][aria-selected="true"] {
         background: var(--surface);
-        color: var(--primary);
+        box-shadow: 0 2px 0 var(--primary) inset;
+        color: var(--primary-active);
         position: relative;
         top: 1px;
     }
@@ -1498,8 +1551,10 @@
     .toolbar button,
     .toolbar [role="button"],
     .toolbar .button {
-        min-height: 2.2rem;
-        padding: 0.38rem 0.65rem;
+        border-radius: var(--radius-3);
+        border-width: 1px;
+        min-height: 2.05rem;
+        padding: 0.34rem 0.62rem;
     }
 
     /* Responsive component behavior */
@@ -1618,7 +1673,7 @@
         background: var(--button-face);
         border: 2px solid;
         border-color: var(--highlight) var(--button-edge) var(--button-edge) var(--highlight);
-        border-radius: 10px 11px 10px 11px;
+        border-radius: var(--radius-3);
         box-shadow:
             1px 1px 0 var(--button-face-light) inset,
             -1px -1px 0 var(--button-groove) inset;
@@ -1632,9 +1687,12 @@
     }
 
     .pagination a[aria-current="page"] {
-        background: var(--primary);
-        border-color: var(--primary-active);
-        color: var(--primary-text);
+        background: var(--surface);
+        border-color: color-mix(in srgb, var(--primary) 22%, var(--border-strong));
+        box-shadow:
+            1px 1px 0 color-mix(in srgb, var(--button-groove) 45%, transparent) inset,
+            -1px -1px 0 var(--highlight) inset;
+        color: var(--primary);
     }
 
     /* Window chrome and command palette */
