@@ -293,6 +293,11 @@
         text-underline-offset: 0.18em;
     }
 
+    a:visited {
+        color: color-mix(in srgb, var(--primary) 62%, var(--accent));
+        text-decoration-color: color-mix(in srgb, var(--primary) 24%, var(--accent));
+    }
+
     a:hover {
         color: var(--primary-hover);
         text-decoration-color: currentColor;
@@ -699,6 +704,10 @@
         text-decoration: none;
     }
 
+    nav a:visited {
+        color: var(--text);
+    }
+
     nav a:hover {
         color: var(--primary);
     }
@@ -944,6 +953,10 @@
         text-align: center;
         text-decoration: none;
         user-select: none;
+    }
+
+    :is(a[role="button"], a.button):visited {
+        color: var(--text);
     }
 
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button):hover {
@@ -1526,6 +1539,11 @@
         text-decoration: none;
     }
 
+    nav.tabs a.tab:visited,
+    a.tab:visited {
+        color: var(--muted-strong);
+    }
+
     nav.tabs a.tab[aria-current="page"],
     .tab[aria-current="page"],
     [role="tab"][aria-selected="true"] {
@@ -1649,6 +1667,10 @@
         width: 100%;
     }
 
+    .menu a:visited {
+        color: var(--text);
+    }
+
     .menu a:hover,
     .menu button:hover {
         background: var(--surface-2);
@@ -1684,6 +1706,10 @@
         padding: 0.5rem 0.9rem 0.56rem;
         text-decoration: none;
         user-select: none;
+    }
+
+    .pagination a:visited {
+        color: var(--text);
     }
 
     .pagination a[aria-current="page"] {
