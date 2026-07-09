@@ -118,11 +118,13 @@
             1px 1px 0 var(--highlight) inset,
             -1px -1px 0 var(--lowlight) inset,
             1px 1px 0 rgba(0, 0, 0, 0.16);
-        --shadow-raised:
+        --bevel-inset:
             1px 1px 0 var(--highlight) inset,
-            -1px -1px 0 var(--lowlight) inset,
+            -1px -1px 0 var(--lowlight) inset;
+        --shadow-raised-outer:
             0 0 0 1px var(--border-strong),
             2px 2px 0 rgba(0, 0, 0, 0.24);
+        --shadow-raised: var(--bevel-inset), var(--shadow-raised-outer);
         --shadow-pressed:
             1px 1px 2px rgba(0, 0, 0, 0.44) inset,
             -1px -1px 0 var(--highlight) inset;
@@ -870,36 +872,61 @@
         background: var(--surface);
         border: 1px solid var(--border-strong);
         border-radius: var(--radius-3);
-        box-shadow: var(--shadow-raised);
-        padding: var(--space-5);
+        box-shadow: var(--shadow-raised-outer);
+        display: flex;
+        flex-direction: column;
+        overflow: clip;
+        position: relative;
+    }
+
+    article::after {
+        border-radius: calc(var(--radius-3) - 1px);
+        box-shadow: var(--bevel-inset);
+        content: "";
+        inset: 0;
+        pointer-events: none;
+        position: absolute;
     }
 
     article>header,
     article>footer {
         background: linear-gradient(180deg, color-mix(in srgb, var(--surface-2) 70%, var(--highlight)), color-mix(in srgb, var(--surface-2) 70%, var(--surface)));
         border-color: color-mix(in srgb, var(--border) 72%, var(--surface));
-        margin-inline: calc(var(--space-5) * -1);
         padding-inline: var(--space-5);
     }
 
     article>header {
         border-bottom: 1px solid color-mix(in srgb, var(--border) 72%, var(--surface));
         margin-bottom: var(--space-4);
-        margin-top: calc(var(--space-5) * -1);
         padding-block: var(--space-4);
     }
 
     article>footer {
         border-top: 1px solid color-mix(in srgb, var(--border) 72%, var(--surface));
-        margin-bottom: calc(var(--space-5) * -1);
-        margin-top: var(--space-5);
+        margin-top: auto;
         padding-block: var(--space-4);
+    }
+
+    article> :has(+ footer) {
+        margin-block-end: var(--space-5);
     }
 
     article> :last-child,
     section> :last-child,
     aside> :last-child {
         margin-bottom: 0;
+    }
+
+    article> :not(header, footer) {
+        margin-inline: var(--space-5);
+    }
+
+    article> :first-child:not(header) {
+        margin-block-start: var(--space-5);
+    }
+
+    article> :last-child:not(footer) {
+        margin-block-end: var(--space-5);
     }
 
     /* Buttons */
