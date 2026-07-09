@@ -13,10 +13,14 @@
         <a class="brand" href="index.html">🏛️ <strong>classic.css</strong></a>
         <ul>
           <li><a href="index.html" aria-current="page">Docs</a></li>
-          <li><a href="demo/index.html">Specimen</a></li>
+          <li><a href="demo/base.html">Base</a></li>
           <li><a href="demo/forms.html">Forms</a></li>
-          <li><a href="demo/components.html">Components</a></li>
-          <li><a href="https://github.com/msu/classic-css">GitHub</a></li>
+          <li>
+            <a class="cluster" href="https://github.com/msu/classic-css" aria-label="GitHub repository">
+              <img src="assets/github-mark.svg" width="16" height="16" alt="">
+              <span>GitHub</span>
+            </a>
+          </li>
         </ul>
       </nav>
     </header>
@@ -41,15 +45,18 @@
     </aside>
 
     <main>
-      <section class="split" aria-labelledby="intro-title" data-jumpable data-jump-label="Introduction" data-jump-aliases="intro overview">
+      <section class="split split-start" aria-labelledby="intro-title" data-jumpable data-jump-label="Introduction" data-jump-aliases="intro overview">
         <div>
-          <p class="badge" data-variant="info">Single-file CSS</p>
+          <p class="cluster">
+            <span class="badge" data-variant="success">Single-file CSS</span>
+            <span class="badge" data-variant="warning">Sidebar layout</span>
+          </p>
           <h1 id="intro-title">classic.css</h1>
           <p class="lead">A single-file CSS library for semantic HTML with an old desktop feel: platinum surfaces, visible bevels, sunken inputs, and page layouts that work without a build step.</p>
         </div>
         <div class="toolbar" role="group" aria-label="Quick links">
           <a href="classic.css" class="button" download>Download CSS</a>
-          <a href="demo/index.html" class="button secondary">View Demos</a>
+          <a href="demo/base.html" class="button secondary">View Demos</a>
         </div>
       </section>
 
@@ -425,7 +432,7 @@
     </main>
 
     <footer>
-      <small>classic.css documentation. Demos: <a href="demo/index.html">specimen</a>, <a href="demo/forms.html">forms</a>, <a href="demo/components.html">components</a>.</small>
+      <small>classic.css documentation. Demos: <a href="demo/base.html">base</a>, <a href="demo/forms.html">forms</a>.</small>
     </footer>
 
     <script src="classic.enhance.js"></script>

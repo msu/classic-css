@@ -42,9 +42,9 @@ Opt-in classes are for extras:
 - `classic.css`: the library stylesheet.
 - `classic.enhance.js`: optional progressive-enhancement helpers for semantic markup.
 - `classic.commands.js`: optional command palette for semantic landmark navigation.
-- `demo/index.html`: topbar layout specimen for prose, tables, figures, lists, code, and document structure.
+- `assets/github-mark.svg`: documentation/demo GitHub navigation mark.
+- `demo/base.html`: base styles demo for prose, tables, figures, lists, code, document structure, and component examples.
 - `demo/forms.html`: form fixture for bare text/input pairs, label/input pairs, fieldsets, validation states, and native controls.
-- `demo/components.html`: sidebar layout fixture for buttons, tabs, notices, menus, stats, dialogs, disclosure, progress, and pagination.
 
 ## Usage
 
@@ -272,7 +272,7 @@ These are not automatic semantic defaults. Add the class when you want the compo
 
 ## Demo
 
-Open `demo/index.html` in a browser, or serve the folder from the repository root:
+Open `demo/base.html` in a browser, or serve the folder from the repository root:
 
 ```sh
 python -m http.server

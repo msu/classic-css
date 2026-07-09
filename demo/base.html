@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>classic.css - Base Styles</title>
+    <link rel="stylesheet" href="../classic.css">
+  </head>
+  <body class="layout-topbar">
+    <header>
+      <nav aria-label="Primary">
+        <a class="brand" href="../index.html">🏛️ <strong>classic.css</strong></a>
+        <ul>
+          <li><a href="../index.html">Docs</a></li>
+          <li><a href="base.html" aria-current="page">Base</a></li>
+          <li><a href="forms.html">Forms</a></li>
+          <li>
+            <a class="cluster" href="https://github.com/msu/classic-css" aria-label="GitHub repository">
+              <img src="../assets/github-mark.svg" width="16" height="16" alt="">
+              <span>GitHub</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="split" aria-labelledby="intro-title" data-jumpable data-jump-label="Base styles" data-jump-aliases="intro overview elements">
+        <div>
+          <p class="cluster">
+            <span class="badge" data-variant="info">Demo</span>
+            <span class="badge" data-variant="info">Topbar layout</span>
+          </p>
+          <h1 id="intro-title">Base Styles</h1>
+          <p class="lead">Prose, tables, figures, lists, code, and document structure styled by the shared stylesheet.</p>
+        </div>
+        <div class="toolbar" role="group" aria-label="Base style actions">
+          <a href="forms.html" class="button">Open Forms</a>
+          <a href="#component-examples" class="button secondary">View Components</a>
+          <a href="#density-table" class="button outline">Jump to Table</a>
+        </div>
+      </section>
+
+      <section class="grid grid-tight" aria-label="Layout summary">
+        <div class="stat">
+          <small>Layout</small>
+          <strong>Top</strong>
+          <span class="status">Menu bar</span>
+        </div>
+        <div class="stat">
+          <small>Content</small>
+          <strong>38</strong>
+          <span class="status" data-variant="info">Elements</span>
+        </div>
+        <div class="stat">
+          <small>Mode</small>
+          <strong>OS 9</strong>
+          <span class="status" data-variant="warning">Platinum</span>
+        </div>
+      </section>
+
+      <section class="grid" aria-labelledby="principles-title">
+        <article data-jumpable data-jump-label="Library principles" data-jump-aliases="principles goals">
+          <header>
+            <h2 id="principles-title">Library Principles</h2>
+            <p class="muted">The quick design brief, tested as normal content.</p>
+          </header>
+          <ol>
+            <li>Style semantic HTML before requiring classes.</li>
+            <li>Make interactive controls look tactile, raised, and focusable.</li>
+            <li>Use ARIA attributes for stateful styling where behavior belongs in a paired script.</li>
+            <li>Keep layouts predictable across topbar, sidebar, and mobile scroll shells.</li>
+          </ol>
+          <footer>
+            <small>Updated <time datetime="2026-05-13">May 13, 2026</time>.</small>
+          </footer>
+        </article>
+
+        <article>
+          <header>
+            <h2>Type Scale</h2>
+            <p class="muted">Heading stack, inline text, and rhythm.</p>
+          </header>
+          <h1>Heading One</h1>
+          <h2>Heading Two</h2>
+          <h3>Heading Three</h3>
+          <h4>Heading Four</h4>
+          <h5>Heading Five</h5>
+          <h6>Heading Six</h6>
+          <p>Body text can include <a href="#content-title">links</a>, <mark>marked text</mark>, <strong>strong text</strong>, <em>emphasis</em>, <abbr title="HyperText Markup Language">HTML</abbr>, <code>inline code</code>, <kbd>Tab</kbd>, and <samp>sample output</samp>.</p>
+        </article>
+      </section>
+
+      <section class="stack" aria-labelledby="content-title">
+        <article data-jumpable data-jump-label="Long form article" data-jump-aliases="article content prose">
+            <header>
+              <h2 id="content-title">Long-Form Article</h2>
+              <p class="muted">A realistic article with mixed semantic content.</p>
+            </header>
+            <p>Classic interfaces should make structure obvious. This paragraph checks rhythm, contrast, and spacing against adjacent lists, quoted material, and dense metadata.</p>
+            <blockquote>
+              <p>Depth can be a usability affordance when it tells the eye what is interactive, grouped, or foregrounded.</p>
+              <footer><small>Design note from the mockup brief</small></footer>
+            </blockquote>
+            <div class="grid">
+              <section>
+                <h3>Unordered List</h3>
+                <ul>
+                  <li>Controls need clear raised and pressed states.</li>
+                  <li>Panels should have visible edges without looking decorative.</li>
+                  <li>Mobile should collapse to readable vertical flow.</li>
+                </ul>
+              </section>
+              <section>
+                <h3>Definition List</h3>
+                <dl>
+                  <dt>Surface</dt>
+                  <dd>A bounded area with a visible edge and slight elevation.</dd>
+                  <dt>Focus</dt>
+                  <dd>An unmistakable outline that survives dense layouts.</dd>
+                  <dt>Measure</dt>
+                  <dd>A line length tuned for reading rather than filling all available width.</dd>
+                </dl>
+              </section>
+            </div>
+            <footer>
+              <address>
+                Maintained by <a href="mailto:classic@example.test">Classic CSS Working Notes</a>
+              </address>
+            </footer>
+          </article>
+
+          <article data-jumpable data-jump-label="Figure and media" data-jump-aliases="figure media svg">
+            <header>
+              <h2 id="figure-title">Figure and Media</h2>
+              <p class="muted">Inline SVG stands in for screenshots, diagrams, or product images.</p>
+            </header>
+            <figure>
+              <svg viewBox="0 0 760 260" role="img" aria-labelledby="mock-window-title mock-window-desc">
+                <title id="mock-window-title">Classic window diagram</title>
+                <desc id="mock-window-desc">A platinum window with a top bar, sidebar, and content pane.</desc>
+                <rect width="760" height="260" fill="#c7c7c7"></rect>
+                <rect x="28" y="24" width="704" height="212" fill="#eeeeee" stroke="#242424" stroke-width="2"></rect>
+                <rect x="30" y="26" width="700" height="30" fill="#d7d7d7"></rect>
+                <rect x="48" y="74" width="150" height="138" fill="#dddddd" stroke="#4c4c4c"></rect>
+                <rect x="222" y="74" width="462" height="34" fill="#ffffff" stroke="#4c4c4c"></rect>
+                <rect x="222" y="126" width="462" height="86" fill="#ffffff" stroke="#4c4c4c"></rect>
+                <circle cx="54" cy="41" r="7" fill="#8b2828"></circle>
+                <circle cx="76" cy="41" r="7" fill="#835f12"></circle>
+                <circle cx="98" cy="41" r="7" fill="#2f6a3c"></circle>
+              </svg>
+              <figcaption>SVG, figure, caption, and image scaling should behave without additional page CSS.</figcaption>
+            </figure>
+          </article>
+
+          <article data-jumpable data-jump-label="Dense table" data-jump-aliases="table data density">
+            <header>
+              <h2 id="density-table">Dense Table</h2>
+              <p class="muted">Wide tables should scroll horizontally on small screens.</p>
+            </header>
+            <table>
+              <caption class="visually-hidden">Classic CSS element coverage table</caption>
+              <thead>
+                <tr>
+                  <th>Element</th>
+                  <th>Purpose</th>
+                  <th>Default Treatment</th>
+                  <th>State Hook</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>article</code></td>
+                  <td>Independent content block</td>
+                  <td>Raised panel with header and footer support</td>
+                  <td>None</td>
+                  <td><span class="status">Ready</span></td>
+                </tr>
+                <tr>
+                  <td><code>details</code></td>
+                  <td>Native disclosure</td>
+                  <td>Low elevation disclosure block</td>
+                  <td><code>open</code></td>
+                  <td><span class="status" data-variant="warning">Review</span></td>
+                </tr>
+                <tr>
+                  <td><code>button</code></td>
+                  <td>Primary command</td>
+                  <td>Beveled physical control</td>
+                  <td><code>aria-pressed</code>, <code>aria-busy</code></td>
+                  <td><span class="status">Ready</span></td>
+                </tr>
+                <tr>
+                  <td><code>input</code></td>
+                  <td>Form entry</td>
+                  <td>Sunken text field or custom native control</td>
+                  <td><code>aria-invalid</code></td>
+                  <td><span class="status" data-variant="info">Expanded</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+
+          <article data-jumpable data-jump-label="Code block" data-jump-aliases="code pre keyboard">
+            <header>
+              <h2 id="code-title">Code and Preformatted Text</h2>
+              <p class="muted">Tests overflow, monospace color, and keyboard hints.</p>
+            </header>
+            <p>Use <kbd>Tab</kbd> and <kbd>Shift</kbd> + <kbd>Tab</kbd> to inspect focus states in the test pages.</p>
+            <pre><code>button[aria-busy="true"] {
+  pointer-events: none;
+}
+
+body.layout-sidebar {
+  grid-template-columns: 16rem minmax(0, 1fr);
+}</code></pre>
+          </article>
+      </section>
+
+      <section id="component-examples" class="stack" aria-labelledby="component-examples-title" data-jumpable data-jump-label="Component examples" data-jump-aliases="components buttons notices tabs menus">
+        <header>
+          <h2 id="component-examples-title">Component Examples</h2>
+          <p class="muted">Buttons, tabs, notices, menus, pagination, stats, progress indicators, dialogs, and compact app surfaces.</p>
+        </header>
+
+        <section id="component-stats" class="grid grid-tight" aria-label="Component stats" data-jumpable data-jump-label="Stats" data-jump-aliases="metrics counters">
+          <div class="stat">
+            <small>Open lessons</small>
+            <strong>24</strong>
+            <span class="status">Healthy</span>
+          </div>
+          <div class="stat">
+            <small>Review queue</small>
+            <strong>7</strong>
+            <span class="status" data-variant="warning">Attention</span>
+          </div>
+          <div class="stat">
+            <small>Broken links</small>
+            <strong>2</strong>
+            <span class="status" data-variant="danger">Fix</span>
+          </div>
+          <div class="stat">
+            <small>Draft modules</small>
+            <strong>13</strong>
+            <span class="status" data-variant="info">Queued</span>
+          </div>
+        </section>
+
+        <section class="grid" aria-label="Component examples">
+          <article id="component-buttons" data-jumpable data-jump-label="Buttons" data-jump-aliases="button states controls">
+            <header>
+              <h2>Buttons</h2>
+              <p class="muted">Variants, busy state, pressed state, disabled state, and role-based buttons.</p>
+            </header>
+            <div class="stack">
+              <div class="cluster">
+                <button type="button">Default</button>
+                <button type="button" class="secondary">Secondary</button>
+                <button type="button" class="outline">Outline</button>
+                <button type="button" class="contrast">Contrast</button>
+                <button type="button" class="ghost">Ghost</button>
+              </div>
+              <div class="cluster">
+                <button type="button" aria-pressed="true">Pressed</button>
+                <button type="button" aria-busy="true">Working</button>
+                <button type="button" disabled>Disabled</button>
+                <a href="#component-buttons" class="button">Anchor Button</a>
+              </div>
+            </div>
+          </article>
+
+          <article id="component-notices" data-jumpable data-jump-label="Notices" data-jump-aliases="alerts messages variants">
+            <header>
+              <h2>Notices</h2>
+              <p class="muted">Default, info, success, warning, and danger variants.</p>
+            </header>
+            <div class="stack">
+              <div class="notice">Neutral notice with default informational treatment.</div>
+              <div class="notice" data-variant="info">Informational notice for general feedback.</div>
+              <div class="notice" data-variant="success">The update completed successfully.</div>
+              <div class="notice" data-variant="warning">A paired script may be needed for this interaction.</div>
+              <div role="alert" data-variant="danger">Unable to save because a required field is missing.</div>
+            </div>
+          </article>
+
+          <article id="component-tabs" data-jumpable data-jump-label="Tabs" data-jump-aliases="tablist panels">
+            <header>
+              <h2>Tabs</h2>
+              <p class="muted">Styled as ordinary links for static demos; scripted tabs can use ARIA roles later.</p>
+            </header>
+            <nav class="tabs" aria-label="Example sections">
+              <a class="tab" href="#component-tabs" aria-current="page">Overview</a>
+              <a class="tab" href="#component-tabs">Activity</a>
+              <a class="tab" href="#component-tabs">Settings</a>
+              <a class="tab" href="#component-tabs">History</a>
+            </nav>
+            <div class="surface">
+              <p>This panel is a static mockup. Behavior can be added by a small paired script later.</p>
+              <div class="cluster">
+                <span class="badge" data-variant="info">Draft</span>
+                <span class="badge" data-variant="success">Accessible</span>
+                <span class="badge" data-variant="warning">Needs Script</span>
+                <span class="badge">Semantic</span>
+              </div>
+            </div>
+          </article>
+
+          <article id="component-menus" data-jumpable data-jump-label="Menus and toolbar" data-jump-aliases="menu toolbar commands">
+            <header>
+              <h2>Menus and Toolbar</h2>
+              <p class="muted">Command lists, shortcut text, and compact tool surfaces.</p>
+            </header>
+            <div class="toolbar" role="toolbar" aria-label="Editor toolbar">
+              <button type="button" aria-label="Bold" aria-pressed="true">B</button>
+              <button type="button" aria-label="Italic">I</button>
+              <button type="button" aria-label="Underline">U</button>
+              <button type="button" class="secondary">Link</button>
+              <button type="button" class="secondary">Code</button>
+            </div>
+            <ul class="menu">
+              <li><a href="#component-menus">Edit lesson <span class="muted">Ctrl E</span></a></li>
+              <li><a href="#component-menus">Duplicate <span class="muted">Ctrl D</span></a></li>
+              <li><a href="#component-menus">Move to draft <span class="muted">Ctrl M</span></a></li>
+              <li><a href="#component-menus">Archive <span class="muted">Ctrl A</span></a></li>
+            </ul>
+          </article>
+
+          <article id="component-disclosure" data-jumpable data-jump-label="Disclosure" data-jump-aliases="details summary">
+            <header>
+              <h2>Disclosure</h2>
+              <p class="muted">Native details and summary styling.</p>
+            </header>
+            <details open>
+              <summary>What is styled by default?</summary>
+              <p>Text, links, lists, tables, code, forms, buttons, articles, details, dialogs, and ARIA-driven states.</p>
+            </details>
+            <details>
+              <summary>Does it require classes?</summary>
+              <p>No for the basics. Classes are used for layout helpers, notices, badges, and app-oriented compositions.</p>
+            </details>
+            <details>
+              <summary>How does mobile behave?</summary>
+              <p>The page shells collapse into vertical flow, and toolbars become stacked full-width controls.</p>
+            </details>
+          </article>
+
+          <article id="component-progress" data-jumpable data-jump-label="Progress" data-jump-aliases="progress meter">
+            <header>
+              <h2>Progress</h2>
+              <p class="muted">Native progress and meter elements.</p>
+            </header>
+            <label for="build">Build progress</label>
+            <progress id="build" value="72" max="100">72%</progress>
+            <label for="quality">Quality score</label>
+            <meter id="quality" min="0" max="100" low="45" high="80" optimum="90" value="86">86</meter>
+            <label for="risk">Risk score</label>
+            <meter id="risk" min="0" max="100" low="35" high="70" optimum="15" value="62">62</meter>
+          </article>
+
+          <article id="component-dialog" data-jumpable data-jump-label="Dialog" data-jump-aliases="modal preview">
+            <header>
+              <h2>Dialog</h2>
+              <p class="muted">A static preview of native dialog styling.</p>
+            </header>
+            <dialog class="dialog-preview" aria-labelledby="dialog-title" open>
+              <h3 id="dialog-title">Confirm Publish</h3>
+              <p>This mock dialog uses the same styles as a native modal while staying in document flow for testing.</p>
+              <div class="cluster">
+                <button type="button">Publish</button>
+                <button type="button" class="secondary">Cancel</button>
+              </div>
+            </dialog>
+          </article>
+
+          <article id="component-window" data-jumpable data-jump-label="Window chrome" data-jump-aliases="window titlebar statusbar">
+            <header>
+              <h2>Window Chrome</h2>
+              <p class="muted">A framed application surface with titlebar, pane, and statusbar.</p>
+            </header>
+            <div class="window">
+              <div class="window-titlebar">Untitled Document</div>
+              <div class="window-pane">
+                <p class="compact">Window container with titlebar, pane, and statusbar.</p>
+              </div>
+              <div class="window-statusbar">Ready</div>
+            </div>
+          </article>
+
+          <article id="component-list" data-jumpable data-jump-label="Compact list" data-jump-aliases="list rows avatars">
+            <header>
+              <h2>Compact List</h2>
+              <p class="muted">Avatars, badges, statuses, and dense rows.</p>
+            </header>
+            <div class="stack">
+              <div class="split surface">
+                <div class="cluster">
+                  <span class="avatar">HS</span>
+                  <div>
+                    <strong>Hypermedia Systems</strong>
+                    <p class="compact muted">Chapter refresh</p>
+                  </div>
+                </div>
+                <span class="badge" data-variant="success">Ready</span>
+              </div>
+              <div class="split surface">
+                <div class="cluster">
+                  <span class="avatar">CSS</span>
+                  <div>
+                    <strong>Classic CSS</strong>
+                    <p class="compact muted">Button and layout pass</p>
+                  </div>
+                </div>
+                <span class="badge" data-variant="warning">Review</span>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="surface" aria-labelledby="component-pagination-title">
+          <div class="split">
+            <div>
+              <h2 id="component-pagination-title">Pagination</h2>
+              <p class="muted">Links get tactile edges without needing button classes.</p>
+            </div>
+            <nav aria-label="Pagination">
+              <ol class="pagination">
+                <li><a href="#component-pagination-title" aria-label="Previous page">Prev</a></li>
+                <li><a href="#component-pagination-title">1</a></li>
+                <li><a href="#component-pagination-title" aria-current="page">2</a></li>
+                <li><a href="#component-pagination-title">3</a></li>
+                <li><a href="#component-pagination-title">4</a></li>
+                <li><a href="#component-pagination-title" aria-label="Next page">Next</a></li>
+              </ol>
+            </nav>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer>
+      <small>classic.css demos share a single stylesheet.</small>
+    </footer>
+
+    <script src="../classic.enhance.js"></script>
+    <script src="../classic.commands.js"></script>
+  </body>
+</html>

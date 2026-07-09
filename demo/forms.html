@@ -3,26 +3,35 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Classic CSS - Forms</title>
+    <title>classic.css - Forms</title>
     <link rel="stylesheet" href="../classic.css">
   </head>
   <body class="layout-scroll">
     <header>
       <nav aria-label="Primary">
-        <a class="brand" href="index.html"><strong>classic.css</strong></a>
+        <a class="brand" href="../index.html">🏛️ <strong>classic.css</strong></a>
         <ul>
-          <li><a href="index.html">Specimen</a></li>
+          <li><a href="../index.html">Docs</a></li>
+          <li><a href="base.html">Base</a></li>
           <li><a href="forms.html" aria-current="page">Forms</a></li>
-          <li><a href="components.html">Components</a></li>
+          <li>
+            <a class="cluster" href="https://github.com/msu/classic-css" aria-label="GitHub repository">
+              <img src="../assets/github-mark.svg" width="16" height="16" alt="">
+              <span>GitHub</span>
+            </a>
+          </li>
         </ul>
       </nav>
     </header>
 
     <main>
-      <section aria-labelledby="forms-title">
-        <p class="badge" data-variant="success">Vertical scroll layout</p>
-        <h1 id="forms-title">Form Fixture</h1>
-        <p class="lead">This page uses the vertical-scroll layout and exercises text inputs, native controls, validation states, disabled states, switches, ranges, and grouped actions.</p>
+      <section aria-labelledby="forms-title" data-jumpable data-jump-label="Forms overview" data-jump-aliases="forms controls inputs">
+        <p class="cluster">
+          <span class="badge" data-variant="success">Demo</span>
+          <span class="badge" data-variant="success">Scroll layout</span>
+        </p>
+        <h1 id="forms-title">Forms</h1>
+        <p class="lead">Text inputs, native controls, validation states, disabled fields, switches, ranges, and grouped actions.</p>
       </section>
 
       <article data-jumpable data-jump-label="Minimal markup" data-jump-aliases="bare text input">
@@ -181,7 +190,7 @@
           </div>
           <div class="field">
             <label for="search">Search</label>
-            <input id="search" name="search" type="search" placeholder="Search this fixture">
+            <input id="search" name="search" type="search" placeholder="Search this demo">
           </div>
         </fieldset>
 
@@ -263,7 +272,7 @@
     </main>
 
     <footer>
-      <small>Form page for <code>classic.css</code>.</small>
+      <small>classic.css demos share a single stylesheet.</small>
     </footer>
 
     <script src="../classic.enhance.js"></script>
