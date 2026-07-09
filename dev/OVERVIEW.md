@@ -27,6 +27,8 @@ The usability of this CSS library is heavily influenced by classic usability wor
 * Don't Make Me Think - https://github.com/hyungmok/books/blob/master/Don't%20Make%20Me%20Think%2C%20Revisited%2C%203rd%20Edition.pdf
 * Classic (1992) Apple Human Interface Guide (HIG) - https://vintageapple.org/inside_r/pdf/Human_Interface_Guidelines_1992.pdf
 
+Summaries of these works, with notes on how they apply to this library, are in the `usability/` subdirectory.
+
 ## Accessibility
 
 As much as is practical, this project will use and document ARIA attributes to drive appearances/functionality, rather than CSS classes, in order to encourage the proper use of ARIA attributes.
