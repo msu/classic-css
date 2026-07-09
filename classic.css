@@ -1011,7 +1011,7 @@
 
     /* OS9 ring on the form's true default button, the one Enter triggers (HIG: 3px ring, 1px gap) */
     :is(button, input[type="submit"]):default {
-        outline: 3px solid var(--button-edge);
+        outline: 2px solid var(--button-edge);
         outline-offset: 1px;
     }
 
@@ -1063,6 +1063,17 @@
     form>small,
     fieldset>small {
         grid-column: 2;
+    }
+
+    /* Action rows: right-aligned in the control column with the default
+       action rightmost (classic HIG dialog layout). Write secondary buttons
+       first in markup so visual order matches tab order. */
+    form>.cluster,
+    fieldset>.cluster {
+        grid-column: 2;
+        justify-content: flex-end;
+        justify-self: stretch;
+        text-align: left;
     }
 
     form> :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button) {
@@ -1829,6 +1840,8 @@
         .field>p,
         .check,
         .switch,
+        form>.cluster,
+        fieldset>.cluster,
         form> :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button),
         form> :is(input:not([type="checkbox"], [type="radio"], [type="range"], [type="button"], [type="submit"], [type="reset"]), select, textarea, progress, meter),
         fieldset> :is(input:not([type="checkbox"], [type="radio"], [type="range"], [type="button"], [type="submit"], [type="reset"]), select, textarea, progress, meter),
