@@ -1,4 +1,434 @@
-<!doctype html>
-<meta http-equiv="refresh" content="0; url=demo/">
-<title>classic.css</title>
-<a href="demo/">classic.css demo</a>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>classic.css - Documentation</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏛️</text></svg>">
+    <link rel="stylesheet" href="classic.css">
+  </head>
+  <body class="layout-sidebar">
+    <header>
+      <nav aria-label="Primary">
+        <a class="brand" href="index.html">🏛️ <strong>classic.css</strong></a>
+        <ul>
+          <li><a href="index.html" aria-current="page">Docs</a></li>
+          <li><a href="demo/index.html">Specimen</a></li>
+          <li><a href="demo/forms.html">Forms</a></li>
+          <li><a href="demo/components.html">Components</a></li>
+          <li><a href="https://github.com/msu/classic-css">GitHub</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <aside class="sidebar">
+      <nav aria-label="Documentation sections">
+        <ul>
+          <li><a href="#intro-title" aria-current="page">Introduction</a></li>
+          <li><a href="#getting-started">Getting Started</a></li>
+          <li><a href="#philosophy">Philosophy</a></li>
+          <li><a href="#layouts">Layouts</a></li>
+          <li><a href="#buttons">Buttons</a></li>
+          <li><a href="#forms">Forms</a></li>
+          <li><a href="#components">Components</a></li>
+          <li><a href="#helpers">Layout Helpers</a></li>
+          <li><a href="#utilities">Text Utilities</a></li>
+          <li><a href="#enhance">classic.enhance.js</a></li>
+          <li><a href="#commands">Command Palette</a></li>
+          <li><a href="#accessibility">Accessibility</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main>
+      <section class="split" aria-labelledby="intro-title" data-jumpable data-jump-label="Introduction" data-jump-aliases="intro overview">
+        <div>
+          <p class="badge" data-variant="info">Single-file CSS</p>
+          <h1 id="intro-title">classic.css</h1>
+          <p class="lead">A single-file CSS library for semantic HTML with an old desktop feel: platinum surfaces, visible bevels, sunken inputs, and page layouts that work without a build step.</p>
+        </div>
+        <div class="toolbar" role="group" aria-label="Quick links">
+          <a href="classic.css" class="button" download>Download CSS</a>
+          <a href="demo/index.html" class="button secondary">View Demos</a>
+        </div>
+      </section>
+
+      <article id="getting-started" data-jumpable data-jump-label="Getting started" data-jump-aliases="install usage setup">
+        <header>
+          <h2>Getting Started</h2>
+          <p class="muted">One stylesheet, two optional scripts, no build step.</p>
+        </header>
+        <p>Link the stylesheet. This is the whole visual baseline:</p>
+        <pre><code>&lt;link rel="stylesheet" href="classic.css"&gt;</code></pre>
+        <p>Optional scripts add behavior, not the core look:</p>
+        <pre><code>&lt;script src="classic.enhance.js"&gt;&lt;/script&gt;
+&lt;script src="classic.commands.js"&gt;&lt;/script&gt;</code></pre>
+        <ul>
+          <li><code>classic.css</code>: the library stylesheet.</li>
+          <li><code>classic.enhance.js</code>: progressive-enhancement helpers (auto-labels, hamburger menu).</li>
+          <li><code>classic.commands.js</code>: command palette for landmark navigation.</li>
+        </ul>
+      </article>
+
+      <article id="philosophy" data-jumpable data-jump-label="Philosophy" data-jump-aliases="semantic markup goals">
+        <header>
+          <h2>Philosophy</h2>
+          <p class="muted">Semantic HTML first, classes only for variants.</p>
+        </header>
+        <p>Start with semantic HTML. Reach for classes only when HTML does not already have the concept, or when choosing a visual variant.</p>
+        <pre><code>&lt;article&gt;
+  &lt;header&gt;
+    &lt;h2&gt;Lesson Notes&lt;/h2&gt;
+  &lt;/header&gt;
+  &lt;p&gt;Classic CSS styles the document structure directly.&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+        <p>Opt-in classes are for extras:</p>
+        <pre><code>&lt;div class="notice" data-variant="warning"&gt;Check the required fields.&lt;/div&gt;
+&lt;button class="secondary"&gt;Save Draft&lt;/button&gt;</code></pre>
+      </article>
+
+      <article id="layouts" data-jumpable data-jump-label="Layouts" data-jump-aliases="topbar sidebar scroll shells">
+        <header>
+          <h2>Layouts</h2>
+          <p class="muted">Apply one class to <code>body</code>.</p>
+        </header>
+        <dl>
+          <dt><code>layout-topbar</code></dt>
+          <dd>Top navigation with a centered main content area.</dd>
+          <dt><code>layout-sidebar</code></dt>
+          <dd>Top navigation, left sidebar, and main content area. This page uses it.</dd>
+          <dt><code>layout-scroll</code></dt>
+          <dd>Narrow vertical scrolling layout for mobile-style forms and focused flows.</dd>
+        </dl>
+        <pre><code>&lt;body class="layout-sidebar"&gt;
+  &lt;header&gt;
+    &lt;nav aria-label="Primary"&gt;
+      &lt;a class="brand" href="/"&gt;&lt;strong&gt;My App&lt;/strong&gt;&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href="/" aria-current="page"&gt;Home&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+  &lt;aside class="sidebar"&gt;...&lt;/aside&gt;
+  &lt;main&gt;...&lt;/main&gt;
+  &lt;footer&gt;...&lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+        <p>On narrow screens, topbar and sidebar layouts collapse into vertical flow. With <code>classic.enhance.js</code> loaded, header navigation collapses behind a hamburger toggle.</p>
+      </article>
+
+      <article id="buttons" data-jumpable data-jump-label="Buttons" data-jump-aliases="button variants states">
+        <header>
+          <h2>Buttons</h2>
+          <p class="muted">Automatic on <code>button</code>, button-like inputs, <code>[role="button"]</code>, and <code>.button</code>.</p>
+        </header>
+        <div class="stack">
+          <div class="cluster">
+            <button type="button">Default</button>
+            <button type="button" class="secondary">Secondary</button>
+            <button type="button" class="outline">Outline</button>
+            <button type="button" class="contrast">Contrast</button>
+            <button type="button" class="ghost">Ghost</button>
+          </div>
+          <div class="cluster">
+            <button type="button" aria-pressed="true">Pressed</button>
+            <button type="button" aria-busy="true">Busy</button>
+            <button type="button" disabled>Disabled</button>
+          </div>
+        </div>
+        <pre><code>&lt;button&gt;Default&lt;/button&gt;
+&lt;button class="secondary"&gt;Secondary&lt;/button&gt;
+&lt;button class="outline"&gt;Outline&lt;/button&gt;
+&lt;button class="contrast"&gt;Contrast&lt;/button&gt;
+&lt;button class="ghost"&gt;Ghost&lt;/button&gt;
+
+&lt;button aria-pressed="true"&gt;Pressed&lt;/button&gt;
+&lt;button aria-busy="true"&gt;Busy&lt;/button&gt;
+&lt;button disabled&gt;Disabled&lt;/button&gt;</code></pre>
+      </article>
+
+      <article id="forms" data-jumpable data-jump-label="Forms" data-jump-aliases="inputs labels validation">
+        <header>
+          <h2>Forms</h2>
+          <p class="muted">Two-column table layout by default: labels right-aligned on the left, controls on the right.</p>
+        </header>
+        <form action="#" method="get">
+          <label for="doc-name">Name</label>
+          <input id="doc-name" name="doc-name" type="text" placeholder="Ada Lovelace">
+
+          <label for="doc-level">Level</label>
+          <select id="doc-level" name="doc-level">
+            <option>Introductory</option>
+            <option>Advanced</option>
+          </select>
+
+          <label for="doc-handle">Handle</label>
+          <input id="doc-handle" name="doc-handle" type="text" value="classic-css!" aria-invalid="true">
+
+          <label class="check">
+            <input type="checkbox" checked>
+            Send release notes
+          </label>
+
+          <label class="switch">
+            <input type="checkbox" checked>
+            Use platinum controls
+          </label>
+
+          <button type="submit">Save</button>
+          <button type="reset" class="secondary">Reset</button>
+        </form>
+        <pre><code>&lt;form&gt;
+  &lt;label for="name"&gt;Name&lt;/label&gt;
+  &lt;input id="name" name="name"&gt;
+
+  &lt;label class="check"&gt;
+    &lt;input type="checkbox"&gt; Send release notes
+  &lt;/label&gt;
+
+  &lt;label class="switch"&gt;
+    &lt;input type="checkbox"&gt; Use platinum controls
+  &lt;/label&gt;
+
+  &lt;button type="submit"&gt;Save&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+        <h3>Field helpers</h3>
+        <ul>
+          <li><code>field</code>: explicit label/control row.</li>
+          <li><code>field-row</code>: groups fields; behaves as contents so rows align with the form table.</li>
+          <li><code>check</code>: checkbox/radio label row.</li>
+          <li><code>switch</code>: custom switch row.</li>
+        </ul>
+        <h3>Validation</h3>
+        <p>Both ARIA and native HTML validity are styled:</p>
+        <pre><code>&lt;input aria-invalid="true"&gt;
+&lt;input aria-invalid="false"&gt;
+&lt;input type="email" required&gt;</code></pre>
+        <h3>Bare text labels</h3>
+        <p>Bare form text before a control is visually placed in the label column. For real click-to-focus behavior, use actual labels or load <code>classic.enhance.js</code>, which upgrades the text into labels. Opt out per form with <code>data-classic-no-autolabels</code>.</p>
+        <pre><code>&lt;form&gt;
+  Name
+  &lt;input name="name"&gt;
+&lt;/form&gt;</code></pre>
+      </article>
+
+      <article id="components" data-jumpable data-jump-label="Components" data-jump-aliases="notices badges menus windows">
+        <header>
+          <h2>Components</h2>
+          <p class="muted">Opt-in classes for app-oriented pieces. Variants use <code>data-variant="info|success|warning|danger"</code>.</p>
+        </header>
+
+        <h3>Notices</h3>
+        <div class="stack">
+          <div class="notice">Neutral notice.</div>
+          <div class="notice" data-variant="info">Informational notice.</div>
+          <div class="notice" data-variant="success">The update completed.</div>
+          <div class="notice" data-variant="warning">Check the required fields.</div>
+          <div class="notice" data-variant="danger">Unable to save.</div>
+        </div>
+        <pre><code>&lt;div class="notice" data-variant="warning"&gt;Check the required fields.&lt;/div&gt;</code></pre>
+
+        <h3>Badges and Status</h3>
+        <div class="cluster">
+          <span class="badge">Badge</span>
+          <span class="badge" data-variant="info">Info</span>
+          <span class="badge" data-variant="success">Success</span>
+          <span class="status">Ready</span>
+          <span class="status" data-variant="warning">Attention</span>
+          <span class="status" data-variant="danger">Fix</span>
+        </div>
+        <pre><code>&lt;span class="badge" data-variant="info"&gt;Info&lt;/span&gt;
+&lt;span class="status" data-variant="warning"&gt;Attention&lt;/span&gt;</code></pre>
+
+        <h3>Stats</h3>
+        <div class="grid grid-tight">
+          <div class="stat">
+            <small>Open items</small>
+            <strong>24</strong>
+            <span class="status">Healthy</span>
+          </div>
+          <div class="stat">
+            <small>Review queue</small>
+            <strong>7</strong>
+            <span class="status" data-variant="warning">Attention</span>
+          </div>
+        </div>
+        <pre><code>&lt;div class="stat"&gt;
+  &lt;small&gt;Open items&lt;/small&gt;
+  &lt;strong&gt;24&lt;/strong&gt;
+  &lt;span class="status"&gt;Healthy&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+
+        <h3>Toolbar and Menu</h3>
+        <div class="toolbar" role="toolbar" aria-label="Example toolbar">
+          <button type="button" aria-pressed="true">B</button>
+          <button type="button">I</button>
+          <button type="button" class="secondary">Link</button>
+        </div>
+        <ul class="menu">
+          <li><a href="#components">Edit <span class="muted">Ctrl E</span></a></li>
+          <li><a href="#components">Duplicate <span class="muted">Ctrl D</span></a></li>
+        </ul>
+        <pre><code>&lt;div class="toolbar" role="toolbar" aria-label="Editor"&gt;
+  &lt;button aria-pressed="true"&gt;B&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;ul class="menu"&gt;
+  &lt;li&gt;&lt;a href="#"&gt;Edit &lt;span class="muted"&gt;Ctrl E&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+        <h3>Window Chrome</h3>
+        <div class="window">
+          <div class="window-titlebar">Untitled Document</div>
+          <div class="window-pane">
+            <p class="compact">Window container with titlebar, pane, and statusbar.</p>
+          </div>
+          <div class="window-statusbar">Ready</div>
+        </div>
+        <pre><code>&lt;div class="window"&gt;
+  &lt;div class="window-titlebar"&gt;Untitled Document&lt;/div&gt;
+  &lt;div class="window-pane"&gt;...&lt;/div&gt;
+  &lt;div class="window-statusbar"&gt;Ready&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+        <h3>Disclosure</h3>
+        <details>
+          <summary>Native details and summary</summary>
+          <p>No classes needed.</p>
+        </details>
+
+        <h3>Pagination</h3>
+        <nav aria-label="Pagination example">
+          <ol class="pagination">
+            <li><a href="#components">Prev</a></li>
+            <li><a href="#components">1</a></li>
+            <li><a href="#components" aria-current="page">2</a></li>
+            <li><a href="#components">3</a></li>
+            <li><a href="#components">Next</a></li>
+          </ol>
+        </nav>
+        <pre><code>&lt;ol class="pagination"&gt;
+  &lt;li&gt;&lt;a href="#" aria-current="page"&gt;2&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+
+        <h3>Others</h3>
+        <ul>
+          <li><code>avatar</code>: circular-initials marker.</li>
+          <li><code>dialog-preview</code>: displays a <code>dialog</code> inline for demos.</li>
+          <li><code>tabs</code> / <code>tab</code>: tab strip styled as links.</li>
+        </ul>
+      </article>
+
+      <article id="helpers" data-jumpable data-jump-label="Layout helpers" data-jump-aliases="grid stack cluster split surface">
+        <header>
+          <h2>Layout Helpers</h2>
+          <p class="muted">Small composition classes for arranging content.</p>
+        </header>
+        <dl>
+          <dt><code>grid</code> / <code>grid-tight</code></dt>
+          <dd>Responsive card grid; tight variant reduces the gap.</dd>
+          <dt><code>stack</code> / <code>stack-sm</code></dt>
+          <dd>Vertical flow with consistent spacing.</dd>
+          <dt><code>cluster</code></dt>
+          <dd>Horizontal wrapping group.</dd>
+          <dt><code>split</code></dt>
+          <dd>Two-sided row that wraps on small screens.</dd>
+          <dt><code>with-sidebar</code></dt>
+          <dd>Local two-column content/sidebar layout.</dd>
+          <dt><code>surface</code></dt>
+          <dd>Bordered raised panel.</dd>
+        </dl>
+        <div class="split surface">
+          <span>A <code>split</code> inside a <code>surface</code></span>
+          <span class="badge" data-variant="success">Live example</span>
+        </div>
+      </article>
+
+      <article id="utilities" data-jumpable data-jump-label="Text utilities" data-jump-aliases="lead muted compact hidden">
+        <header>
+          <h2>Text Utilities</h2>
+        </header>
+        <dl>
+          <dt><code>lead</code></dt>
+          <dd>Larger introductory paragraph.</dd>
+          <dt><code>muted</code></dt>
+          <dd>Subdued text.</dd>
+          <dt><code>compact</code></dt>
+          <dd>Reduce bottom margin.</dd>
+          <dt><code>text-center</code></dt>
+          <dd>Center text.</dd>
+          <dt><code>nowrap</code></dt>
+          <dd>Prevent wrapping.</dd>
+          <dt><code>visually-hidden</code></dt>
+          <dd>Accessible hidden text.</dd>
+        </dl>
+      </article>
+
+      <article id="enhance" data-jumpable data-jump-label="Enhance script" data-jump-aliases="autolabels hamburger enhance">
+        <header>
+          <h2>classic.enhance.js</h2>
+          <p class="muted">Optional markup repair. The CSS is useful without it.</p>
+        </header>
+        <ul>
+          <li>Converts bare form text before controls into real labels, with matching input <code>id</code>s.</li>
+          <li>Adds a hamburger toggle to layout header navigation on narrow screens.</li>
+          <li>Disable auto-labels per form with <code>data-classic-no-autolabels</code>.</li>
+        </ul>
+        <pre><code>&lt;form data-classic-no-autolabels&gt;
+  Name
+  &lt;input name="name"&gt;
+&lt;/form&gt;</code></pre>
+      </article>
+
+      <article id="commands" data-jumpable data-jump-label="Command palette" data-jump-aliases="ctrl+k jump commands">
+        <header>
+          <h2>Command Palette</h2>
+          <p class="muted">Try it now: press <kbd>Ctrl</kbd> + <kbd>K</kbd> or <kbd>Cmd</kbd> + <kbd>K</kbd>.</p>
+        </header>
+        <p>Type commands like <code>nav</code>, <code>main</code>, <code>forms</code>, <code>search</code>, <code>footer</code>, or <code>top</code> to jump to semantic landmarks. Mark extra destinations with <code>data-jumpable</code>:</p>
+        <pre><code>&lt;section
+  id="billing"
+  data-jumpable
+  data-jump-label="Billing"
+  data-jump-aliases="invoices payments"
+  data-jump-description="Jump to billing section"&gt;
+  ...
+&lt;/section&gt;</code></pre>
+        <ul>
+          <li><code>data-jumpable</code>: opt the element into the palette.</li>
+          <li><code>data-jump-label</code>: command text; falls back to <code>aria-label</code>, <code>aria-labelledby</code>, then <code>id</code>.</li>
+          <li><code>data-jump-aliases</code>: extra search terms.</li>
+          <li><code>data-jump-description</code>: right-side context text.</li>
+        </ul>
+        <p>Register custom commands in script:</p>
+        <pre><code>window.ClassicCommands.register({
+  name: "billing",
+  aliases: ["invoice", "payments"],
+  description: "Jump to billing section",
+  run() {
+    document.querySelector("#billing")?.scrollIntoView({ behavior: "smooth" });
+  }
+});</code></pre>
+      </article>
+
+      <article id="accessibility" data-jumpable data-jump-label="Accessibility" data-jump-aliases="aria focus motion">
+        <header>
+          <h2>Accessibility</h2>
+        </header>
+        <ul>
+          <li>Prefer real labels for forms. Bare form text is only visual until <code>classic.enhance.js</code> upgrades it.</li>
+          <li>Focus states use <code>:focus-visible</code> and are kept intact.</li>
+          <li>Use ARIA states for state, not decoration: <code>aria-current</code>, <code>aria-invalid</code>, <code>aria-pressed</code>, <code>aria-busy</code>.</li>
+          <li>The command palette restores focus on close and exposes results as a combobox/listbox pair.</li>
+          <li>Motion is reduced under <code>prefers-reduced-motion: reduce</code>.</li>
+        </ul>
+      </article>
+    </main>
+
+    <footer>
+      <small>classic.css documentation. Demos: <a href="demo/index.html">specimen</a>, <a href="demo/forms.html">forms</a>, <a href="demo/components.html">components</a>.</small>
+    </footer>
+
+    <script src="classic.enhance.js"></script>
+    <script src="classic.commands.js"></script>
+  </body>
+</html>
