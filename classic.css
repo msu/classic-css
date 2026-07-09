@@ -1202,55 +1202,63 @@
     }
 
     input[type="range"]::-webkit-slider-runnable-track {
-        background:
-            linear-gradient(180deg, #898989, #bcbcbc 42%, #f3f3f3 100%);
+        background: linear-gradient(180deg, #a8a8a8, #d6d6d6);
         border: 1px solid var(--border-strong);
-        border-radius: 999px;
-        box-shadow:
-            1px 1px 3px rgba(0, 0, 0, 0.42) inset,
-            -1px -1px 0 var(--highlight) inset;
-        height: 0.55rem;
+        border-radius: 0;
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3) inset;
+        height: 0.3rem;
     }
 
+    /* Platinum "home plate" thumb drawn as SVG so every edge keeps its outline */
     input[type="range"]::-webkit-slider-thumb {
         appearance: none;
-        background:
-            linear-gradient(180deg, var(--highlight), var(--button-face) 48%, var(--button-face-mid) 49%, var(--button-face-dark));
-        border: 1px solid var(--button-edge);
-        border-radius: 999px;
-        box-shadow:
-            1px 1px 0 var(--highlight) inset,
-            -1px -1px 0 var(--button-groove) inset,
-            0 2px 0 #5f5f5f,
-            1px 3px 5px rgba(0, 0, 0, 0.22);
-        height: 1.45rem;
-        margin-top: -0.5rem;
-        width: 1.15rem;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14"><path d="M2 .5 H10 Q11.5 .5 11.5 2 V8 L6 13.5 L.5 8 V2 Q.5 .5 2 .5 Z" fill="%23e2e2e2" stroke="%231c1c1c" stroke-width=".6" stroke-linejoin="round"/><path d="M2 1.4 H10 Q10.6 1.4 10.6 2 V7.6 L6 12.2 L1.4 7.6 V2 Q1.4 1.4 2 1.4 Z" fill="%23f4f4f4"/><g stroke="%239a9a9a" stroke-width=".9"><line x1="4" y1="3" x2="4" y2="7.5"/><line x1="6" y1="3" x2="6" y2="7.5"/><line x1="8" y1="3" x2="8" y2="7.5"/></g></svg>') center / contain no-repeat;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        filter: drop-shadow(1px 1px 0 rgba(0, 0, 0, 0.35));
+        height: 1.4rem;
+        margin-top: calc(-0.45rem - 1px);
+        width: 1.2rem;
     }
 
     input[type="range"]::-moz-range-track {
-        background:
-            linear-gradient(180deg, #898989, #bcbcbc 42%, #f3f3f3 100%);
+        background: linear-gradient(180deg, #a8a8a8, #d6d6d6);
         border: 1px solid var(--border-strong);
-        border-radius: 999px;
-        box-shadow:
-            1px 1px 3px rgba(0, 0, 0, 0.42) inset,
-            -1px -1px 0 var(--highlight) inset;
-        height: 0.55rem;
+        border-radius: 0;
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3) inset;
+        height: 0.3rem;
     }
 
     input[type="range"]::-moz-range-thumb {
-        background:
-            linear-gradient(180deg, var(--highlight), var(--button-face) 48%, var(--button-face-mid) 49%, var(--button-face-dark));
-        border: 1px solid var(--button-edge);
-        border-radius: 999px;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 14"><path d="M2 .5 H10 Q11.5 .5 11.5 2 V8 L6 13.5 L.5 8 V2 Q.5 .5 2 .5 Z" fill="%23e2e2e2" stroke="%231c1c1c" stroke-width=".6" stroke-linejoin="round"/><path d="M2 1.4 H10 Q10.6 1.4 10.6 2 V7.6 L6 12.2 L1.4 7.6 V2 Q1.4 1.4 2 1.4 Z" fill="%23f4f4f4"/><g stroke="%239a9a9a" stroke-width=".9"><line x1="4" y1="3" x2="4" y2="7.5"/><line x1="6" y1="3" x2="6" y2="7.5"/><line x1="8" y1="3" x2="8" y2="7.5"/></g></svg>') center / contain no-repeat;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        filter: drop-shadow(1px 1px 0 rgba(0, 0, 0, 0.35));
+        height: 1.4rem;
+        width: 1.2rem;
+    }
+
+    /* File chooser button gets the classic button chrome */
+    input[type="file"]::file-selector-button {
+        background: linear-gradient(180deg, var(--button-face-light), var(--button-face) 46%, var(--button-face-mid));
+        border: 1px solid var(--button-groove);
+        border-radius: var(--radius-3);
         box-shadow:
-            1px 1px 0 var(--highlight) inset,
-            -1px -1px 0 var(--button-groove) inset,
-            0 2px 0 #5f5f5f,
-            1px 3px 5px rgba(0, 0, 0, 0.22);
-        height: 1.45rem;
-        width: 1.15rem;
+            1px 1px 0 rgba(255, 255, 255, 0.85) inset,
+            -1px -1px 0 rgba(0, 0, 0, 0.12) inset,
+            1px 1px 0 rgba(0, 0, 0, 0.16);
+        color: var(--text);
+        font: inherit;
+        font-weight: 700;
+        margin-right: 0.6rem;
+        padding: 0.05rem 0.6rem;
+    }
+
+    input[type="color"] {
+        box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.35);
+        padding: 0.15rem;
     }
 
     input::placeholder,
@@ -1328,45 +1336,42 @@
         text-align: left;
     }
 
+    /* Integer-pixel geometry keeps the 1px thumb gap even on every side */
     .switch input {
         appearance: none;
-        background:
-            linear-gradient(180deg, #858585, #b4b4b4 42%, #e8e8e8 100%);
-        border: 1px solid var(--border-strong);
-        border-radius: 999px;
-        box-shadow:
-            1px 1px 3px rgba(0, 0, 0, 0.48) inset,
-            -1px -1px 0 var(--highlight) inset;
-        height: 1.35rem;
+        background: #ffffff;
+        border: 1px solid var(--button-edge);
+        border-radius: 5px;
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.22) inset;
+        height: 18px;
         position: relative;
-        width: 2.45rem;
+        width: 40px;
+    }
+
+    .switch input:checked::after {
+        content: none;
     }
 
     .switch input::before {
-        background:
-            linear-gradient(180deg, var(--highlight), var(--button-face) 48%, var(--button-face-mid) 49%, var(--button-face-dark));
+        background: linear-gradient(135deg, #f8f8f8, #d6d6d6);
         border: 1px solid var(--button-edge);
-        border-radius: 50%;
-        box-shadow:
-            1px 1px 0 var(--highlight) inset,
-            -1px -1px 0 var(--button-groove) inset,
-            1px 2px 3px rgba(0, 0, 0, 0.28);
+        border-radius: 5px;
+        box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.35);
         content: "";
-        height: 1rem;
-        left: 0.12rem;
+        height: 14px;
+        left: 1px;
         position: absolute;
-        top: 0.12rem;
-        transition: transform 150ms ease, background 150ms ease;
-        width: 1rem;
+        top: 1px;
+        transition: transform 70ms ease;
+        width: 14px;
     }
 
     .switch input:checked {
-        background:
-            linear-gradient(180deg, #254e91, #5f82bd 42%, #dbe6fb 100%);
+        background: var(--primary);
     }
 
     .switch input:checked::before {
-        transform: translateX(1.1rem);
+        transform: translateX(22px); /* 40px track - borders - gaps - 14px thumb */
     }
 
     /* Feedback and status */
