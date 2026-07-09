@@ -1009,6 +1009,18 @@
         box-shadow: none;
     }
 
+    /* OS9 ring on the form's true default button, the one Enter triggers (HIG: 3px ring, 1px gap) */
+    :is(button, input[type="submit"]):default {
+        outline: 3px solid var(--button-edge);
+        outline-offset: 1px;
+    }
+
+    /* Focused default button: ring recolors to the focus blue instead of stacking */
+    :is(button, input[type="submit"]):default:focus-visible {
+        outline: 3px solid color-mix(in srgb, var(--focus) 78%, transparent);
+        outline-offset: 1px;
+    }
+
     :is(button, [role="button"], .button)[aria-busy="true"] {
         pointer-events: none;
         position: relative;
