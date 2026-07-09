@@ -14,10 +14,9 @@ CSS libraries are judged by how it looks first and foremost.  This library is in
 Good examples of this look can be found at:
 
 * Michael Feenys figma work - https://www.figma.com/community/file/966779730364082883/mac-os-9-ui-kit
-* Screenshots of the original UI
-  * 
+* Screenshots of the original UI (see the img folder in this directory)
 
-
+At the same time, the look needs to be modernized as is appropriate for the modern web.
 
 ## Usability
 
