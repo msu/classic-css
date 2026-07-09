@@ -181,8 +181,14 @@
           <legend>Validation States</legend>
           <div class="field">
             <label for="handle">Public handle</label>
-            <input id="handle" name="handle" type="text" value="classic-css!" aria-invalid="true">
+            <input id="handle" name="handle" type="text" value="classic-css!" aria-invalid="true" aria-describedby="handle-error">
+            <small id="handle-error" data-variant="danger">Lowercase letters, digits, and dashes only.</small>
             <small>Invalid state is driven by <code>aria-invalid="true"</code>.</small>
+          </div>
+          <div class="field">
+            <label for="course-code">Course code</label>
+            <input id="course-code" name="course-code" type="text" pattern="[a-z]{2,4}-[0-9]{3}" value="csci-468" required>
+            <small>Native validation via <code>:user-invalid</code> - clear the field and tab away.</small>
           </div>
           <div class="field-row">
             <div class="field">

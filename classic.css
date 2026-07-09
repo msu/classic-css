@@ -1410,10 +1410,25 @@
         border: 2px solid var(--invalid);
     }
 
+    /* Native constraint validation, without attributes; only after the user
+       has interacted (kept as its own rule so unsupporting engines do not
+       drop the aria rule above) */
+    input:user-invalid,
+    select:user-invalid,
+    textarea:user-invalid {
+        border: 2px solid var(--invalid);
+    }
+
     input[aria-invalid="false"],
     select[aria-invalid="false"],
     textarea[aria-invalid="false"] {
         border: 2px solid var(--valid);
+    }
+
+    /* Field messages: pair the border tint with visible text */
+    small[data-variant] {
+        color: var(--variant);
+        font-weight: 700;
     }
 
     /* OS9 focus band: hugs the control frame instead of floating off it */

@@ -216,8 +216,10 @@
           <li><code>switch</code>: custom switch row.</li>
         </ul>
         <h3>Validation</h3>
-        <p>Both ARIA and native HTML validity are styled:</p>
-        <pre><code>&lt;input aria-invalid="true"&gt;
+        <p>Both ARIA and native HTML validity are styled. Native constraints (<code>required</code>, <code>pattern</code>) show the invalid border via <code>:user-invalid</code> once the user has interacted. Pair the border with a message so the state is never color-only:</p>
+        <pre><code>&lt;input aria-invalid="true" aria-describedby="handle-error"&gt;
+&lt;small id="handle-error" data-variant="danger"&gt;Lowercase letters and dashes only.&lt;/small&gt;
+
 &lt;input aria-invalid="false"&gt;
 &lt;input type="email" required&gt;</code></pre>
         <h3>Bare text labels</h3>
