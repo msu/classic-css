@@ -830,11 +830,10 @@
     }
 
     button.classic-nav-toggle[aria-expanded="true"] {
-        background: var(--button-face-mid);
-        border-color: var(--button-edge) var(--highlight) var(--highlight) var(--button-edge);
+        background: linear-gradient(180deg, var(--button-face-dark), #b2b2b2 55%, #c4c4c4);
         box-shadow:
-            1px 1px 0 var(--button-groove) inset,
-            -1px -1px 0 var(--button-face-light) inset;
+            1px 1px 2px rgba(0, 0, 0, 0.35) inset,
+            -1px -1px 0 rgba(255, 255, 255, 0.3) inset;
     }
 
     @media (min-width: 48.001rem) {
@@ -903,25 +902,26 @@
     }
 
     /* Buttons */
+    /* OS9 platinum: thin uniform border, shading lives inside the outline. */
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button) {
         align-items: center;
         appearance: none;
-        background: var(--button-face);
-        border-color: var(--highlight) var(--button-edge) var(--button-edge) var(--highlight);
-        border-style: solid;
-        border-width: 2px;
+        background: linear-gradient(180deg, var(--button-face-light), var(--button-face) 46%, var(--button-face-mid));
+        border: 1px solid var(--button-groove);
         border-radius: var(--radius-3);
         box-shadow:
-            1px 1px 0 var(--button-face-light) inset,
-            -1px -1px 0 var(--button-groove) inset;
+            1px 1px 0 rgba(255, 255, 255, 0.85) inset,
+            -1px -1px 0 rgba(0, 0, 0, 0.12) inset,
+            1px 1px 0 rgba(0, 0, 0, 0.16);
         color: var(--text);
         display: inline-flex;
         font-weight: 700;
         gap: var(--space-2);
         justify-content: center;
-        min-height: var(--control-height);
+        line-height: 1.2;
+        min-height: 1.9rem;
         min-width: 2.75rem;
-        padding: 0.5rem 0.9rem 0.56rem;
+        padding: 0.18rem 0.8rem 0.22rem;
         text-align: center;
         text-decoration: none;
         user-select: none;
@@ -932,66 +932,66 @@
     }
 
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button):hover {
-        background: var(--button-face-hover);
+        background: linear-gradient(180deg, var(--highlight), var(--button-face-hover) 46%, var(--button-face));
         color: var(--text);
         text-decoration: none;
     }
 
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button):active {
-        background: var(--button-face-mid);
-        border-color: var(--button-edge) var(--highlight) var(--highlight) var(--button-edge);
+        background: linear-gradient(180deg, var(--button-face-dark), #b2b2b2 55%, #c4c4c4);
         box-shadow:
-            1px 1px 0 var(--button-groove) inset,
-            -1px -1px 0 var(--button-face-light) inset;
+            1px 1px 2px rgba(0, 0, 0, 0.35) inset,
+            -1px -1px 0 rgba(255, 255, 255, 0.3) inset;
         transform: translate(1px, 1px);
     }
 
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button)[aria-pressed="true"] {
-        background: var(--button-face-mid);
-        border-color: var(--button-edge) var(--highlight) var(--highlight) var(--button-edge);
+        background: linear-gradient(180deg, var(--button-face-dark), #b2b2b2 55%, #c4c4c4);
         box-shadow:
-            1px 1px 0 var(--button-groove) inset,
-            -1px -1px 0 var(--button-face-light) inset;
+            1px 1px 2px rgba(0, 0, 0, 0.35) inset,
+            -1px -1px 0 rgba(255, 255, 255, 0.3) inset;
         transform: translate(1px, 1px);
     }
 
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button).secondary {
-        background: var(--button-secondary-face);
-        border-color: var(--button-secondary-highlight) var(--button-secondary-edge) var(--button-secondary-edge) var(--button-secondary-highlight);
+        background: linear-gradient(180deg, #e8eef4, #d0d9e1 46%, #bcc6cf);
         color: var(--text);
     }
 
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button).secondary:hover {
-        background: var(--button-secondary-face-hover);
+        background: linear-gradient(180deg, #f3f8fc, #dde6ed 46%, #c9d3dc);
         color: var(--text);
     }
 
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button).contrast {
-        background: #2f2f2f;
-        border-color: #777777 #050505 #050505 #777777;
+        background: linear-gradient(180deg, #4a4a4a, #333333 46%, #232323);
+        border-color: #1a1a1a;
+        box-shadow:
+            1px 1px 0 rgba(255, 255, 255, 0.18) inset,
+            -1px -1px 0 rgba(0, 0, 0, 0.4) inset,
+            1px 1px 0 rgba(0, 0, 0, 0.16);
         color: #ffffff;
         text-shadow: 0 -1px 0 #000000;
     }
 
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button).outline {
-        background: var(--button-blue-face);
-        border-color: var(--highlight) var(--primary-active) var(--primary-active) var(--highlight);
+        background: linear-gradient(180deg, #eef3fd, #dbe5f8 46%, #c2d1ec);
         color: #0d2d61;
     }
 
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button).secondary:active {
-        background: var(--button-secondary-face-pressed);
-        border-color: var(--button-secondary-edge) var(--button-secondary-highlight) var(--button-secondary-highlight) var(--button-secondary-edge);
+        background: linear-gradient(180deg, #8f9aa4, #a7b1ba 55%, var(--button-secondary-face-pressed));
     }
 
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button).outline:active {
-        background: var(--button-blue-mid);
-        border-color: var(--primary-active) var(--highlight) var(--highlight) var(--primary-active);
+        background: linear-gradient(180deg, #7f99c4, var(--button-blue-mid) 55%, #c9d8f2);
     }
 
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button).contrast:active {
-        background: #1b1b1b;
-        border-color: #050505 #777777 #777777 #050505;
+        background: linear-gradient(180deg, #181818, #262626 55%, #333333);
+        box-shadow:
+            1px 1px 2px rgba(0, 0, 0, 0.6) inset,
+            -1px -1px 0 rgba(255, 255, 255, 0.12) inset;
     }
 
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button).ghost {
@@ -1538,14 +1538,6 @@
         padding: var(--space-2);
     }
 
-    .toolbar button,
-    .toolbar [role="button"],
-    .toolbar .button {
-        border-radius: var(--radius-3);
-        border-width: 1px;
-        min-height: 2.05rem;
-        padding: 0.34rem 0.62rem;
-    }
 
     /* Responsive component behavior */
     @media (max-width: 48rem) {
