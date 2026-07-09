@@ -112,6 +112,8 @@
 
         /* Interaction and elevation */
         --focus: #1c4f9a;
+        --invalid: #c62828;
+        --valid: #2e7d32;
         --selection: rgba(28, 79, 154, 0.18);
         --shadow-color: rgba(0, 0, 0, 0.28);
         --shadow-tight:
@@ -1101,29 +1103,27 @@
 
     legend {
         color: var(--text);
-        font-family: var(--font-serif);
-        font-size: 1.25rem;
+        font-size: 1rem;
         font-weight: 700;
         margin-bottom: var(--space-2);
+        margin-right: auto;
         padding-inline: var(--space-2);
+        text-align: left;
     }
 
+    /* Sunken well: depth comes from the inset shadow, not the border */
     input:not([type="checkbox"], [type="radio"], [type="range"], [type="button"], [type="submit"], [type="reset"]),
     select,
     textarea {
         appearance: none;
         background: #ffffff;
-        border-color: #4b4b4b #ffffff #ffffff #4b4b4b;
-        border-style: solid;
-        border-width: 2px;
-        border-radius: var(--radius-1);
-        box-shadow:
-            1px 1px 0 #777777 inset,
-            -1px -1px 0 #dcdcdc inset;
+        border: 1px solid var(--border);
+        border-radius: 0;
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.22) inset;
         color: var(--text);
         font-weight: 400;
-        min-height: var(--control-height);
-        padding: 0.48rem 0.62rem;
+        min-height: 1.9rem;
+        padding: 0.3rem 0.5rem;
         text-align: left;
         width: 100%;
     }
@@ -1139,35 +1139,30 @@
         resize: vertical;
     }
 
+    /* OS9 popup button: single flat face, crisp edge, inset divider before the arrows */
     select {
-        background-image:
-            linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(198, 198, 198, 0.92)),
-            linear-gradient(45deg, transparent 50%, currentColor 50%),
-            linear-gradient(135deg, currentColor 50%, transparent 50%);
-        background-position:
-            right top,
-            calc(100% - 1.05rem) calc(50% + 0.05rem),
-            calc(100% - 0.7rem) calc(50% + 0.05rem);
-        background-repeat: no-repeat;
-        background-size: 2rem 100%, 0.35rem 0.35rem, 0.35rem 0.35rem;
+        background:
+            url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 14"><path d="M4 1 L7.2 5.4 H0.8 Z" fill="%23050505"/><path d="M4 13 L0.8 8.6 H7.2 Z" fill="%23050505"/></svg>') calc(100% - 0.55rem) 50% / 0.5rem 0.9rem no-repeat,
+            linear-gradient(180deg, var(--button-groove), var(--button-groove)) calc(100% - 1.6rem) 50% / 1px calc(100% - 0.55rem) no-repeat,
+            #f4f4f4;
+        border: 1px solid var(--button-edge);
+        border-radius: var(--radius-1);
+        box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.35);
         padding-right: 2rem;
     }
 
+    /* Empty well when off; button-crisp edge and hard shadow (empty is not disabled) */
     input[type="checkbox"],
     input[type="radio"] {
         appearance: none;
-        background:
-            radial-gradient(circle at 32% 28%, var(--highlight), #ededed 34%, #b7b7b7 70%, #838383 100%);
+        background: linear-gradient(135deg, #ffffff, #e8e8e8);
         border: 1px solid var(--button-edge);
-        box-shadow:
-            1px 1px 0 var(--highlight) inset,
-            -1px -1px 0 var(--button-groove) inset,
-            1px 1px 0 rgba(0, 0, 0, 0.22);
+        box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.35);
         flex: 0 0 auto;
-        height: 1.15rem;
+        height: 1rem;
         margin: 0;
         position: relative;
-        width: 1.15rem;
+        width: 1rem;
     }
 
     input[type="checkbox"] {
@@ -1178,35 +1173,24 @@
         border-radius: 50%;
     }
 
-    input[type="checkbox"]:checked,
-    input[type="radio"]:checked {
-        background:
-            radial-gradient(circle at 65% 68%, var(--highlight), transparent 22%),
-            radial-gradient(circle at 36% 30%, #c8d7f2, var(--button-blue-mid) 58%, var(--primary-active) 100%);
-    }
-
+    /* Bold black check that overshoots the box, like the OS9 original */
     input[type="checkbox"]:checked::after {
-        border: solid #0a1d42;
+        border: solid #050505;
         border-width: 0 0.16rem 0.16rem 0;
         content: "";
-        height: 0.68rem;
-        left: 0.36rem;
+        height: 0.72rem;
+        left: 0.27rem;
         position: absolute;
-        top: 0.13rem;
-        transform: rotate(42deg);
-        width: 0.34rem;
+        top: -0.1rem;
+        transform: rotate(40deg);
+        width: 0.32rem;
     }
 
     input[type="radio"]:checked::after {
-        background:
-            radial-gradient(circle at 34% 28%, var(--highlight), #274d8e 35%, #0a1d42 100%);
-        border: 1px solid #071733;
+        background: #050505;
         border-radius: 50%;
-        box-shadow:
-            1px 1px 0 rgba(255, 255, 255, 0.45) inset,
-            -1px -1px 0 rgba(0, 0, 0, 0.5) inset;
         content: "";
-        inset: 0.28rem;
+        inset: 0.22rem;
         position: absolute;
     }
 
@@ -1286,18 +1270,19 @@
     input[aria-invalid="true"],
     select[aria-invalid="true"],
     textarea[aria-invalid="true"] {
-        border-color: var(--danger) #ffffff #ffffff var(--danger);
+        border: 2px solid var(--invalid);
     }
 
     input[aria-invalid="false"],
     select[aria-invalid="false"],
     textarea[aria-invalid="false"] {
-        border-color: var(--success) #ffffff #ffffff var(--success);
+        border: 2px solid var(--valid);
     }
 
+    /* OS9 focus band: hugs the control frame instead of floating off it */
     :focus-visible {
-        outline: 3px solid var(--focus);
-        outline-offset: 2px;
+        outline: 3px solid color-mix(in srgb, var(--focus) 78%, transparent);
+        outline-offset: 0;
     }
 
     /* Form helpers */
