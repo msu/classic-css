@@ -1487,8 +1487,93 @@
     meter {
         accent-color: var(--primary);
         display: block;
-        height: 0.8rem;
+        height: 0.7rem;
         width: 100%;
+    }
+
+    progress {
+        appearance: none;
+        background: #ffffff;
+        border: 1px solid var(--border);
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.22) inset;
+    }
+
+    progress::-webkit-progress-bar {
+        background: transparent;
+    }
+
+    progress::-webkit-progress-value {
+        background: linear-gradient(180deg, #8caade, var(--primary) 55%, #16345e);
+        border-right: 1px solid #0d2d61;
+        transition: width 150ms ease;
+    }
+
+    progress::-moz-progress-bar {
+        background: linear-gradient(180deg, #8caade, var(--primary) 55%, #16345e);
+        border-right: 1px solid #0d2d61;
+    }
+
+    /* Indeterminate: platinum barber pole */
+    progress:indeterminate::-webkit-progress-bar {
+        animation: classic-barber 1.2s linear infinite;
+        background: repeating-linear-gradient(
+            135deg,
+            var(--primary) 0 0.6rem,
+            #8caade 0.6rem 1.2rem
+        );
+        background-size: 1.7rem 100%;
+    }
+
+    progress:indeterminate::-moz-progress-bar {
+        animation: classic-barber 1.2s linear infinite;
+        background: repeating-linear-gradient(
+            135deg,
+            var(--primary) 0 0.6rem,
+            #8caade 0.6rem 1.2rem
+        );
+        background-size: 1.7rem 100%;
+    }
+
+    @keyframes classic-barber {
+        to {
+            background-position: 1.7rem 0;
+        }
+    }
+
+    /* WebKit meters keep native appearance (appearance:none breaks the value
+       pseudo-elements); the sunken well is drawn on the bar pseudo instead. */
+    meter::-webkit-meter-bar {
+        background: #ffffff;
+        border: 1px solid var(--border);
+        border-radius: 0;
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.22) inset;
+        height: 0.7rem;
+    }
+
+    meter::-webkit-meter-optimum-value {
+        background: linear-gradient(180deg, #7fb389, var(--success) 55%, #1c4426);
+    }
+
+    meter::-webkit-meter-suboptimum-value {
+        background: linear-gradient(180deg, #f6e08a, #e3b71f 55%, #7a5c05);
+    }
+
+    meter::-webkit-meter-even-less-good-value {
+        background: linear-gradient(180deg, #cf7f7f, var(--danger) 55%, #4d1414);
+    }
+
+    /* Firefox draws the well on the element and cannot color by zone */
+    @supports selector(::-moz-meter-bar) {
+        meter {
+            appearance: none;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.22) inset;
+        }
+    }
+
+    meter::-moz-meter-bar {
+        background: linear-gradient(180deg, #7fb389, var(--success) 55%, #1c4426);
     }
 
     /* Tabs and toolbars */
