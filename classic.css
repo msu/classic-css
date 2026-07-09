@@ -1928,15 +1928,17 @@
 
     /* Interaction polish */
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button, .menu a, .menu button, .pagination a, .tab, [role="tab"], nav a) {
-        transition: transform 120ms ease, box-shadow 130ms ease, filter 140ms ease, background 150ms ease, color 130ms ease;
+        transition: transform 50ms ease, box-shadow 50ms ease, filter 140ms ease, background 80ms ease, color 130ms ease;
     }
 
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button, .menu a, .menu button, .pagination a, .tab, [role="tab"], nav a):hover {
         filter: saturate(1.04);
     }
 
+    /* Press is much faster than the release so controls feel light. */
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button, .menu a, .menu button, .pagination a, .tab, [role="tab"], nav a):active {
         transform: translate(1px, 1px);
+        transition-duration: 15ms;
     }
 
     @media (prefers-reduced-motion: reduce) {
