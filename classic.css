@@ -225,8 +225,14 @@
         font-weight: 700;
         letter-spacing: 0;
         line-height: 1.08;
-        margin: 0 0 var(--space-3);
+        margin: var(--space-5) 0 var(--space-3);
         text-wrap: balance;
+    }
+
+    /* Headings breathe above; collapsing keeps prose rhythm, guards keep
+       container tops tight */
+    :is(h1, h2, h3, h4, h5, h6):first-child {
+        margin-top: 0;
     }
 
     h1 {
@@ -341,6 +347,16 @@
     kbd {
         border-color: var(--border-strong);
         box-shadow: 0 2px 0 var(--border-strong);
+    }
+
+    /* Top margin so samples clear margin-less demo blocks; sibling margin
+       collapsing keeps prose rhythm unchanged */
+    pre {
+        margin-top: var(--space-4);
+    }
+
+    pre:first-child {
+        margin-top: 0;
     }
 
     pre {

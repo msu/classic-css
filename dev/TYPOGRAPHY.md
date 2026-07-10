@@ -12,3 +12,6 @@ like a classic Mac app.
 - Code: dark terminal `pre` is the default (gray-canvas principle); `pre.light` is the
   opt-in sunken listing for light contexts. Inline code/kbd/samp/mark/blockquote: as-is.
 - Serif (`--font-serif`, Palatino) reserved for accents: stat numerals.
+- Flow spacing: `pre` and headings carry top margins (space-4 / space-5) with
+  `:first-child` guards - sibling margin collapsing keeps prose rhythm unchanged,
+  but margin-less demo `div`s no longer stack flush against what follows.
