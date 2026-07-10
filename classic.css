@@ -60,7 +60,7 @@
         color-scheme: light;
 
         /* Typography */
-        --font-sans: "Segoe UI", Tahoma, Arial, sans-serif;
+        --font-sans: Verdana, Geneva, Tahoma, sans-serif;
         --font-serif: "Palatino Linotype", Palatino, "Book Antiqua", serif;
         --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
 
@@ -112,6 +112,7 @@
 
         /* Interaction and elevation */
         --focus: #1c4f9a;
+        --visited: #551a8b;
         --invalid: #c62828;
         --valid: #2e7d32;
         --selection: rgba(28, 79, 154, 0.18);
@@ -227,19 +228,19 @@
     }
 
     h1 {
-        font-size: 2.35rem;
+        font-size: 2.9rem;
     }
 
     h2 {
-        font-size: 1.75rem;
+        font-size: 2.1rem;
     }
 
     h3 {
-        font-size: 1.35rem;
+        font-size: 1.6rem;
     }
 
     h4 {
-        font-size: 1.08rem;
+        font-size: 1.25rem;
     }
 
     h5,
@@ -247,27 +248,6 @@
         font-family: var(--font-sans);
         font-size: 1rem;
         text-transform: uppercase;
-    }
-
-    @media (min-width: 48rem) {
-
-        h1 {
-            font-size: 3.2rem;
-            line-height: 1.04;
-        }
-
-        h2 {
-            font-size: 2.3rem;
-            line-height: 1.04;
-        }
-
-        h3 {
-            font-size: 1.65rem;
-        }
-
-        h4 {
-            font-size: 1.25rem;
-        }
     }
 
     p,
@@ -296,8 +276,8 @@
     }
 
     a:visited {
-        color: color-mix(in srgb, var(--primary) 62%, var(--accent));
-        text-decoration-color: color-mix(in srgb, var(--primary) 24%, var(--accent));
+        color: var(--visited);
+        text-decoration-color: color-mix(in srgb, var(--visited) 40%, transparent);
     }
 
     a:hover {
@@ -378,6 +358,15 @@
         color: inherit;
         font-size: 0.95em;
         padding: 0;
+    }
+
+    /* Light sunken listing as the opt-in; terminal stays the default */
+    pre.light {
+        background: #fdfdfd;
+        border: 1px solid var(--border);
+        border-radius: 0;
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.18) inset;
+        color: var(--text);
     }
 
     ul,
@@ -1708,41 +1697,71 @@
         background: linear-gradient(180deg, #7fb389, var(--success) 55%, #1c4426);
     }
 
-    /* Tabs and toolbars */
-    nav.tabs,
-    .tabs,
+    /* Tabs: ARIA roles only. The strip paints its baseline inside the padding
+       box (overflow clipping eats anything that hangs below), inactive tabs
+       carry a matching bottom border, the selected tab has none - its white
+       body connects through to the panel. */
     [role="tablist"] {
-        border-bottom: 1px solid color-mix(in srgb, var(--border) 78%, var(--surface));
+        align-items: flex-end;
+        background: linear-gradient(var(--border-strong), var(--border-strong)) 0 100% / 100% 1px no-repeat;
         display: flex;
-        flex-wrap: wrap;
-        gap: var(--space-1);
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        padding: 0;
     }
 
-    nav.tabs a.tab,
-    .tab,
-    [role="tab"] {
-        background: color-mix(in srgb, var(--surface-2) 70%, var(--surface));
-        border: 1px solid color-mix(in srgb, var(--border) 78%, var(--surface));
-        border-bottom: 0;
-        border-radius: var(--radius-2) var(--radius-2) 0 0;
+    [role="tablist"] [role="tab"] {
+        appearance: none;
+        background: linear-gradient(180deg, #f0f0f0, #dcdcdc 60%, #cecece);
+        border: 1px solid var(--border-strong);
+        border-radius: 8px 8px 0 0;
+        box-shadow: none;
         color: var(--muted-strong);
-        padding: 0.52rem 0.78rem;
+        flex: 0 0 auto;
+        font: inherit;
+        font-weight: 400;
+        line-height: 1.2;
+        margin-right: -1px;
+        min-height: 0;
+        min-width: 0;
+        padding: 0.2rem 0.85rem;
         text-decoration: none;
+        white-space: nowrap;
     }
 
-    nav.tabs a.tab:visited,
-    a.tab:visited {
-        color: var(--muted-strong);
+    [role="tablist"] [role="tab"]:hover {
+        background: linear-gradient(180deg, #f8f8f8, #e6e6e6 60%, #d8d8d8);
+        color: var(--text);
     }
 
-    nav.tabs a.tab[aria-current="page"],
-    .tab[aria-current="page"],
-    [role="tab"][aria-selected="true"] {
+    [role="tablist"] [role="tab"] {
+        border-bottom: 1px solid var(--border-strong);
+    }
+
+    [role="tablist"] [role="tab"][aria-selected="true"] {
         background: var(--surface);
-        box-shadow: 0 2px 0 var(--primary) inset;
-        color: var(--primary-active);
+        border-bottom: 0;
+        color: var(--text);
+        font-weight: 700;
+        padding-bottom: calc(0.2rem + 1px);
         position: relative;
-        top: 1px;
+    }
+
+    /* Tab panel: regular-panel chrome, but a flat white face so the selected
+       tab connects seamlessly */
+    [role="tabpanel"] {
+        background: var(--surface);
+        border: 1px solid var(--border-strong);
+        border-radius: var(--radius-3);
+        box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.24);
+        padding: var(--space-5);
+    }
+
+    [role="tablist"] + [role="tabpanel"] {
+        border-top: 0;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        margin-top: 0;
     }
 
     .toolbar {
@@ -2140,16 +2159,16 @@
     }
 
     /* Interaction polish */
-    :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button, .menu a, .menu button, .pagination a, .tab, [role="tab"], nav a) {
+    :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button, .menu a, .menu button, .pagination a, [role="tab"], nav a) {
         transition: transform 50ms ease, box-shadow 50ms ease, filter 140ms ease, background 80ms ease, color 130ms ease;
     }
 
-    :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button, .menu a, .menu button, .pagination a, .tab, [role="tab"], nav a):hover {
+    :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button, .menu a, .menu button, .pagination a, [role="tab"], nav a):hover {
         filter: saturate(1.04);
     }
 
     /* Press is much faster than the release so controls feel light. */
-    :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button, .menu a, .menu button, .pagination a, .tab, [role="tab"], nav a):active {
+    :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button, .menu a, .menu button, .pagination a, [role="tab"], nav a):active {
         transform: translate(1px, 1px);
         transition-duration: 15ms;
     }

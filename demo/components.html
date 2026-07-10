@@ -71,7 +71,7 @@
         </div>
       </section>
 
-      <section class="grid" aria-label="Component examples">
+      <section class="stack" aria-label="Component examples">
         <article id="buttons" data-jumpable data-jump-label="Buttons" data-jump-aliases="button states controls">
           <header>
             <h2>Buttons</h2>
@@ -111,15 +111,14 @@
         <article id="tabs" data-jumpable data-jump-label="Tabs" data-jump-aliases="tablist panels">
           <header>
             <h2>Tabs</h2>
-            <p class="muted">Styled as ordinary links for static demos; scripted tabs can use ARIA roles later.</p>
+            <p class="muted">Driven by ARIA roles; switching behavior belongs to a paired script.</p>
           </header>
-          <nav class="tabs" aria-label="Example sections">
-            <a class="tab" href="#tabs" aria-current="page">Overview</a>
-            <a class="tab" href="#tabs">Activity</a>
-            <a class="tab" href="#tabs">Settings</a>
-            <a class="tab" href="#tabs">History</a>
-          </nav>
-          <div class="surface">
+          <div role="tablist" aria-label="Example sections">
+            <button role="tab" aria-selected="true">Overview</button>
+            <button role="tab" aria-selected="false">Activity</button>
+            <button role="tab" aria-selected="false">History</button>
+          </div>
+          <div role="tabpanel">
             <p>This panel is a static mockup. Behavior can be added by a small paired script later.</p>
             <div class="cluster">
               <span class="badge" data-variant="info">Draft</span>
