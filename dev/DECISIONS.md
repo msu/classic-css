@@ -1,17 +1,28 @@
 # Design Decisions
 
-- **Button press timing** (2026-07-09, fef5214): press 15ms, release 50ms, background 80ms. Fast-but-present beats none; slow `:active` felt heavy. See usability/tog.md (latency) and usability/apple-hig-1992.md (instant inversion).
-- **OS9 platinum button chrome** (2026-07-09): 1px `--button-groove` border, gradient face, soft insets; pressed = darker gradient, no border flip; 1.9rem min-height, line-height 1.2. Ref dev/img/os9-keyboard-ui.png. Buttons only; pagination/sidebar/palette still on old bevel.
-- **Toolbar buttons** (2026-07-09): no size override; inherit standard button size.
-- **OS9 form controls** (2026-07-09): text wells get depth from a tight inset shadow (1px, no dispersion), soft gray 1px border, square corners, 1.9rem. Select = popup button (flat face, `--button-edge` border, platinum arrow block, hard 1px shadow). Checkbox/radio = 1rem empty wells, crisp `--button-edge` border, hard shadow, bold black overshooting check / black dot (empty is not disabled). Legend sans/1rem/left. Refs dev/img/os9-forms.png, os9-checkboxes.png.
-- **Validation tokens** (2026-07-09): `--invalid` #c62828 / `--valid` #2e7d32, brighter than `--danger`/`--success` text colors; full 2px border, no halo. Themeable independently.
-- **Focus band** (2026-07-09): 3px at 78% opacity, `outline-offset: 0` — hugs the control frame like the platinum focus band. Applies to all focusables including buttons (OS9 had no button focus; keeping it is deliberate modernization).
-- **Slider** (2026-07-09): thin sunken groove (0.3rem) + platinum "home plate" thumb as an inline SVG (crisp outline on the pointed edges, 3 grip bars, drop-shadow filter, sits 2px low over the groove). Ref Key Repeat sliders in dev/img/os9-keyboard-ui.png. CSS clip-path rejected: it clips the border off the point.
-- **Switch** (2026-07-09): no OS9 ancestor (iOS import) — styled as family member, not replica: 40x18px track, 14px thumb, integer-pixel geometry for an exact 1px gap all around (rem sizes rounded unevenly), radius 5px on both per taste, flat `--primary` when on, checkbox check suppressed via `content: none`.
-- **File/color inputs** (2026-07-09): `::file-selector-button` gets classic button chrome; color swatch gets the hard 1px shadow.
-- **Form action rows** (2026-07-09): trailing buttons group via an explicit `<div class="cluster">` — no enhance.js auto-wrapping (layout is not markup repair; script-driven layout reflows and leaves CSS-only users stacked). Rows right-align with the default action rightmost (HIG dialog layout); markup order = visual order (secondary buttons first) so tab order matches — rejected flex `order` reordering for that reason. Multi-submit forms: Enter fires the first DOM submit, so the rightmost-default convention only holds with a single submit; documented, not solved. Rejected a Tailwind-style utility layer; conventions become defaults, gaps get intent-named helpers. Datalist suggestion popup is browser chrome and unstyleable; accepted as-is.
-- **Default ring width** (2026-07-09): 2px (down from HIG-literal 3px) — better proportion at modern button sizes.
-- **Validation completeness** (2026-07-09): `:user-invalid` gets the red border (native constraints, no attributes, only after interaction; own rule so old engines don't drop the aria rule). Field messages: `small[data-variant]` colors via the existing `--variant` map, paired with `aria-describedby` — fixes the color-only WCAG gap. No `:user-valid` auto-green: every field flashing green while typing is noise.
-- **Input type icons** (2026-07-09): right-edge glyphs identify the type: search magnifier, number #, email @, tel handset, url globe, password key, calendar for date/month/week/datetime-local, clock for time, popup triangle for datalist. All inline SVG, ink drawn to the same viewBox edge so they align vertically. Search swaps magnifier→x when it has content — requires a `placeholder` attribute and is gated by `@supports selector(::-webkit-search-cancel-button)` so Firefox (no cancel button) never shows a dead x. Chose to skip an enhance.js auto-placeholder; documented instead. Datalist gotcha: the native indicator draws its arrow as content — hide it, put the triangle on the input. Sub-parts are WebKit-only; Firefox degrades to native functional controls.
-- **Progress/meter** (2026-07-09): sunken 0.7rem well (ref classic startup bar, slightly slimmed); blue gradient fill with dark leading edge; indeterminate = animated barber pole. Meter zones green/yellow/red gradients. Gotcha: `appearance: none` on `meter` breaks WebKit's value pseudos — draw the well on `::-webkit-meter-bar`, element-level reset only for Firefox via `@supports selector(::-moz-meter-bar)` (FF can't color by zone).
-- **Default-button ring** (2026-07-09): 3px `--button-edge` outline, 1px offset, via `:is(button, input[type="submit"]):default` — rings only the form's true default (first submit, the one Enter fires), not every submit button. Recolors to the focus blue when focused. HIG spec; ref dev/img/os9-button-ring.png. Docs should note: use `type="button"` when the likely action is destructive (HIG: no default for dangerous actions).
+Global principles; category detail lives in the per-category files.
+
+## Principles
+
+- **Gray canvas**: the gray page background deliberately keeps both white elements
+  (wells, cards) and dark elements (terminal pre) in play. Deviation from literal
+  platinum is fine: platinum-inspired, not a pixel copy.
+- **Empty is not disabled**: empty controls are white wells; dimming is the only
+  unavailable signal.
+- **Conventions become defaults**: when a classic convention exists (right-aligned
+  action rows), it is the zero-markup default, not a helper class. Gaps get
+  intent-named helpers, never property utilities.
+- **Explicit over magic**: JS is for markup repair and behavior, never layout.
+  Honest affordances only - no control advertises a click it cannot honor.
+- **ARIA roles over custom classes**: whenever a standard role exists, it is the
+  styling hook (tabs were first: class hooks removed). Corollary: roles are
+  behavioral contracts, so docs must teach the script/keyboard obligations that
+  come with them; link-navigation keeps link semantics (`nav` + `aria-current`).
+
+## Categories
+
+- [TYPOGRAPHY.md](TYPOGRAPHY.md) - stack, scale, links, code blocks
+- [BUTTONS.md](BUTTONS.md) - chrome, timing, variants, default ring
+- [FORMS.md](FORMS.md) - wells, controls, type icons, validation, action rows
+- [NAVIGATION.md](NAVIGATION.md) - tabs (more as the nav pass continues)
+- COMPONENTS.md, etc. as those passes happen (see tmp/ROADMAP.md)
