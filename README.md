@@ -76,6 +76,8 @@ Optional scripts add behavior, not the core look:
 - converts bare form text before controls into real labels
 - gives generated labels a matching input `id`
 - adds a hamburger toggle to layout header navigation on narrow screens
+- adds a collapsible section toggle to sidebar navigation on narrow screens
+- closes mobile navigation on link selection, Escape, or outside tap
 - can be disabled per form with `data-classic-no-autolabels`
 
 `classic.commands.js` owns optional command-palette behavior:
@@ -86,6 +88,30 @@ Optional scripts add behavior, not the core look:
 - accepts custom commands through `window.ClassicCommands.register(...)`
 
 The CSS should still be useful if neither script is loaded.
+
+## Theming
+
+Theming is done by overriding CSS custom properties. There is no config file and no build step.
+
+```css
+:root {
+  --primary: #215a9c;
+  --primary-hover: #194779;
+  --primary-active: #102f55;
+  --surface: #ffffff;
+  --background: #f7f7f7;
+  --button-face: #d9d9d9;
+  --radius-3: 5px;
+}
+```
+
+Prefer overriding tokens over restyling component internals. The most useful groups are typography (`--font-*`, `--line-height`), color (`--background`, `--surface`, `--text`, `--primary`), spacing (`--space-*`), radii (`--radius-*`), and button chrome (`--button-*`).
+
+## Responsive Behavior
+
+Without JavaScript, topbar and sidebar layouts collapse into normal vertical document flow on narrow screens. With `classic.enhance.js`, header navigation becomes a hamburger menu and sidebar section navigation becomes a `Sections` disclosure. Both mobile menus close when a link is selected, Escape is pressed, or the user taps outside the menu.
+
+The sidebar scrollspy is opt-in by structure: put same-page hash links in `body.layout-sidebar > .sidebar`, and make sure each link points at a real `id` in the document.
 
 ## Forms and Labels
 
@@ -169,8 +195,12 @@ You can also register custom commands in script:
 
 - Prefer real labels for forms. Bare form text is only visual until `classic.enhance.js` upgrades it.
 - Keep visible focus states intact. The stylesheet uses `:focus-visible` for keyboard navigation.
-- Use ARIA states only for state, not decoration: `aria-current`, `aria-invalid`, `aria-pressed`, and `aria-busy` should reflect real UI state.
+- Use ARIA states only for state, not decoration: `aria-current`, `aria-invalid`, `aria-pressed`, `aria-busy`, and `aria-expanded` should reflect real UI state.
+- Use `aria-current="page"` for the current top-level page or current in-page section link.
+- Use `aria-invalid="true"` only after validation has failed, and pair it with useful help or error text in application markup.
+- Use `aria-pressed="true"` only for toggle buttons, not ordinary links.
 - Use `data-jumpable` only on meaningful destinations with a label, ARIA label, or stable `id`.
+- Mobile header and sidebar menus close on Escape and return focus to their toggle.
 - The command palette restores focus to the element that opened it and exposes results as a combobox/listbox pair.
 - Motion is reduced when the user has `prefers-reduced-motion: reduce`.
 
@@ -182,7 +212,7 @@ Apply one of these classes to `body`:
 - `layout-sidebar`: top navigation, left sidebar, and main content area.
 - `layout-scroll`: narrow vertical scrolling layout for mobile-style forms and focused flows.
 
-All three layouts use a menu-bar header. On narrow screens, topbar and sidebar layouts collapse into a vertical scroll flow; with `classic.enhance.js` loaded, header navigation collapses behind a hamburger toggle.
+All three layouts use a menu-bar header. On narrow screens, topbar and sidebar layouts collapse into a vertical scroll flow. With `classic.enhance.js` loaded, header navigation collapses behind a hamburger toggle, and sidebar section navigation collapses behind a `Sections` button.
 
 ## Class Reference
 
@@ -217,13 +247,8 @@ Useful states:
 ### Layout Helpers
 
 - `grid`: responsive card/content grid.
-- `grid-tight`: tighter grid gap.
 - `stack`: vertical flow with consistent spacing.
-- `stack-sm`: smaller stack spacing.
 - `cluster`: horizontal wrapping group.
-- `split`: two-sided row that wraps on small screens.
-- `with-sidebar`: local two-column content/sidebar layout.
-- `surface`: bordered raised panel.
 
 ### Forms
 

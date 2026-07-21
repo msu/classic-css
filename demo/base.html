@@ -14,6 +14,7 @@
           <li><a href="../index.html">Docs</a></li>
           <li><a href="base.html" aria-current="page">Base</a></li>
           <li><a href="forms.html">Forms</a></li>
+          <li><a class="cluster" href="../index.html#downloads"><span aria-hidden="true">&#x2913;</span><span>Downloads</span></a></li>
           <li>
             <a class="cluster" href="https://github.com/msu/classic-css" aria-label="GitHub repository">
               <img src="../assets/github-mark.svg" width="16" height="16" alt="">
@@ -25,7 +26,7 @@
     </header>
 
     <main>
-      <section class="split" aria-labelledby="intro-title" data-jumpable data-jump-label="Base styles" data-jump-aliases="intro overview elements">
+      <section class="cluster" aria-labelledby="intro-title" data-jumpable data-jump-label="Base styles" data-jump-aliases="intro overview elements">
         <div>
           <p class="cluster">
             <span class="badge" data-variant="info">Demo</span>
@@ -41,7 +42,7 @@
         </div>
       </section>
 
-      <section class="grid grid-tight" aria-label="Layout summary">
+      <section class="grid" aria-label="Layout summary">
         <div class="stat">
           <small>Layout</small>
           <strong>Top</strong>
@@ -224,7 +225,7 @@ body.layout-sidebar {
           <p class="muted">Buttons, tabs, notices, menus, pagination, stats, progress indicators, dialogs, and compact app surfaces.</p>
         </header>
 
-        <section id="component-stats" class="grid grid-tight" aria-label="Component stats" data-jumpable data-jump-label="Stats" data-jump-aliases="metrics counters">
+        <section id="component-stats" class="grid" aria-label="Component stats" data-jumpable data-jump-label="Stats" data-jump-aliases="metrics counters">
           <div class="stat">
             <small>Open lessons</small>
             <strong>24</strong>
@@ -295,7 +296,7 @@ body.layout-sidebar {
               <a class="tab" href="#component-tabs">Settings</a>
               <a class="tab" href="#component-tabs">History</a>
             </nav>
-            <div class="surface">
+            <div class="stack">
               <p>This panel is a static mockup. Behavior can be added by a small paired script later.</p>
               <div class="cluster">
                 <span class="badge" data-variant="info">Draft</span>
@@ -393,23 +394,19 @@ body.layout-sidebar {
               <p class="muted">Avatars, badges, statuses, and dense rows.</p>
             </header>
             <div class="stack">
-              <div class="split surface">
-                <div class="cluster">
-                  <span class="avatar">HS</span>
-                  <div>
-                    <strong>Hypermedia Systems</strong>
-                    <p class="compact muted">Chapter refresh</p>
-                  </div>
+              <div class="cluster">
+                <span class="avatar">HS</span>
+                <div>
+                  <strong>Hypermedia Systems</strong>
+                  <p class="compact muted">Chapter refresh</p>
                 </div>
                 <span class="badge" data-variant="success">Ready</span>
               </div>
-              <div class="split surface">
-                <div class="cluster">
-                  <span class="avatar">CSS</span>
-                  <div>
-                    <strong>Classic CSS</strong>
-                    <p class="compact muted">Button and layout pass</p>
-                  </div>
+              <div class="cluster">
+                <span class="avatar">CSS</span>
+                <div>
+                  <strong>Classic CSS</strong>
+                  <p class="compact muted">Button and layout pass</p>
                 </div>
                 <span class="badge" data-variant="warning">Review</span>
               </div>
@@ -417,24 +414,22 @@ body.layout-sidebar {
           </article>
         </section>
 
-        <section class="surface" aria-labelledby="component-pagination-title">
-          <div class="split">
-            <div>
-              <h2 id="component-pagination-title">Pagination</h2>
-              <p class="muted">Links get tactile edges without needing button classes.</p>
-            </div>
-            <nav aria-label="Pagination">
-              <ol class="pagination">
-                <li><a href="#component-pagination-title" aria-label="Previous page">Prev</a></li>
-                <li><a href="#component-pagination-title">1</a></li>
-                <li><a href="#component-pagination-title" aria-current="page">2</a></li>
-                <li><a href="#component-pagination-title">3</a></li>
-                <li><a href="#component-pagination-title">4</a></li>
-                <li><a href="#component-pagination-title" aria-label="Next page">Next</a></li>
-              </ol>
-            </nav>
-          </div>
-        </section>
+        <article aria-labelledby="component-pagination-title">
+          <header>
+            <h2 id="component-pagination-title">Pagination</h2>
+            <p class="muted">Links get tactile edges without needing button classes.</p>
+          </header>
+          <nav aria-label="Pagination">
+            <ol class="pagination">
+              <li><a href="#component-pagination-title" aria-label="Previous page">Prev</a></li>
+              <li><a href="#component-pagination-title">1</a></li>
+              <li><a href="#component-pagination-title" aria-current="page">2</a></li>
+              <li><a href="#component-pagination-title">3</a></li>
+              <li><a href="#component-pagination-title">4</a></li>
+              <li><a href="#component-pagination-title" aria-label="Next page">Next</a></li>
+            </ol>
+          </nav>
+        </article>
       </section>
     </main>
 

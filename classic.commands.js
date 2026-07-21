@@ -248,7 +248,7 @@
     title.innerHTML = '<span>Command Palette</span><small class="muted">Esc to close</small>';
 
     const pane = document.createElement('div');
-    pane.className = 'window-pane stack stack-sm';
+    pane.className = 'window-pane stack';
 
     input = document.createElement('input');
     input.type = 'text';

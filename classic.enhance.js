@@ -82,6 +82,15 @@
       }
     });
 
+    document.addEventListener('pointerdown', function (event) {
+      if (!mobileMenuQuery || !mobileMenuQuery.matches || toggle.getAttribute('aria-expanded') !== 'true') {
+        return;
+      }
+      if (event.target instanceof Node && !nav.contains(event.target)) {
+        setMenuExpanded(nav, false);
+      }
+    });
+
     if (mobileMenuQuery && typeof mobileMenuQuery.addEventListener === 'function') {
       mobileMenuQuery.addEventListener('change', function () {
         syncMenuToggleVisibility(nav);
@@ -106,7 +115,81 @@
     }
   }
 
+  function setSidebarExpanded(sidebar, expanded) {
+    const toggle = sidebar.querySelector(':scope > .classic-sidebar-toggle');
+    if (!toggle) return;
+    toggle.setAttribute('aria-expanded', String(expanded));
+  }
+
+  function syncSidebarToggleVisibility(sidebar) {
+    const toggle = sidebar.querySelector(':scope > .classic-sidebar-toggle');
+    if (!toggle || !mobileMenuQuery) return;
+    toggle.hidden = !mobileMenuQuery.matches;
+    if (!mobileMenuQuery.matches) {
+      setSidebarExpanded(sidebar, false);
+    }
+  }
+
+  function enhanceSidebarDisclosure(sidebar) {
+    const nav = sidebar.querySelector(':scope > nav');
+    if (!nav || sidebar.querySelector(':scope > .classic-sidebar-toggle')) {
+      return;
+    }
+
+    const toggle = document.createElement('button');
+    const label = document.createElement('span');
+    const current = document.createElement('span');
+
+    sidebar.classList.add('classic-sidebar-enhanced');
+    toggle.type = 'button';
+    toggle.className = 'classic-sidebar-toggle';
+    toggle.setAttribute('aria-controls', ensureId(nav, 'classic-sidebar-nav-'));
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Toggle section navigation');
+
+    label.textContent = 'Sections';
+    current.className = 'classic-sidebar-toggle-current';
+    current.setAttribute('aria-hidden', 'true');
+    toggle.appendChild(label);
+    toggle.appendChild(current);
+    sidebar.insertBefore(toggle, nav);
+    syncSidebarToggleVisibility(sidebar);
+
+    toggle.addEventListener('click', function () {
+      setSidebarExpanded(sidebar, toggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    sidebar.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        event.preventDefault();
+        setSidebarExpanded(sidebar, false);
+        toggle.focus();
+      }
+    });
+
+    document.addEventListener('pointerdown', function (event) {
+      if (!mobileMenuQuery || !mobileMenuQuery.matches || toggle.getAttribute('aria-expanded') !== 'true') {
+        return;
+      }
+      if (event.target instanceof Node && !sidebar.contains(event.target)) {
+        setSidebarExpanded(sidebar, false);
+      }
+    });
+
+    if (mobileMenuQuery && typeof mobileMenuQuery.addEventListener === 'function') {
+      mobileMenuQuery.addEventListener('change', function () {
+        syncSidebarToggleVisibility(sidebar);
+      });
+    } else if (mobileMenuQuery && typeof mobileMenuQuery.addListener === 'function') {
+      mobileMenuQuery.addListener(function () {
+        syncSidebarToggleVisibility(sidebar);
+      });
+    }
+  }
+
   function enhanceSidebarScrollspy(sidebar) {
+    enhanceSidebarDisclosure(sidebar);
+
     const items = Array.prototype.slice.call(sidebar.querySelectorAll('nav a[href^="#"]'))
       .map(function (link) {
         return {
@@ -138,6 +221,11 @@
           entry.link.removeAttribute('aria-current');
         }
       });
+
+      const current = sidebar.querySelector(':scope > .classic-sidebar-toggle .classic-sidebar-toggle-current');
+      if (current) {
+        current.textContent = item.link.textContent.trim();
+      }
     }
 
     function findActiveItem() {
@@ -178,6 +266,13 @@
       const item = link ? items.find(function (entry) { return entry.link === link; }) : null;
       if (item) {
         setActive(item);
+        if (!mobileMenuQuery || mobileMenuQuery.matches) {
+          setSidebarExpanded(sidebar, false);
+          const toggle = sidebar.querySelector(':scope > .classic-sidebar-toggle');
+          if (toggle) {
+            toggle.focus();
+          }
+        }
       }
     });
 
