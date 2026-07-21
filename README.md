@@ -1,5 +1,7 @@
 # 🏛️ classic.css
 
+[Classic CSS Demo](https://msu.github.io/classic-css/)
+
 `classic.css` is a single-file CSS library for semantic HTML with an old desktop interface feel. It aims for a fixed-light, OS 9 / Windows 95 inspired style: platinum surfaces, visible bevels, sunken inputs, simple physical buttons, and page layouts that work without a build step.
 
 ## Goals
