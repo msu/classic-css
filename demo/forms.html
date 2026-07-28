@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>classic.css - Forms</title>
-    <link rel="stylesheet" href="../classic.css">
+    <title>platinum.css - Forms</title>
+    <link rel="stylesheet" href="../platinum.css">
   </head>
   <body class="layout-scroll">
     <header>
       <nav aria-label="Primary">
-        <a class="brand" href="../index.html">🏛️ <strong>classic.css</strong></a>
+        <a class="brand" href="../index.html"><img class="brand-logo" src="../assets/logo.svg" width="1432" height="391" alt="platinum.css"></a>
         <ul>
           <li><a href="../index.html">Docs</a></li>
           <li><a href="base.html">Base</a></li>
@@ -45,7 +45,7 @@
           <input name="bare-title" type="text" placeholder="Course title">
 
           Slug
-          <input name="bare-slug" type="text" value="classic-css-forms">
+          <input name="bare-slug" type="text" value="platinum-css-forms">
 
           Level
           <select name="bare-level">
@@ -94,7 +94,7 @@
           <div class="field-row">
             <div class="field">
               <label for="name">Name</label>
-              <input id="name" name="name" type="text" autocomplete="name" placeholder="Ada Lovelace" required>
+              <input id="name" name="name" type="text" autocomplete="name" placeholder="Ada Lovelace" required aria-required="true">
             </div>
             <div class="field">
               <label for="email">Email</label>
@@ -106,7 +106,7 @@
           <div class="field-row">
             <div class="field">
               <label for="username">Username</label>
-              <input id="username" name="username" type="text" value="classic-css" autocomplete="username">
+              <input id="username" name="username" type="text" value="platinum-css" autocomplete="username">
             </div>
             <div class="field">
               <label for="password">Password</label>
@@ -176,13 +176,13 @@
           <legend>Validation States</legend>
           <div class="field">
             <label for="handle">Public handle</label>
-            <input id="handle" name="handle" type="text" value="classic-css!" aria-invalid="true">
+            <input id="handle" name="handle" type="text" value="platinum-css!" aria-invalid="true">
             <small>Invalid state is driven by <code>aria-invalid="true"</code>.</small>
           </div>
           <div class="field-row">
             <div class="field">
               <label for="readonly">Readonly field</label>
-              <input id="readonly" name="readonly" type="text" value="Stable value" readonly>
+              <input id="readonly" name="readonly" type="text" value="Stable value" readonly aria-readonly="true">
             </div>
             <div class="field">
               <label for="disabled">Disabled field</label>
@@ -195,8 +195,8 @@
           </div>
         </fieldset>
 
-        <fieldset data-jumpable data-jump-label="Native controls" data-jump-aliases="checkbox radio switch range">
-          <legend>Native Controls</legend>
+        <fieldset data-jumpable data-jump-label="Native and ARIA controls" data-jump-aliases="checkbox radio switch range aria checked">
+          <legend>Native and ARIA Controls</legend>
           <label class="check">
             <input type="checkbox" name="updates" checked>
             Send release notes
@@ -231,6 +231,13 @@
             <input type="checkbox" name="classic-platinum" checked>
             Use classic platinum controls
           </label>
+
+          <hr>
+
+          <span role="checkbox" aria-checked="true" tabindex="0">Submitted project</span>
+          <span role="checkbox" aria-checked="mixed" tabindex="0">Partial review</span>
+          <span role="radio" aria-checked="true" tabindex="0">Comfortable density</span>
+          <span role="switch" aria-checked="true" tabindex="0">Course announcements</span>
 
           <div class="field">
             <label for="priority">Priority</label>
@@ -273,10 +280,9 @@
     </main>
 
     <footer>
-      <small>classic.css demos share a single stylesheet.</small>
+      <small>platinum.css demos share a single stylesheet.</small>
     </footer>
 
-    <script src="../classic.enhance.js"></script>
-    <script src="../classic.commands.js"></script>
+    <script src="../platinum.js"></script>
   </body>
 </html>

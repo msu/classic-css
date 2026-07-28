@@ -307,6 +307,13 @@
         text-decoration-color: currentColor;
     }
 
+    :where(a, [role="link"])[aria-current]:not([aria-current="false"]) {
+        color: var(--primary-active);
+        font-weight: 700;
+        text-decoration-color: currentColor;
+        text-decoration-thickness: 0.12em;
+    }
+
     strong {
         color: var(--text);
         font-weight: 700;
@@ -457,6 +464,39 @@
         line-height: 1.3;
         padding-block: 0.9rem;
         text-transform: uppercase;
+    }
+
+    th[aria-sort]:not([aria-sort="none"]) {
+        background: color-mix(in srgb, var(--primary) 9%, var(--surface-2));
+        color: var(--primary-active);
+        white-space: nowrap;
+    }
+
+    th[aria-sort]:not([aria-sort="none"])::after {
+        content: "";
+        display: inline-block;
+        margin-left: 0.42rem;
+        vertical-align: 0.12em;
+    }
+
+    th[aria-sort="ascending"]::after {
+        border-color: transparent transparent currentColor;
+        border-style: solid;
+        border-width: 0 0.28rem 0.4rem;
+    }
+
+    th[aria-sort="descending"]::after {
+        border-color: currentColor transparent transparent;
+        border-style: solid;
+        border-width: 0.4rem 0.28rem 0;
+    }
+
+    th[aria-sort="other"]::after {
+        border: 2px solid currentColor;
+        border-radius: 50%;
+        height: 0.52rem;
+        opacity: 0.78;
+        width: 0.52rem;
     }
 
     tbody tr:hover {
@@ -738,13 +778,13 @@
         text-align: left;
     }
 
-    body.layout-sidebar>.sidebar nav a[aria-current="page"]:not([role="button"]):not(.brand) {
+    body.layout-sidebar>.sidebar nav a[aria-current]:not([aria-current="false"]):not([role="button"]):not(.brand) {
         background: color-mix(in srgb, var(--primary) 8%, transparent);
         border-left-color: var(--primary);
         color: var(--primary-active);
     }
 
-    body.layout-sidebar>.sidebar nav a[aria-current="page"]:not([role="button"]):not(.brand) {
+    body.layout-sidebar>.sidebar nav a[aria-current]:not([aria-current="false"]):not([role="button"]):not(.brand) {
         box-shadow: none;
     }
 
@@ -776,9 +816,9 @@
         color: var(--primary);
     }
 
-    body.layout-topbar>header nav a[aria-current="page"],
-    body.layout-sidebar>header nav a[aria-current="page"],
-    body.layout-scroll>header nav a[aria-current="page"] {
+    body.layout-topbar>header nav a[aria-current]:not([aria-current="false"]),
+    body.layout-sidebar>header nav a[aria-current]:not([aria-current="false"]),
+    body.layout-scroll>header nav a[aria-current]:not([aria-current="false"]) {
         background: transparent;
         color: var(--primary);
         text-decoration: underline;
@@ -789,8 +829,19 @@
     body.layout-topbar>header nav .brand,
     body.layout-sidebar>header nav .brand,
     body.layout-scroll>header nav .brand {
+        flex: 0 0 auto;
         letter-spacing: 0;
         padding-left: 0;
+    }
+
+    body.layout-topbar>header nav .brand-logo,
+    body.layout-sidebar>header nav .brand-logo,
+    body.layout-scroll>header nav .brand-logo {
+        display: block;
+        height: 2.45rem;
+        max-width: min(13rem, 56vw);
+        object-fit: contain;
+        width: auto;
     }
 
     body.layout-topbar>header nav .brand:hover,
@@ -935,7 +986,7 @@
         margin-block-start: var(--space-7);
     }
 
-    article.docs-sectioned> :is(.cluster, .grid, .menu, .toolbar, .window, details, nav, .stack)+pre {
+    article.docs-sectioned> :is(.cluster, .grid, .menu, .tab-set, .toolbar, .window, details, nav, .stack)+pre {
         margin-block-start: var(--space-2);
     }
 
@@ -999,6 +1050,31 @@
             1px 1px 0 var(--button-groove) inset,
             -1px -1px 0 var(--button-face-light) inset;
         transform: translate(1px, 1px);
+    }
+
+    :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button)[aria-pressed="mixed"] {
+        background:
+            repeating-linear-gradient(135deg, color-mix(in srgb, var(--button-secondary-face) 86%, var(--surface)) 0 0.38rem, var(--button-secondary-face) 0.38rem 0.76rem);
+        border-color: var(--button-secondary-edge) var(--button-secondary-highlight) var(--button-secondary-highlight) var(--button-secondary-edge);
+        box-shadow:
+            1px 1px 0 var(--button-groove) inset,
+            -1px -1px 0 var(--button-face-light) inset;
+        transform: translate(1px, 1px);
+    }
+
+    :is(button, [role="button"], .button)[aria-expanded]:not(.classic-nav-toggle):not(.classic-sidebar-toggle)::after,
+    :is(button, [role="button"], .button)[aria-haspopup]:not([aria-haspopup="false"]):not(.classic-nav-toggle):not(.classic-sidebar-toggle)::after {
+        border-color: currentColor transparent transparent;
+        border-style: solid;
+        border-width: 0.38rem 0.3rem 0;
+        content: "";
+        flex: 0 0 auto;
+        margin-left: auto;
+        transition: transform 120ms ease;
+    }
+
+    :is(button, [role="button"], .button)[aria-expanded="true"]:not(.classic-nav-toggle):not(.classic-sidebar-toggle)::after {
+        transform: rotate(180deg);
     }
 
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button).secondary {
@@ -1156,7 +1232,8 @@
 
     input:not([type="checkbox"], [type="radio"], [type="range"], [type="button"], [type="submit"], [type="reset"]),
     select,
-    textarea {
+    textarea,
+    :where([role="textbox"], [role="searchbox"], [role="combobox"], [role="spinbutton"]):not(input, select, textarea) {
         appearance: none;
         background: #ffffff;
         border-color: #4b4b4b #ffffff #ffffff #4b4b4b;
@@ -1177,6 +1254,12 @@
     form> :is(input:not([type="checkbox"], [type="radio"], [type="range"], [type="button"], [type="submit"], [type="reset"]), select, textarea, progress, meter),
     fieldset> :is(input:not([type="checkbox"], [type="radio"], [type="range"], [type="button"], [type="submit"], [type="reset"]), select, textarea, progress, meter),
     .field> :is(input:not([type="checkbox"], [type="radio"], [type="range"], [type="button"], [type="submit"], [type="reset"]), select, textarea, progress, meter) {
+        grid-column: 2;
+    }
+
+    form> :is([role="textbox"], [role="searchbox"], [role="combobox"], [role="spinbutton"], [role="slider"], [role="progressbar"], [role="meter"]),
+    fieldset> :is([role="textbox"], [role="searchbox"], [role="combobox"], [role="spinbutton"], [role="slider"], [role="progressbar"], [role="meter"]),
+    .field> :is([role="textbox"], [role="searchbox"], [role="combobox"], [role="spinbutton"], [role="slider"], [role="progressbar"], [role="meter"]) {
         grid-column: 2;
     }
 
@@ -1320,6 +1403,24 @@
         color: color-mix(in srgb, var(--muted) 72%, transparent);
     }
 
+    :is(input:not([type="checkbox"], [type="radio"], [type="range"], [type="button"], [type="submit"], [type="reset"]), select, textarea, [role="textbox"], [role="searchbox"], [role="combobox"], [role="spinbutton"]):is(:required, [aria-required="true"]) {
+        border-left-color: var(--primary);
+    }
+
+    label:has(+ :is(input, select, textarea, [role="textbox"], [role="searchbox"], [role="combobox"], [role="spinbutton"]):is(:required, [aria-required="true"]))::after,
+    label:has(:is(input, select, textarea, [role="textbox"], [role="searchbox"], [role="combobox"], [role="spinbutton"]):is(:required, [aria-required="true"]))::after {
+        color: var(--danger);
+        content: " *";
+    }
+
+    input[readonly]:not([type="checkbox"], [type="radio"], [type="range"], [type="button"], [type="submit"], [type="reset"]),
+    textarea[readonly],
+    :is([role="textbox"], [role="searchbox"], [role="combobox"], [role="spinbutton"])[aria-readonly="true"] {
+        background: var(--surface-2);
+        color: var(--muted-strong);
+        cursor: default;
+    }
+
     input:disabled,
     select:disabled,
     textarea:disabled,
@@ -1329,15 +1430,20 @@
         opacity: 0.58;
     }
 
-    input[aria-invalid="true"],
-    select[aria-invalid="true"],
-    textarea[aria-invalid="true"] {
+    input:user-invalid,
+    select:user-invalid,
+    textarea:user-invalid,
+    input[aria-invalid]:not([aria-invalid="false"]),
+    select[aria-invalid]:not([aria-invalid="false"]),
+    textarea[aria-invalid]:not([aria-invalid="false"]),
+    :is([role="textbox"], [role="searchbox"], [role="combobox"], [role="spinbutton"])[aria-invalid]:not([aria-invalid="false"]) {
         border-color: var(--danger) #ffffff #ffffff var(--danger);
     }
 
     input[aria-invalid="false"],
     select[aria-invalid="false"],
-    textarea[aria-invalid="false"] {
+    textarea[aria-invalid="false"],
+    :is([role="textbox"], [role="searchbox"], [role="combobox"], [role="spinbutton"])[aria-invalid="false"] {
         border-color: var(--success) #ffffff #ffffff var(--success);
     }
 
@@ -1389,6 +1495,13 @@
         text-align: left;
     }
 
+    form> :is([role="checkbox"], [role="radio"], [role="switch"]),
+    fieldset> :is([role="checkbox"], [role="radio"], [role="switch"]),
+    .field> :is([role="checkbox"], [role="radio"], [role="switch"]) {
+        grid-column: 2;
+        justify-self: start;
+    }
+
     .switch input {
         appearance: none;
         background:
@@ -1430,6 +1543,89 @@
         transform: translateX(1.1rem);
     }
 
+    :where([role="checkbox"], [role="radio"], [role="switch"]) {
+        align-items: center;
+        color: var(--text);
+        cursor: pointer;
+        display: inline-flex;
+        font-weight: 500;
+        gap: var(--space-2);
+        min-height: 1.6rem;
+        text-align: left;
+        user-select: none;
+    }
+
+    :where([role="checkbox"], [role="radio"])::before {
+        align-items: center;
+        background:
+            radial-gradient(circle at 32% 28%, var(--highlight), #ededed 34%, #b7b7b7 70%, #838383 100%);
+        border: 1px solid var(--button-edge);
+        box-shadow:
+            1px 1px 0 var(--highlight) inset,
+            -1px -1px 0 var(--button-groove) inset,
+            1px 1px 0 rgba(0, 0, 0, 0.22);
+        color: #0a1d42;
+        content: "";
+        display: inline-flex;
+        flex: 0 0 auto;
+        font-size: 0.88rem;
+        font-weight: 900;
+        height: 1.15rem;
+        justify-content: center;
+        line-height: 1;
+        width: 1.15rem;
+    }
+
+    [role="checkbox"]::before {
+        border-radius: var(--radius-1);
+    }
+
+    [role="radio"]::before {
+        border-radius: 50%;
+    }
+
+    [role="checkbox"][aria-checked="true"]::before {
+        background:
+            radial-gradient(circle at 65% 68%, var(--highlight), transparent 22%),
+            radial-gradient(circle at 36% 30%, #c8d7f2, var(--button-blue-mid) 58%, var(--primary-active) 100%);
+        content: "\2713";
+    }
+
+    [role="checkbox"][aria-checked="mixed"]::before {
+        background:
+            radial-gradient(circle at 65% 68%, var(--highlight), transparent 22%),
+            radial-gradient(circle at 36% 30%, #dbe6fb, var(--button-blue-mid) 58%, var(--primary-active) 100%);
+        content: "\2013";
+    }
+
+    [role="radio"][aria-checked="true"]::before {
+        background:
+            radial-gradient(circle at 50% 50%, #0a1d42 0 0.28rem, transparent 0.3rem),
+            radial-gradient(circle at 65% 68%, var(--highlight), transparent 22%),
+            radial-gradient(circle at 36% 30%, #c8d7f2, var(--button-blue-mid) 58%, var(--primary-active) 100%);
+    }
+
+    [role="switch"]::before {
+        background:
+            radial-gradient(circle at 0.68rem 50%, var(--highlight) 0 0.12rem, var(--button-face) 0.13rem 0.45rem, var(--button-edge) 0.46rem 0.54rem, transparent 0.55rem),
+            linear-gradient(180deg, #858585, #b4b4b4 42%, #e8e8e8 100%);
+        border: 1px solid var(--border-strong);
+        border-radius: 999px;
+        box-shadow:
+            1px 1px 3px rgba(0, 0, 0, 0.48) inset,
+            -1px -1px 0 var(--highlight) inset;
+        content: "";
+        flex: 0 0 auto;
+        height: 1.35rem;
+        width: 2.45rem;
+    }
+
+    [role="switch"][aria-checked="true"]::before {
+        background:
+            radial-gradient(circle at calc(100% - 0.68rem) 50%, var(--highlight) 0 0.12rem, var(--button-face) 0.13rem 0.45rem, var(--button-edge) 0.46rem 0.54rem, transparent 0.55rem),
+            linear-gradient(180deg, #254e91, #5f82bd 42%, #dbe6fb 100%);
+    }
+
     /* Feedback and status */
     [role="alert"],
     .notice {
@@ -1462,6 +1658,33 @@
         background: color-mix(in srgb, var(--variant) 10%, var(--surface));
         border-color: color-mix(in srgb, var(--variant) 45%, var(--border));
         border-left-color: var(--variant);
+    }
+
+    :where([role="status"], [role="log"], [aria-live]:not([aria-live="off"])):not(.status):not(.visually-hidden) {
+        background: color-mix(in srgb, var(--success) 8%, var(--surface));
+        border: 1px solid color-mix(in srgb, var(--success) 36%, var(--border));
+        border-left: 0.35rem solid var(--success);
+        border-radius: var(--radius-2);
+        box-shadow: var(--shadow-tight);
+        color: var(--muted-strong);
+        padding: var(--space-4);
+    }
+
+    :where([role="status"], [role="log"], [aria-live]:not([aria-live="off"])):not(.status):not(.visually-hidden)[aria-busy="true"] {
+        align-items: center;
+        display: flex;
+        gap: var(--space-2);
+    }
+
+    :where([role="status"], [role="log"], [aria-live]:not([aria-live="off"])):not(.status):not(.visually-hidden)[aria-busy="true"]::before {
+        animation: classic-spin 0.8s linear infinite;
+        border: 2px solid currentColor;
+        border-right-color: transparent;
+        border-radius: 50%;
+        content: "";
+        flex: 0 0 auto;
+        height: 1em;
+        width: 1em;
     }
 
     .badge {
@@ -1535,26 +1758,138 @@
         width: 100%;
     }
 
+    :where([role="progressbar"], [role="meter"]) {
+        background:
+            linear-gradient(180deg, #898989, #bcbcbc 42%, #f3f3f3 100%);
+        border: 1px solid var(--border-strong);
+        border-radius: 999px;
+        box-shadow:
+            1px 1px 3px rgba(0, 0, 0, 0.42) inset,
+            -1px -1px 0 var(--highlight) inset;
+        display: block;
+        height: 0.8rem;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+    }
+
+    :where([role="progressbar"], [role="meter"])::before {
+        background:
+            linear-gradient(180deg, #254e91, #5f82bd 42%, #dbe6fb 100%);
+        content: "";
+        display: block;
+        height: 100%;
+        width: var(--value, 0%);
+    }
+
+    [role="progressbar"]:not([aria-valuenow])::before {
+        animation: classic-progress 1.3s ease-in-out infinite alternate;
+        width: 38%;
+    }
+
+    [role="slider"] {
+        display: block;
+        min-height: 1.6rem;
+        position: relative;
+        width: 100%;
+    }
+
+    [role="slider"]::before {
+        background:
+            linear-gradient(180deg, #898989, #bcbcbc 42%, #f3f3f3 100%);
+        border: 1px solid var(--border-strong);
+        border-radius: 999px;
+        box-shadow:
+            1px 1px 3px rgba(0, 0, 0, 0.42) inset,
+            -1px -1px 0 var(--highlight) inset;
+        content: "";
+        height: 0.55rem;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    [role="slider"]::after {
+        background:
+            linear-gradient(180deg, var(--highlight), var(--button-face) 48%, var(--button-face-mid) 49%, var(--button-face-dark));
+        border: 1px solid var(--button-edge);
+        border-radius: 999px;
+        box-shadow:
+            1px 1px 0 var(--highlight) inset,
+            -1px -1px 0 var(--button-groove) inset,
+            0 2px 0 #5f5f5f,
+            1px 3px 5px rgba(0, 0, 0, 0.22);
+        content: "";
+        height: 1.45rem;
+        left: var(--value, 50%);
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 1.15rem;
+    }
+
+    @keyframes classic-progress {
+        to {
+            transform: translateX(165%);
+        }
+    }
+
     /* Tabs and toolbars */
+    .tab-set {
+        min-width: 0;
+    }
+
     nav.tabs,
     .tabs,
     [role="tablist"] {
-        border-bottom: 1px solid color-mix(in srgb, var(--border) 78%, var(--surface));
+        align-items: flex-end;
+        background:
+            linear-gradient(180deg, color-mix(in srgb, var(--surface-3) 78%, var(--highlight)), var(--button-face-mid));
+        border: 1px solid var(--border-strong);
+        border-radius: var(--radius-2) var(--radius-2) 0 0;
+        box-shadow:
+            1px 1px 0 var(--highlight) inset,
+            -1px 0 0 color-mix(in srgb, var(--lowlight) 75%, transparent) inset;
         display: flex;
-        flex-wrap: wrap;
-        gap: var(--space-1);
+        flex-wrap: nowrap;
+        gap: 0;
+        min-width: 0;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: var(--space-2) var(--space-2) 0;
+        scrollbar-width: thin;
     }
 
     nav.tabs a.tab,
     .tab,
     [role="tab"] {
-        background: color-mix(in srgb, var(--surface-2) 70%, var(--surface));
-        border: 1px solid color-mix(in srgb, var(--border) 78%, var(--surface));
-        border-bottom: 0;
+        align-items: center;
+        background:
+            linear-gradient(180deg, var(--button-face-light), var(--button-face) 56%, var(--button-face-mid));
+        border-color: var(--highlight) var(--button-edge) var(--button-edge) var(--highlight);
+        border-style: solid;
+        border-width: 2px 2px 1px;
         border-radius: var(--radius-2) var(--radius-2) 0 0;
+        box-shadow:
+            1px 1px 0 var(--highlight) inset,
+            -1px 0 0 var(--button-groove) inset;
         color: var(--muted-strong);
-        padding: 0.52rem 0.78rem;
+        display: inline-flex;
+        flex: 0 0 auto;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-right: -1px;
+        max-width: min(18rem, calc(100vw - 4rem));
+        min-height: 2.25rem;
+        min-width: 0;
+        overflow: hidden;
+        padding: 0.45rem 0.9rem 0.52rem;
+        position: relative;
         text-decoration: none;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     nav.tabs a.tab:visited,
@@ -1562,14 +1897,75 @@
         color: var(--muted-strong);
     }
 
-    nav.tabs a.tab[aria-current="page"],
-    .tab[aria-current="page"],
+    nav.tabs a.tab[aria-current]:not([aria-current="false"]),
+    .tab[aria-current]:not([aria-current="false"]),
     [role="tab"][aria-selected="true"] {
-        background: var(--surface);
-        box-shadow: 0 2px 0 var(--primary) inset;
+        background:
+            linear-gradient(180deg, var(--highlight), var(--surface) 54%, var(--surface));
+        border-color: var(--button-edge) var(--button-edge) var(--surface) var(--button-edge);
+        box-shadow:
+            1px 1px 0 var(--highlight) inset,
+            0 2px 0 color-mix(in srgb, var(--primary) 86%, var(--highlight)) inset;
         color: var(--primary-active);
-        position: relative;
-        top: 1px;
+        margin-bottom: -1px;
+        min-height: 2.45rem;
+        padding-bottom: 0.66rem;
+        z-index: 1;
+    }
+
+    nav.tabs a.tab:hover,
+    .tab:hover,
+    [role="tab"]:hover {
+        background:
+            linear-gradient(180deg, var(--highlight), var(--button-face-hover) 56%, var(--button-face));
+        color: var(--primary);
+    }
+
+    nav.tabs a.tab[aria-current]:not([aria-current="false"]):hover,
+    .tab[aria-current]:not([aria-current="false"]):hover,
+    [role="tab"][aria-selected="true"]:hover {
+        background:
+            linear-gradient(180deg, var(--highlight), var(--surface) 54%, var(--surface));
+        color: var(--primary-active);
+    }
+
+    nav.tabs + :where(.tab-panel, [role="tabpanel"]),
+    .tabs + :where(.tab-panel, [role="tabpanel"]),
+    [role="tablist"] + :where(.tab-panel, [role="tabpanel"]) {
+        background: var(--surface);
+        border: 1px solid var(--border-strong);
+        border-top: 0;
+        box-shadow:
+            1px 0 0 var(--highlight) inset,
+            -1px -1px 0 var(--lowlight) inset;
+        margin-top: 0;
+        padding: var(--space-4);
+    }
+
+    :where(nav.tabs, .tabs, [role="tablist"])[aria-orientation="vertical"] {
+        align-items: stretch;
+        border-radius: var(--radius-2);
+        flex-direction: column;
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding: var(--space-2);
+    }
+
+    :where(nav.tabs, .tabs, [role="tablist"])[aria-orientation="vertical"] :where(.tab, [role="tab"]) {
+        border-radius: var(--radius-2);
+        border-width: 2px;
+        justify-content: flex-start;
+        margin-right: 0;
+        max-width: none;
+        width: 100%;
+    }
+
+    :where(nav.tabs, .tabs, [role="tablist"])[aria-orientation="vertical"] :where(.tab, [role="tab"])[aria-current]:not([aria-current="false"]),
+    :where(nav.tabs, .tabs, [role="tablist"])[aria-orientation="vertical"] [role="tab"][aria-selected="true"] {
+        border-color: var(--button-edge) var(--button-edge) var(--button-edge) var(--primary);
+        margin-bottom: 0;
+        min-height: 2.25rem;
+        padding-bottom: 0.52rem;
     }
 
     .toolbar {
@@ -1582,6 +1978,11 @@
         flex-wrap: wrap;
         gap: var(--space-2);
         padding: var(--space-2);
+    }
+
+    :where(.toolbar, [role="toolbar"])[aria-orientation="vertical"] {
+        align-items: stretch;
+        flex-direction: column;
     }
 
     .toolbar button,
@@ -1748,10 +2149,16 @@
         .field>p,
         .check,
         .switch,
+        form> :is([role="checkbox"], [role="radio"], [role="switch"]),
+        fieldset> :is([role="checkbox"], [role="radio"], [role="switch"]),
+        .field> :is([role="checkbox"], [role="radio"], [role="switch"]),
         form> :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button),
         form> :is(input:not([type="checkbox"], [type="radio"], [type="range"], [type="button"], [type="submit"], [type="reset"]), select, textarea, progress, meter),
         fieldset> :is(input:not([type="checkbox"], [type="radio"], [type="range"], [type="button"], [type="submit"], [type="reset"]), select, textarea, progress, meter),
-        .field> :is(input:not([type="checkbox"], [type="radio"], [type="range"], [type="button"], [type="submit"], [type="reset"]), select, textarea, progress, meter) {
+        .field> :is(input:not([type="checkbox"], [type="radio"], [type="range"], [type="button"], [type="submit"], [type="reset"]), select, textarea, progress, meter),
+        form> :is([role="textbox"], [role="searchbox"], [role="combobox"], [role="spinbutton"], [role="slider"], [role="progressbar"], [role="meter"]),
+        fieldset> :is([role="textbox"], [role="searchbox"], [role="combobox"], [role="spinbutton"], [role="slider"], [role="progressbar"], [role="meter"]),
+        .field> :is([role="textbox"], [role="searchbox"], [role="combobox"], [role="spinbutton"], [role="slider"], [role="progressbar"], [role="meter"]) {
             grid-column: 1;
         }
 
@@ -1770,6 +2177,30 @@
         border: 1px solid var(--border);
         border-radius: var(--radius-2);
         box-shadow: var(--shadow-raised);
+        list-style: none;
+        margin: 0;
+        padding: var(--space-2);
+    }
+
+    :where([role="menu"], [role="listbox"], [role="tree"]) {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-2);
+        box-shadow: var(--shadow-raised);
+        list-style: none;
+        margin: 0;
+        padding: var(--space-2);
+    }
+
+    [role="menubar"] {
+        align-items: center;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-2);
+        box-shadow: var(--shadow-tight);
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-1);
         list-style: none;
         margin: 0;
         padding: var(--space-2);
@@ -1796,6 +2227,31 @@
         width: 100%;
     }
 
+    :where(
+        [role="menu"] [role="menuitem"],
+        [role="menu"] [role="menuitemcheckbox"],
+        [role="menu"] [role="menuitemradio"],
+        [role="menubar"] [role="menuitem"],
+        [role="menubar"] [role="menuitemcheckbox"],
+        [role="menubar"] [role="menuitemradio"],
+        [role="listbox"]:not(.classic-command-palette .menu)>[role="option"],
+        [role="tree"] [role="treeitem"]
+    ) {
+        align-items: center;
+        background: transparent;
+        border: 0;
+        border-radius: var(--radius-1);
+        box-shadow: none;
+        color: var(--text);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        min-height: 2.15rem;
+        padding: 0.38rem 0.55rem;
+        text-decoration: none;
+        width: 100%;
+    }
+
     .menu a:visited {
         color: var(--text);
     }
@@ -1804,6 +2260,58 @@
     .menu button:hover {
         background: var(--surface-2);
         color: var(--primary);
+    }
+
+    :where(
+        [role="menu"] [role="menuitem"],
+        [role="menu"] [role="menuitemcheckbox"],
+        [role="menu"] [role="menuitemradio"],
+        [role="menubar"] [role="menuitem"],
+        [role="menubar"] [role="menuitemcheckbox"],
+        [role="menubar"] [role="menuitemradio"],
+        [role="listbox"]:not(.classic-command-palette .menu)>[role="option"],
+        [role="tree"] [role="treeitem"]
+    ):hover {
+        background: var(--surface-2);
+        color: var(--primary);
+    }
+
+    :where(
+        [role="menuitemcheckbox"],
+        [role="menuitemradio"]
+    )[aria-checked="true"]::after {
+        color: var(--primary-active);
+        content: "\2713";
+        font-weight: 900;
+        margin-left: var(--space-4);
+    }
+
+    :where(
+        [role="menuitemcheckbox"],
+        [role="menuitemradio"]
+    )[aria-checked="mixed"]::after {
+        color: var(--primary-active);
+        content: "\2013";
+        font-weight: 900;
+        margin-left: var(--space-4);
+    }
+
+    :where(
+        [role="option"],
+        [role="treeitem"],
+        [role="row"],
+        [role="gridcell"]
+    )[aria-selected="true"] {
+        background: color-mix(in srgb, var(--primary) 12%, var(--surface));
+        color: var(--primary-active);
+        outline: 2px solid color-mix(in srgb, var(--primary) 46%, transparent);
+        outline-offset: -2px;
+    }
+
+    :where([role="listbox"], [role="tree"], [role="grid"])[aria-multiselectable="true"] {
+        box-shadow:
+            var(--shadow-raised),
+            0 0 0 3px color-mix(in srgb, var(--primary) 10%, transparent);
     }
 
     .pagination {
@@ -1841,7 +2349,7 @@
         color: var(--text);
     }
 
-    .pagination a[aria-current="page"] {
+    .pagination a[aria-current]:not([aria-current="false"]) {
         background: var(--surface);
         border-color: color-mix(in srgb, var(--primary) 22%, var(--border-strong));
         box-shadow:
@@ -1916,6 +2424,11 @@
         background: var(--button-secondary-face-hover);
     }
 
+    .classic-command-palette [role="option"][aria-selected="true"] {
+        background: transparent;
+        outline: 0;
+    }
+
     .classic-command-item {
         align-items: flex-start;
         background: var(--button-secondary-face);
@@ -1953,7 +2466,9 @@
     }
 
     /* Dialogs and app primitives */
-    dialog {
+    dialog,
+    [role="dialog"],
+    [role="alertdialog"] {
         background: var(--surface);
         border: 1px solid var(--border-strong);
         border-radius: var(--radius-3);
@@ -1967,12 +2482,38 @@
         background: rgba(20, 18, 16, 0.5);
     }
 
+    :where([role="dialog"], [role="alertdialog"])[aria-modal="true"] {
+        box-shadow:
+            0 0 0 100vmax rgba(20, 18, 16, 0.5),
+            0 24px 70px var(--shadow-color);
+        left: 50%;
+        max-height: calc(100vh - 2rem);
+        overflow: auto;
+        position: fixed;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: min(34rem, calc(100vw - 2rem));
+        z-index: 100;
+    }
+
     dialog.dialog-preview {
         display: block;
         margin: 0;
         max-width: 100%;
         position: static;
         width: 100%;
+    }
+
+    [role="tooltip"] {
+        background: #2f2f2f;
+        border: 1px solid #050505;
+        border-radius: var(--radius-2);
+        box-shadow: var(--shadow-raised);
+        color: #ffffff;
+        font-size: 0.88rem;
+        max-width: min(22rem, calc(100vw - 2rem));
+        padding: 0.35rem 0.55rem;
+        z-index: 120;
     }
 
     .avatar {

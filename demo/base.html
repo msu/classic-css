@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>classic.css - Base Styles</title>
-    <link rel="stylesheet" href="../classic.css">
+    <title>platinum.css - Base Styles</title>
+    <link rel="stylesheet" href="../platinum.css">
   </head>
   <body class="layout-topbar">
     <header>
       <nav aria-label="Primary">
-        <a class="brand" href="../index.html">🏛️ <strong>classic.css</strong></a>
+        <a class="brand" href="../index.html"><img class="brand-logo" src="../assets/logo.svg" width="1432" height="391" alt="platinum.css"></a>
         <ul>
           <li><a href="../index.html">Docs</a></li>
           <li><a href="base.html" aria-current="page">Base</a></li>
@@ -126,7 +126,7 @@
             </div>
             <footer>
               <address>
-                Maintained by <a href="mailto:classic@example.test">Classic CSS Working Notes</a>
+                Maintained by <a href="mailto:classic@example.test">Platinum.css Working Notes</a>
               </address>
             </footer>
           </article>
@@ -160,10 +160,10 @@
               <p class="muted">Wide tables should scroll horizontally on small screens.</p>
             </header>
             <table>
-              <caption class="visually-hidden">Classic CSS element coverage table</caption>
+              <caption class="visually-hidden">Platinum.css element coverage table</caption>
               <thead>
                 <tr>
-                  <th>Element</th>
+                  <th aria-sort="ascending">Element</th>
                   <th>Purpose</th>
                   <th>Default Treatment</th>
                   <th>State Hook</th>
@@ -189,14 +189,14 @@
                   <td><code>button</code></td>
                   <td>Primary command</td>
                   <td>Beveled physical control</td>
-                  <td><code>aria-pressed</code>, <code>aria-busy</code></td>
+                  <td><code>aria-pressed</code>, <code>aria-busy</code>, <code>aria-expanded</code></td>
                   <td><span class="status">Ready</span></td>
                 </tr>
                 <tr>
                   <td><code>input</code></td>
                   <td>Form entry</td>
                   <td>Sunken text field or custom native control</td>
-                  <td><code>aria-invalid</code></td>
+                  <td><code>aria-invalid</code>, <code>aria-required</code>, <code>aria-readonly</code></td>
                   <td><span class="status" data-variant="info">Expanded</span></td>
                 </tr>
               </tbody>
@@ -264,10 +264,16 @@ body.layout-sidebar {
               </div>
               <div class="cluster">
                 <button type="button" aria-pressed="true">Pressed</button>
+                <button type="button" aria-pressed="mixed">Mixed</button>
+                <button type="button" aria-haspopup="menu" aria-expanded="true" aria-controls="base-menu-state">Expanded</button>
                 <button type="button" aria-busy="true">Working</button>
                 <button type="button" disabled>Disabled</button>
                 <a href="#component-buttons" class="button">Anchor Button</a>
               </div>
+              <ul id="base-menu-state" role="menu" aria-label="Button state menu">
+                <li role="menuitemcheckbox" aria-checked="true">Course shell</li>
+                <li role="menuitemcheckbox" aria-checked="mixed">Rubric sync</li>
+              </ul>
             </div>
           </article>
 
@@ -290,20 +296,25 @@ body.layout-sidebar {
               <h2>Tabs</h2>
               <p class="muted">Styled as ordinary links for static demos; scripted tabs can use ARIA roles later.</p>
             </header>
-            <nav class="tabs" aria-label="Example sections">
-              <a class="tab" href="#component-tabs" aria-current="page">Overview</a>
-              <a class="tab" href="#component-tabs">Activity</a>
-              <a class="tab" href="#component-tabs">Settings</a>
-              <a class="tab" href="#component-tabs">History</a>
-            </nav>
-            <div class="stack">
-              <p>This panel is a static mockup. Behavior can be added by a small paired script later.</p>
-              <div class="cluster">
-                <span class="badge" data-variant="info">Draft</span>
-                <span class="badge" data-variant="success">Accessible</span>
-                <span class="badge" data-variant="warning">Needs Script</span>
-                <span class="badge">Semantic</span>
-              </div>
+            <div class="tab-set">
+              <nav class="tabs" aria-label="Example sections">
+                <a id="base-tab-overview" class="tab" href="#component-tabs" aria-current="page">Overview</a>
+                <a class="tab" href="#component-tabs">Activity</a>
+                <a class="tab" href="#component-tabs">Settings</a>
+                <a class="tab" href="#component-tabs">History</a>
+              </nav>
+              <section class="tab-panel stack" role="tabpanel" aria-labelledby="base-tab-overview">
+                <div>
+                  <h3>Overview</h3>
+                  <p class="compact">This panel is a static mockup. Behavior can be added by a small paired script later.</p>
+                </div>
+                <div class="cluster">
+                  <span class="badge" data-variant="info">Draft</span>
+                  <span class="badge" data-variant="success">Accessible</span>
+                  <span class="badge" data-variant="warning">Needs Script</span>
+                  <span class="badge">Semantic</span>
+                </div>
+              </section>
             </div>
           </article>
 
@@ -349,7 +360,7 @@ body.layout-sidebar {
           <article id="component-progress" data-jumpable data-jump-label="Progress" data-jump-aliases="progress meter">
             <header>
               <h2>Progress</h2>
-              <p class="muted">Native progress and meter elements.</p>
+              <p class="muted">Native progress, native meter, and ARIA value widgets.</p>
             </header>
             <label for="build">Build progress</label>
             <progress id="build" value="72" max="100">72%</progress>
@@ -357,6 +368,10 @@ body.layout-sidebar {
             <meter id="quality" min="0" max="100" low="45" high="80" optimum="90" value="86">86</meter>
             <label for="risk">Risk score</label>
             <meter id="risk" min="0" max="100" low="35" high="70" optimum="15" value="62">62</meter>
+            <label id="aria-progress-label">ARIA progress</label>
+            <div role="progressbar" aria-labelledby="aria-progress-label" aria-valuemin="0" aria-valuemax="100" aria-valuenow="72" style="--value: 72%"></div>
+            <label id="aria-slider-label">ARIA slider</label>
+            <div role="slider" aria-labelledby="aria-slider-label" aria-valuemin="0" aria-valuemax="10" aria-valuenow="6" style="--value: 60%" tabindex="0"></div>
           </article>
 
           <article id="component-dialog" data-jumpable data-jump-label="Dialog" data-jump-aliases="modal preview">
@@ -405,11 +420,29 @@ body.layout-sidebar {
               <div class="cluster">
                 <span class="avatar">CSS</span>
                 <div>
-                  <strong>Classic CSS</strong>
+                  <strong>Platinum.css</strong>
                   <p class="compact muted">Button and layout pass</p>
                 </div>
                 <span class="badge" data-variant="warning">Review</span>
               </div>
+            </div>
+          </article>
+
+          <article id="component-aria-states" data-jumpable data-jump-label="ARIA state defaults" data-jump-aliases="aria checked selected sort live">
+            <header>
+              <h2>ARIA State Defaults</h2>
+              <p class="muted">Stateful ARIA attributes get visible defaults for classroom examples.</p>
+            </header>
+            <div class="stack">
+              <span role="checkbox" aria-checked="true" tabindex="0">Submitted</span>
+              <span role="checkbox" aria-checked="mixed" tabindex="0">Partial review</span>
+              <span role="radio" aria-checked="true" tabindex="0">Comfortable density</span>
+              <span role="switch" aria-checked="true" tabindex="0">Announcements</span>
+              <div role="status">Changes saved for this lesson.</div>
+              <ul role="listbox" aria-label="Review queue" aria-multiselectable="true">
+                <li role="option" aria-selected="true" tabindex="0">Lecture notes</li>
+                <li role="option" tabindex="-1">Lab rubric</li>
+              </ul>
             </div>
           </article>
         </section>
@@ -434,10 +467,9 @@ body.layout-sidebar {
     </main>
 
     <footer>
-      <small>classic.css demos share a single stylesheet.</small>
+      <small>platinum.css demos share a single stylesheet.</small>
     </footer>
 
-    <script src="../classic.enhance.js"></script>
-    <script src="../classic.commands.js"></script>
+    <script src="../platinum.js"></script>
   </body>
 </html>

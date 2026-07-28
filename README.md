@@ -1,15 +1,15 @@
-# 🏛️ classic.css
+# 🏛️ platinum.css
 
-[Classic CSS Demo](https://msu.github.io/classic-css/)
+[Platinum.css Demo](https://msu.github.io/classic-css/)
 
-`classic.css` is a single-file CSS library for semantic HTML with an old desktop interface feel. It aims for a fixed-light, OS 9 / Windows 95 inspired style: platinum surfaces, visible bevels, sunken inputs, simple physical buttons, and page layouts that work without a build step.
+`platinum.css` is a single-file CSS library for semantic HTML with an old desktop interface feel. It aims for a fixed-light, OS 9 / Windows 95 inspired style: platinum surfaces, visible bevels, sunken inputs, simple physical buttons, and page layouts that work without a build step.
 
 ## Goals
 
 - Style semantic HTML reasonably well by default.
 - Keep the core visual library to one CSS file.
 - Make forms, buttons, panels, tables, nav, and common document elements usable without heavy class markup.
-- Provide ARIA-friendly state hooks such as `aria-current`, `aria-invalid`, `aria-pressed`, and `aria-busy`.
+- Provide ARIA-friendly state hooks such as `aria-current`, `aria-invalid`, `aria-pressed`, `aria-busy`, `aria-expanded`, `aria-selected`, `aria-checked`, `aria-required`, `aria-readonly`, and `aria-sort`.
 - Support three-page shells: topbar, sidebar, and mobile-style vertical scroll.
 
 ## Markup Philosophy
@@ -23,7 +23,7 @@ Good default markup:
   <header>
     <h2>Lesson Notes</h2>
   </header>
-  <p>Classic CSS styles the document structure directly.</p>
+  <p>Platinum.css styles the document structure directly.</p>
 </article>
 
 <form>
@@ -41,9 +41,9 @@ Opt-in classes are for extras:
 
 ## Files
 
-- `classic.css`: the library stylesheet.
-- `classic.enhance.js`: optional progressive-enhancement helpers for semantic markup.
-- `classic.commands.js`: optional command palette for semantic landmark navigation.
+- `platinum.css`: the library stylesheet.
+- `platinum.js`: optional progressive-enhancement helpers and command palette behavior.
+- `assets/logo.svg`: documentation/demo brand logo.
 - `assets/github-mark.svg`: documentation/demo GitHub navigation mark.
 - `demo/base.html`: base styles demo for prose, tables, figures, lists, code, document structure, and component examples.
 - `demo/forms.html`: form fixture for bare text/input pairs, label/input pairs, fieldsets, validation states, and native controls.
@@ -53,19 +53,18 @@ Opt-in classes are for extras:
 Link the stylesheet directly. This is the whole visual baseline:
 
 ```html
-<link rel="stylesheet" href="classic.css">
+<link rel="stylesheet" href="platinum.css">
 ```
 
-Optional scripts add behavior, not the core look:
+The optional script adds behavior, not the core look:
 
 ```html
-<script src="classic.enhance.js"></script>
-<script src="classic.commands.js"></script>
+<script src="platinum.js"></script>
 ```
 
 ## CSS and JS Boundary
 
-`classic.css` owns presentation:
+`platinum.css` owns presentation:
 
 - semantic element styling
 - layouts and responsive collapse
@@ -73,7 +72,7 @@ Optional scripts add behavior, not the core look:
 - button/input/panel chrome
 - ARIA and data-attribute visual states
 
-`classic.enhance.js` owns optional markup repair:
+`platinum.js` owns optional markup repair:
 
 - converts bare form text before controls into real labels
 - gives generated labels a matching input `id`
@@ -82,14 +81,14 @@ Optional scripts add behavior, not the core look:
 - closes mobile navigation on link selection, Escape, or outside tap
 - can be disabled per form with `data-classic-no-autolabels`
 
-`classic.commands.js` owns optional command-palette behavior:
+`platinum.js` also owns optional command-palette behavior:
 
 - opens with `Ctrl+K` or `Cmd+K`
 - jumps to semantic landmarks such as `nav`, `main`, `forms`, `search`, `footer`, and `top`
 - adds explicit section jumps from `data-jumpable`
 - accepts custom commands through `window.ClassicCommands.register(...)`
 
-The CSS should still be useful if neither script is loaded.
+The CSS should still be useful if the script is not loaded.
 
 ## Theming
 
@@ -111,7 +110,7 @@ Prefer overriding tokens over restyling component internals. The most useful gro
 
 ## Responsive Behavior
 
-Without JavaScript, topbar and sidebar layouts collapse into normal vertical document flow on narrow screens. With `classic.enhance.js`, header navigation becomes a hamburger menu and sidebar section navigation becomes a `Sections` disclosure. Both mobile menus close when a link is selected, Escape is pressed, or the user taps outside the menu.
+Without JavaScript, topbar and sidebar layouts collapse into normal vertical document flow on narrow screens. With `platinum.js`, header navigation becomes a hamburger menu and sidebar section navigation becomes a `Sections` disclosure. Both mobile menus close when a link is selected, Escape is pressed, or the user taps outside the menu.
 
 The sidebar scrollspy is opt-in by structure: put same-page hash links in `body.layout-sidebar > .sidebar`, and make sure each link points at a real `id` in the document.
 
@@ -133,10 +132,10 @@ For actual click-to-focus label behavior, use real labels:
 <input id="name" name="name">
 ```
 
-Or load `classic.enhance.js`, which converts bare text/control pairs into labels by default:
+Or load `platinum.js`, which converts bare text/control pairs into labels by default:
 
 ```html
-<script src="classic.enhance.js"></script>
+<script src="platinum.js"></script>
 <form>
   Name
   <input name="name">
@@ -195,10 +194,10 @@ You can also register custom commands in script:
 
 ## Accessibility Notes
 
-- Prefer real labels for forms. Bare form text is only visual until `classic.enhance.js` upgrades it.
+- Prefer real labels for forms. Bare form text is only visual until `platinum.js` upgrades it.
 - Keep visible focus states intact. The stylesheet uses `:focus-visible` for keyboard navigation.
-- Use ARIA states only for state, not decoration: `aria-current`, `aria-invalid`, `aria-pressed`, `aria-busy`, and `aria-expanded` should reflect real UI state.
-- Use `aria-current="page"` for the current top-level page or current in-page section link.
+- Use ARIA states only for state, not decoration: `aria-current`, `aria-invalid`, `aria-pressed`, `aria-busy`, `aria-expanded`, `aria-selected`, `aria-checked`, `aria-required`, `aria-readonly`, and `aria-sort` should reflect real UI state.
+- Use any valid `aria-current` value for the current top-level page, current in-page section link, current step, location, date, or time.
 - Use `aria-invalid="true"` only after validation has failed, and pair it with useful help or error text in application markup.
 - Use `aria-pressed="true"` only for toggle buttons, not ordinary links.
 - Use `data-jumpable` only on meaningful destinations with a label, ARIA label, or stable `id`.
@@ -214,7 +213,7 @@ Apply one of these classes to `body`:
 - `layout-sidebar`: top navigation, left sidebar, and main content area.
 - `layout-scroll`: narrow vertical scrolling layout for mobile-style forms and focused flows.
 
-All three layouts use a menu-bar header. On narrow screens, topbar and sidebar layouts collapse into a vertical scroll flow. With `classic.enhance.js` loaded, header navigation collapses behind a hamburger toggle, and sidebar section navigation collapses behind a `Sections` button.
+All three layouts use a menu-bar header. On narrow screens, topbar and sidebar layouts collapse into a vertical scroll flow. With `platinum.js` loaded, header navigation collapses behind a hamburger toggle, and sidebar section navigation collapses behind a `Sections` button.
 
 ## Class Reference
 
@@ -222,7 +221,7 @@ Most plain HTML elements are styled directly. These classes are available when y
 
 ### Navigation
 
-Header navigation links in topbar, sidebar, and scroll layouts render as compact menu-bar items. Use `brand` on the site or package identity link to keep it visually separate from page navigation. Load `classic.enhance.js` to collapse layout header navigation into a hamburger menu on narrow screens.
+Header navigation links in topbar, sidebar, and scroll layouts render as compact menu-bar items. Use `brand` on the site or package identity link to keep it visually separate from page navigation. Load `platinum.js` to collapse layout header navigation into a hamburger menu on narrow screens.
 
 ### Button Variants
 
@@ -236,7 +235,10 @@ Buttons style automatically on `button`, button-like inputs, `[role="button"]`, 
 Useful states:
 
 - `aria-pressed="true"`: pressed/toggled button state.
+- `aria-pressed="mixed"`: mixed toggle button state.
 - `aria-busy="true"`: busy state with spinner.
+- `aria-expanded="true|false"`: disclosure indicator for buttons.
+- `aria-haspopup`: popup/menu indicator for buttons.
 - `disabled` or `aria-disabled="true"`: disabled styling.
 
 ```html
@@ -266,13 +268,29 @@ Validation states support both ARIA and native HTML validity:
 ```html
 <input aria-invalid="true">
 <input aria-invalid="false">
+<input aria-required="true">
+<input readonly aria-readonly="true">
 <input type="email" required>
 <input pattern="[a-z0-9-]+" required>
 ```
 
+ARIA widget states also receive default styling for classroom examples and small scripted controls:
+
+```html
+<span role="checkbox" aria-checked="mixed" tabindex="0">Partial review</span>
+<span role="switch" aria-checked="true" tabindex="0">Announcements</span>
+
+<ul role="listbox" aria-multiselectable="true">
+  <li role="option" aria-selected="true" tabindex="0">Lecture notes</li>
+</ul>
+
+<th aria-sort="ascending">Assignment</th>
+<div role="progressbar" aria-valuenow="72" style="--value: 72%"></div>
+```
+
 ### Optional Component Classes
 
-These are not automatic semantic defaults. Add the class when you want the component treatment.
+These classes are available when no native element or ARIA role carries the component meaning. Equivalent roles such as `menu`, `listbox`, `dialog`, and `status` receive matching defaults for classroom examples.
 
 - `notice`: inset message block. Use `data-variant="info|success|warning|danger"`.
 - `badge`: small inline status label. Use `data-variant` for color.
