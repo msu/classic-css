@@ -3,17 +3,18 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>classic.css - Base Styles</title>
-    <link rel="stylesheet" href="../classic.css">
+    <title>platinum.css - Base Styles</title>
+    <link rel="stylesheet" href="../platinum.css">
   </head>
   <body class="layout-topbar">
     <header>
       <nav aria-label="Primary">
-        <a class="brand" href="../index.html">🏛️ <strong>classic.css</strong></a>
+        <a class="brand" href="../index.html"><img class="brand-logo" src="../assets/logo.svg" width="1432" height="391" alt="platinum.css"></a>
         <ul>
           <li><a href="../index.html">Docs</a></li>
           <li><a href="base.html" aria-current="page">Base</a></li>
           <li><a href="forms.html">Forms</a></li>
+          <li><a class="cluster" href="../index.html#downloads"><span aria-hidden="true">&#x2913;</span><span>Downloads</span></a></li>
           <li>
             <a class="cluster" href="https://github.com/msu/classic-css" aria-label="GitHub repository">
               <img src="../assets/github-mark.svg" width="16" height="16" alt="">
@@ -25,7 +26,7 @@
     </header>
 
     <main>
-      <section class="split" aria-labelledby="intro-title" data-jumpable data-jump-label="Base styles" data-jump-aliases="intro overview elements">
+      <section class="cluster" aria-labelledby="intro-title" data-jumpable data-jump-label="Base styles" data-jump-aliases="intro overview elements">
         <div>
           <p class="cluster">
             <span class="badge" data-variant="info">Demo</span>
@@ -41,7 +42,7 @@
         </div>
       </section>
 
-      <section class="grid grid-tight" aria-label="Layout summary">
+      <section class="grid" aria-label="Layout summary">
         <div class="stat">
           <small>Layout</small>
           <strong>Top</strong>
@@ -125,7 +126,7 @@
             </div>
             <footer>
               <address>
-                Maintained by <a href="mailto:classic@example.test">Classic CSS Working Notes</a>
+                Maintained by <a href="mailto:classic@example.test">Platinum.css Working Notes</a>
               </address>
             </footer>
           </article>
@@ -159,10 +160,10 @@
               <p class="muted">Wide tables should scroll horizontally on small screens.</p>
             </header>
             <table>
-              <caption class="visually-hidden">Classic CSS element coverage table</caption>
+              <caption class="visually-hidden">Platinum.css element coverage table</caption>
               <thead>
                 <tr>
-                  <th>Element</th>
+                  <th aria-sort="ascending">Element</th>
                   <th>Purpose</th>
                   <th>Default Treatment</th>
                   <th>State Hook</th>
@@ -188,14 +189,14 @@
                   <td><code>button</code></td>
                   <td>Primary command</td>
                   <td>Beveled physical control</td>
-                  <td><code>aria-pressed</code>, <code>aria-busy</code></td>
+                  <td><code>aria-pressed</code>, <code>aria-busy</code>, <code>aria-expanded</code></td>
                   <td><span class="status">Ready</span></td>
                 </tr>
                 <tr>
                   <td><code>input</code></td>
                   <td>Form entry</td>
                   <td>Sunken text field or custom native control</td>
-                  <td><code>aria-invalid</code></td>
+                  <td><code>aria-invalid</code>, <code>aria-required</code>, <code>aria-readonly</code></td>
                   <td><span class="status" data-variant="info">Expanded</span></td>
                 </tr>
               </tbody>
@@ -224,7 +225,7 @@ body.layout-sidebar {
           <p class="muted">Buttons, tabs, notices, menus, pagination, stats, progress indicators, dialogs, and compact app surfaces.</p>
         </header>
 
-        <section id="component-stats" class="grid grid-tight" aria-label="Component stats" data-jumpable data-jump-label="Stats" data-jump-aliases="metrics counters">
+        <section id="component-stats" class="grid" aria-label="Component stats" data-jumpable data-jump-label="Stats" data-jump-aliases="metrics counters">
           <div class="stat">
             <small>Open lessons</small>
             <strong>24</strong>
@@ -263,10 +264,16 @@ body.layout-sidebar {
               </div>
               <div class="cluster">
                 <button type="button" aria-pressed="true">Pressed</button>
+                <button type="button" aria-pressed="mixed">Mixed</button>
+                <button type="button" aria-haspopup="menu" aria-expanded="true" aria-controls="base-menu-state">Expanded</button>
                 <button type="button" aria-busy="true">Working</button>
                 <button type="button" disabled>Disabled</button>
                 <a href="#component-buttons" class="button">Anchor Button</a>
               </div>
+              <ul id="base-menu-state" role="menu" aria-label="Button state menu">
+                <li role="menuitemcheckbox" aria-checked="true">Course shell</li>
+                <li role="menuitemcheckbox" aria-checked="mixed">Rubric sync</li>
+              </ul>
             </div>
           </article>
 
@@ -289,19 +296,25 @@ body.layout-sidebar {
               <h2>Tabs</h2>
               <p class="muted">Driven by ARIA roles; switching behavior belongs to a paired script.</p>
             </header>
-            <div role="tablist" aria-label="Example sections">
-              <button role="tab" aria-selected="true">Overview</button>
-              <button role="tab" aria-selected="false">Activity</button>
-              <button role="tab" aria-selected="false">History</button>
-            </div>
-            <div role="tabpanel">
-              <p>This panel is a static mockup. Behavior can be added by a small paired script later.</p>
-              <div class="cluster">
-                <span class="badge" data-variant="info">Draft</span>
-                <span class="badge" data-variant="success">Accessible</span>
-                <span class="badge" data-variant="warning">Needs Script</span>
-                <span class="badge">Semantic</span>
-              </div>
+            <div class="tab-set">
+              <nav class="tabs" aria-label="Example sections">
+                <a id="base-tab-overview" class="tab" href="#component-tabs" aria-current="page">Overview</a>
+                <a class="tab" href="#component-tabs">Activity</a>
+                <a class="tab" href="#component-tabs">Settings</a>
+                <a class="tab" href="#component-tabs">History</a>
+              </nav>
+              <section class="tab-panel stack" role="tabpanel" aria-labelledby="base-tab-overview">
+                <div>
+                  <h3>Overview</h3>
+                  <p class="compact">This panel is a static mockup. Behavior can be added by a small paired script later.</p>
+                </div>
+                <div class="cluster">
+                  <span class="badge" data-variant="info">Draft</span>
+                  <span class="badge" data-variant="success">Accessible</span>
+                  <span class="badge" data-variant="warning">Needs Script</span>
+                  <span class="badge">Semantic</span>
+                </div>
+              </section>
             </div>
           </article>
 
@@ -347,7 +360,7 @@ body.layout-sidebar {
           <article id="component-progress" data-jumpable data-jump-label="Progress" data-jump-aliases="progress meter">
             <header>
               <h2>Progress</h2>
-              <p class="muted">Native progress and meter elements.</p>
+              <p class="muted">Native progress, native meter, and ARIA value widgets.</p>
             </header>
             <label for="build">Build progress</label>
             <progress id="build" value="72" max="100">72%</progress>
@@ -359,6 +372,10 @@ body.layout-sidebar {
             <meter id="risk" min="0" max="100" low="35" high="70" optimum="15" value="62">62</meter>
             <label for="errors">Error budget used</label>
             <meter id="errors" min="0" max="100" low="35" high="70" optimum="15" value="88">88</meter>
+            <label id="aria-progress-label">ARIA progress</label>
+            <div role="progressbar" aria-labelledby="aria-progress-label" aria-valuemin="0" aria-valuemax="100" aria-valuenow="72" style="--value: 72%"></div>
+            <label id="aria-slider-label">ARIA slider</label>
+            <div role="slider" aria-labelledby="aria-slider-label" aria-valuemin="0" aria-valuemax="10" aria-valuenow="6" style="--value: 60%" tabindex="0"></div>
           </article>
 
           <article id="component-dialog" data-jumpable data-jump-label="Dialog" data-jump-aliases="modal preview">
@@ -396,56 +413,67 @@ body.layout-sidebar {
               <p class="muted">Avatars, badges, statuses, and dense rows.</p>
             </header>
             <div class="stack">
-              <div class="split surface">
-                <div class="cluster">
-                  <span class="avatar">HS</span>
-                  <div>
-                    <strong>Hypermedia Systems</strong>
-                    <p class="compact muted">Chapter refresh</p>
-                  </div>
+              <div class="cluster">
+                <span class="avatar">HS</span>
+                <div>
+                  <strong>Hypermedia Systems</strong>
+                  <p class="compact muted">Chapter refresh</p>
                 </div>
                 <span class="badge" data-variant="success">Ready</span>
               </div>
-              <div class="split surface">
-                <div class="cluster">
-                  <span class="avatar">CSS</span>
-                  <div>
-                    <strong>Classic CSS</strong>
-                    <p class="compact muted">Button and layout pass</p>
-                  </div>
+              <div class="cluster">
+                <span class="avatar">CSS</span>
+                <div>
+                  <strong>Platinum.css</strong>
+                  <p class="compact muted">Button and layout pass</p>
                 </div>
                 <span class="badge" data-variant="warning">Review</span>
               </div>
             </div>
           </article>
+
+          <article id="component-aria-states" data-jumpable data-jump-label="ARIA state defaults" data-jump-aliases="aria checked selected sort live">
+            <header>
+              <h2>ARIA State Defaults</h2>
+              <p class="muted">Stateful ARIA attributes get visible defaults for classroom examples.</p>
+            </header>
+            <div class="stack">
+              <span role="checkbox" aria-checked="true" tabindex="0">Submitted</span>
+              <span role="checkbox" aria-checked="mixed" tabindex="0">Partial review</span>
+              <span role="radio" aria-checked="true" tabindex="0">Comfortable density</span>
+              <span role="switch" aria-checked="true" tabindex="0">Announcements</span>
+              <div role="status">Changes saved for this lesson.</div>
+              <ul role="listbox" aria-label="Review queue" aria-multiselectable="true">
+                <li role="option" aria-selected="true" tabindex="0">Lecture notes</li>
+                <li role="option" tabindex="-1">Lab rubric</li>
+              </ul>
+            </div>
+          </article>
         </section>
 
-        <section class="surface" aria-labelledby="component-pagination-title">
-          <div class="split">
-            <div>
-              <h2 id="component-pagination-title">Pagination</h2>
-              <p class="muted">Links get tactile edges without needing button classes.</p>
-            </div>
-            <nav aria-label="Pagination">
-              <ol class="pagination">
-                <li><a href="#component-pagination-title" aria-label="Previous page">Prev</a></li>
-                <li><a href="#component-pagination-title">1</a></li>
-                <li><a href="#component-pagination-title" aria-current="page">2</a></li>
-                <li><a href="#component-pagination-title">3</a></li>
-                <li><a href="#component-pagination-title">4</a></li>
-                <li><a href="#component-pagination-title" aria-label="Next page">Next</a></li>
-              </ol>
-            </nav>
-          </div>
-        </section>
+        <article aria-labelledby="component-pagination-title">
+          <header>
+            <h2 id="component-pagination-title">Pagination</h2>
+            <p class="muted">Links get tactile edges without needing button classes.</p>
+          </header>
+          <nav aria-label="Pagination">
+            <ol class="pagination">
+              <li><a href="#component-pagination-title" aria-label="Previous page">Prev</a></li>
+              <li><a href="#component-pagination-title">1</a></li>
+              <li><a href="#component-pagination-title" aria-current="page">2</a></li>
+              <li><a href="#component-pagination-title">3</a></li>
+              <li><a href="#component-pagination-title">4</a></li>
+              <li><a href="#component-pagination-title" aria-label="Next page">Next</a></li>
+            </ol>
+          </nav>
+        </article>
       </section>
     </main>
 
     <footer>
-      <small>classic.css demos share a single stylesheet.</small>
+      <small>platinum.css demos share a single stylesheet.</small>
     </footer>
 
-    <script src="../classic.enhance.js"></script>
-    <script src="../classic.commands.js"></script>
+    <script src="../platinum.js"></script>
   </body>
 </html>

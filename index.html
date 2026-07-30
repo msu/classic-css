@@ -3,18 +3,19 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>classic.css - Documentation</title>
+    <title>platinum.css - Documentation</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏛️</text></svg>">
-    <link rel="stylesheet" href="classic.css">
+    <link rel="stylesheet" href="platinum.css">
   </head>
   <body class="layout-sidebar">
     <header>
       <nav aria-label="Primary">
-        <a class="brand" href="index.html">🏛️ <strong>classic.css</strong></a>
+        <a class="brand" href="index.html"><img class="brand-logo" src="assets/logo.svg" width="1432" height="391" alt="platinum.css"></a>
         <ul>
           <li><a href="index.html" aria-current="page">Docs</a></li>
           <li><a href="demo/base.html">Base</a></li>
           <li><a href="demo/forms.html">Forms</a></li>
+          <li><a class="cluster" href="#downloads"><span aria-hidden="true">&#x2913;</span><span>Downloads</span></a></li>
           <li>
             <a class="cluster" href="https://github.com/msu/classic-css" aria-label="GitHub repository">
               <img src="assets/github-mark.svg" width="16" height="16" alt="">
@@ -29,15 +30,17 @@
       <nav aria-label="Documentation sections">
         <ul>
           <li><a href="#intro-title" aria-current="page">Introduction</a></li>
+          <li><a href="#downloads">Downloads</a></li>
           <li><a href="#getting-started">Getting Started</a></li>
           <li><a href="#philosophy">Philosophy</a></li>
           <li><a href="#layouts">Layouts</a></li>
+          <li><a href="#theming">Theming</a></li>
           <li><a href="#buttons">Buttons</a></li>
           <li><a href="#forms">Forms</a></li>
           <li><a href="#components">Components</a></li>
           <li><a href="#helpers">Layout Helpers</a></li>
           <li><a href="#utilities">Text Utilities</a></li>
-          <li><a href="#enhance">classic.enhance.js</a></li>
+          <li><a href="#enhance">platinum.js</a></li>
           <li><a href="#commands">Command Palette</a></li>
           <li><a href="#accessibility">Accessibility</a></li>
         </ul>
@@ -45,35 +48,41 @@
     </aside>
 
     <main>
-      <section class="split split-start" aria-labelledby="intro-title" data-jumpable data-jump-label="Introduction" data-jump-aliases="intro overview">
+      <section class="cluster" aria-labelledby="intro-title" data-jumpable data-jump-label="Introduction" data-jump-aliases="intro overview">
         <div>
           <p class="cluster">
             <span class="badge" data-variant="success">Single-file CSS</span>
             <span class="badge" data-variant="warning">Sidebar layout</span>
           </p>
-          <h1 id="intro-title">classic.css</h1>
+          <h1 id="intro-title">platinum.css</h1>
           <p class="lead">A single-file CSS library for semantic HTML with an old desktop feel: platinum surfaces, visible bevels, sunken inputs, and page layouts that work without a build step.</p>
         </div>
-        <div class="toolbar" role="group" aria-label="Quick links">
-          <a href="classic.css" class="button" download>Download CSS</a>
-          <a href="demo/base.html" class="button secondary">View Demos</a>
-        </div>
       </section>
+
+      <article id="downloads" data-jumpable data-jump-label="Downloads" data-jump-aliases="download css js scripts files">
+        <header>
+          <h2>Downloads</h2>
+          <p class="muted">Direct downloads for the stylesheet and optional script.</p>
+        </header>
+        <div class="cluster" role="group" aria-label="Download files">
+          <a href="platinum.css" class="button secondary" download><span aria-hidden="true">&#x2913;</span><span>Download platinum.css</span></a>
+          <a href="platinum.js" class="button secondary" download><span aria-hidden="true">&#x2913;</span><span>Download platinum.js</span></a>
+          <button type="button" class="outline" data-download-all><span aria-hidden="true">&#x2913;</span><span>Download both</span></button>
+        </div>
+      </article>
 
       <article id="getting-started" data-jumpable data-jump-label="Getting started" data-jump-aliases="install usage setup">
         <header>
           <h2>Getting Started</h2>
-          <p class="muted">One stylesheet, two optional scripts, no build step.</p>
+          <p class="muted">One stylesheet, one optional script, no build step.</p>
         </header>
         <p>Link the stylesheet. This is the whole visual baseline:</p>
-        <pre><code>&lt;link rel="stylesheet" href="classic.css"&gt;</code></pre>
-        <p>Optional scripts add behavior, not the core look:</p>
-        <pre><code>&lt;script src="classic.enhance.js"&gt;&lt;/script&gt;
-&lt;script src="classic.commands.js"&gt;&lt;/script&gt;</code></pre>
+        <pre><code>&lt;link rel="stylesheet" href="platinum.css"&gt;</code></pre>
+        <p>The optional script adds behavior, not the core look:</p>
+        <pre><code>&lt;script src="platinum.js"&gt;&lt;/script&gt;</code></pre>
         <ul>
-          <li><code>classic.css</code>: the library stylesheet.</li>
-          <li><code>classic.enhance.js</code>: progressive-enhancement helpers (auto-labels, hamburger menu).</li>
-          <li><code>classic.commands.js</code>: command palette for landmark navigation.</li>
+          <li><code>platinum.css</code>: the library stylesheet.</li>
+          <li><code>platinum.js</code>: progressive-enhancement helpers and command palette behavior.</li>
         </ul>
       </article>
 
@@ -87,7 +96,7 @@
   &lt;header&gt;
     &lt;h2&gt;Lesson Notes&lt;/h2&gt;
   &lt;/header&gt;
-  &lt;p&gt;Classic CSS styles the document structure directly.&lt;/p&gt;
+  &lt;p&gt;Platinum.css styles the document structure directly.&lt;/p&gt;
 &lt;/article&gt;</code></pre>
         <p>Opt-in classes are for extras:</p>
         <pre><code>&lt;div class="notice" data-variant="warning"&gt;Check the required fields.&lt;/div&gt;
@@ -120,7 +129,24 @@
   &lt;main&gt;...&lt;/main&gt;
   &lt;footer&gt;...&lt;/footer&gt;
 &lt;/body&gt;</code></pre>
-        <p>On narrow screens, topbar and sidebar layouts collapse into vertical flow. With <code>classic.enhance.js</code> loaded, header navigation collapses behind a hamburger toggle.</p>
+        <p>On narrow screens, topbar and sidebar layouts collapse into vertical flow. With <code>platinum.js</code> loaded, header navigation collapses behind a hamburger toggle and sidebar section navigation collapses behind a <code>Sections</code> toggle. Mobile menus close on link selection, Escape, or outside tap.</p>
+      </article>
+
+      <article id="theming" data-jumpable data-jump-label="Theming" data-jump-aliases="variables custom properties tokens colors">
+        <header>
+          <h2>Theming</h2>
+          <p class="muted">Override CSS custom properties. No config file, no build step.</p>
+        </header>
+        <p>Prefer token overrides over component rewrites. Useful groups include typography, color, spacing, radii, and button chrome.</p>
+        <pre><code>:root {
+  --primary: #215a9c;
+  --primary-hover: #194779;
+  --primary-active: #102f55;
+  --surface: #ffffff;
+  --background: #f7f7f7;
+  --button-face: #d9d9d9;
+  --radius-3: 5px;
+}</code></pre>
       </article>
 
       <article id="buttons" data-jumpable data-jump-label="Buttons" data-jump-aliases="button variants states">
@@ -138,9 +164,15 @@
           </div>
           <div class="cluster">
             <button type="button" aria-pressed="true">Pressed</button>
+            <button type="button" aria-pressed="mixed">Mixed</button>
+            <button type="button" aria-haspopup="menu" aria-expanded="true" aria-controls="button-menu-example">Expanded</button>
             <button type="button" aria-busy="true">Busy</button>
             <button type="button" disabled>Disabled</button>
           </div>
+          <ul id="button-menu-example" role="menu" aria-label="Button menu example">
+            <li role="menuitemcheckbox" aria-checked="true">Course shell</li>
+            <li role="menuitemcheckbox" aria-checked="mixed">Rubric sync</li>
+          </ul>
         </div>
         <pre><code>&lt;button&gt;Default&lt;/button&gt;
 &lt;button class="secondary"&gt;Secondary&lt;/button&gt;
@@ -149,6 +181,8 @@
 &lt;button class="ghost"&gt;Ghost&lt;/button&gt;
 
 &lt;button aria-pressed="true"&gt;Pressed&lt;/button&gt;
+&lt;button aria-pressed="mixed"&gt;Mixed&lt;/button&gt;
+&lt;button aria-haspopup="menu" aria-expanded="true" aria-controls="menu"&gt;Expanded&lt;/button&gt;
 &lt;button aria-busy="true"&gt;Busy&lt;/button&gt;
 &lt;button disabled&gt;Disabled&lt;/button&gt;</code></pre>
       </article>
@@ -160,7 +194,7 @@
         </header>
         <form action="#" method="get">
           <label for="doc-name">Name</label>
-          <input id="doc-name" name="doc-name" type="text" placeholder="Ada Lovelace">
+          <input id="doc-name" name="doc-name" type="text" placeholder="Ada Lovelace" aria-required="true">
 
           <label for="doc-level">Level</label>
           <select id="doc-level" name="doc-level">
@@ -181,7 +215,10 @@
           <input id="doc-start" name="doc-start" type="date" value="2026-07-09">
 
           <label for="doc-handle">Handle</label>
-          <input id="doc-handle" name="doc-handle" type="text" value="classic-css!" aria-invalid="true">
+          <input id="doc-handle" name="doc-handle" type="text" value="platinum-css!" aria-invalid="true">
+
+          <label for="doc-code">Course code</label>
+          <input id="doc-code" name="doc-code" type="text" value="CSE 101" readonly aria-readonly="true">
 
           <label class="check">
             <input type="checkbox" checked>
@@ -228,19 +265,21 @@
 &lt;small id="handle-error" data-variant="danger"&gt;Lowercase letters and dashes only.&lt;/small&gt;
 
 &lt;input aria-invalid="false"&gt;
+&lt;input aria-required="true"&gt;
+&lt;input readonly aria-readonly="true"&gt;
 &lt;input type="email" required&gt;</code></pre>
         <h3>Bare text labels</h3>
-        <p>Bare form text before a control is visually placed in the label column. For real click-to-focus behavior, use actual labels or load <code>classic.enhance.js</code>, which upgrades the text into labels. Opt out per form with <code>data-classic-no-autolabels</code>.</p>
+        <p>Bare form text before a control is visually placed in the label column. For real click-to-focus behavior, use actual labels or load <code>platinum.js</code>, which upgrades the text into labels. Opt out per form with <code>data-classic-no-autolabels</code>.</p>
         <pre><code>&lt;form&gt;
   Name
   &lt;input name="name"&gt;
 &lt;/form&gt;</code></pre>
       </article>
 
-      <article id="components" data-jumpable data-jump-label="Components" data-jump-aliases="notices badges menus windows">
+      <article id="components" class="docs-sectioned" data-jumpable data-jump-label="Components" data-jump-aliases="notices badges tabs menus windows">
         <header>
           <h2>Components</h2>
-          <p class="muted">Opt-in classes for app-oriented pieces. Variants use <code>data-variant="info|success|warning|danger"</code>.</p>
+          <p class="muted">Classes and matching ARIA roles for app-oriented pieces. Variants use <code>data-variant="info|success|warning|danger"</code>.</p>
         </header>
 
         <h3>Notices</h3>
@@ -266,7 +305,7 @@
 &lt;span class="status" data-variant="warning"&gt;Attention&lt;/span&gt;</code></pre>
 
         <h3>Stats</h3>
-        <div class="grid grid-tight">
+        <div class="grid">
           <div class="stat">
             <small>Open items</small>
             <strong>24</strong>
@@ -284,13 +323,92 @@
   &lt;span class="status"&gt;Healthy&lt;/span&gt;
 &lt;/div&gt;</code></pre>
 
+        <h3>ARIA State Defaults</h3>
+        <div class="grid">
+          <div class="stack">
+            <span role="checkbox" aria-checked="true" tabindex="0">Submitted</span>
+            <span role="checkbox" aria-checked="mixed" tabindex="0">Partial review</span>
+            <span role="radio" aria-checked="true" tabindex="0">Comfortable density</span>
+            <span role="switch" aria-checked="true" tabindex="0">Announcements</span>
+          </div>
+          <div class="stack">
+            <div role="status">Changes saved for this lesson.</div>
+            <ul role="listbox" aria-label="Review queue" aria-multiselectable="true">
+              <li role="option" aria-selected="true" tabindex="0">Lecture notes</li>
+              <li role="option" tabindex="-1">Lab rubric</li>
+              <li role="option" tabindex="-1">Quiz draft</li>
+            </ul>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th scope="col" aria-sort="ascending">Assignment</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Unit 1</td>
+                <td>Ready</td>
+              </tr>
+              <tr>
+                <td>Unit 2</td>
+                <td>Review</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="stack">
+            <div role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="72" style="--value: 72%"></div>
+            <div role="slider" aria-valuemin="0" aria-valuemax="10" aria-valuenow="6" style="--value: 60%" tabindex="0"></div>
+          </div>
+        </div>
+        <pre><code>&lt;span role="checkbox" aria-checked="mixed" tabindex="0"&gt;Partial review&lt;/span&gt;
+&lt;span role="switch" aria-checked="true" tabindex="0"&gt;Announcements&lt;/span&gt;
+&lt;ul role="listbox" aria-multiselectable="true"&gt;
+  &lt;li role="option" aria-selected="true" tabindex="0"&gt;Lecture notes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;th aria-sort="ascending"&gt;Assignment&lt;/th&gt;
+&lt;div role="progressbar" aria-valuenow="72" style="--value: 72%"&gt;&lt;/div&gt;</code></pre>
+
+        <h3>Tabs</h3>
+        <div class="tab-set">
+          <nav class="tabs" aria-label="Project sections">
+            <a id="project-tab-overview" class="tab" href="#components" aria-current="page">Overview</a>
+            <a class="tab" href="#components">Activity</a>
+            <a class="tab" href="#components">Settings</a>
+            <a class="tab" href="#components">History</a>
+          </nav>
+          <section class="tab-panel stack" role="tabpanel" aria-labelledby="project-tab-overview">
+            <div>
+              <h4>Overview</h4>
+              <p class="compact">Use <code>aria-current="page"</code> for a static link-style tab, or <code>aria-selected="true"</code> on scripted ARIA tabs.</p>
+            </div>
+            <div class="cluster">
+              <span class="badge" data-variant="info">Static</span>
+              <span class="badge" data-variant="success">Keyboard friendly</span>
+              <span class="badge">Panel content</span>
+            </div>
+          </section>
+        </div>
+        <pre><code>&lt;div class="tab-set"&gt;
+  &lt;nav class="tabs" aria-label="Project sections"&gt;
+    &lt;a id="project-tab-overview" class="tab" href="#" aria-current="page"&gt;Overview&lt;/a&gt;
+    &lt;a class="tab" href="#"&gt;Activity&lt;/a&gt;
+    &lt;a class="tab" href="#"&gt;Settings&lt;/a&gt;
+  &lt;/nav&gt;
+  &lt;section class="tab-panel" role="tabpanel" aria-labelledby="project-tab-overview"&gt;
+    &lt;h4&gt;Overview&lt;/h4&gt;
+    &lt;p&gt;Current tab content goes here.&lt;/p&gt;
+  &lt;/section&gt;
+&lt;/div&gt;</code></pre>
+
         <h3>Toolbar and Menu</h3>
         <div class="toolbar" role="toolbar" aria-label="Example toolbar">
           <button type="button" aria-pressed="true">B</button>
           <button type="button">I</button>
           <button type="button" class="secondary">Link</button>
         </div>
-        <ul class="menu">
+        <ul class="menu docs-menu-example">
           <li><a href="#components">Edit <span class="muted">Ctrl E</span></a></li>
           <li><a href="#components">Duplicate <span class="muted">Ctrl D</span></a></li>
         </ul>
@@ -340,33 +458,58 @@
         <ul>
           <li><code>avatar</code>: circular-initials marker.</li>
           <li><code>dialog-preview</code>: displays a <code>dialog</code> inline for demos.</li>
-          <li>Tabs: no classes - use <code>role="tablist"</code>, <code>role="tab"</code> with <code>aria-selected</code>, and <code>role="tabpanel"</code>; a paired script must drive selection and arrow keys. Tabs must fit their container: keep counts modest and labels short; reach for a <code>select</code> when the list grows.</li>
         </ul>
       </article>
 
-      <article id="helpers" data-jumpable data-jump-label="Layout helpers" data-jump-aliases="grid stack cluster split surface">
+      <article id="helpers" data-jumpable data-jump-label="Layout helpers" data-jump-aliases="grid stack cluster">
         <header>
           <h2>Layout Helpers</h2>
-          <p class="muted">Small composition classes for arranging content.</p>
+          <p class="muted">Three small composition classes for arranging content.</p>
         </header>
-        <dl>
-          <dt><code>grid</code> / <code>grid-tight</code></dt>
-          <dd>Responsive card grid; tight variant reduces the gap.</dd>
-          <dt><code>stack</code> / <code>stack-sm</code></dt>
-          <dd>Vertical flow with consistent spacing.</dd>
-          <dt><code>cluster</code></dt>
-          <dd>Horizontal wrapping group.</dd>
-          <dt><code>split</code></dt>
-          <dd>Two-sided row that wraps on small screens.</dd>
-          <dt><code>with-sidebar</code></dt>
-          <dd>Local two-column content/sidebar layout.</dd>
-          <dt><code>surface</code></dt>
-          <dd>Bordered raised panel.</dd>
-        </dl>
-        <div class="split surface">
-          <span>A <code>split</code> inside a <code>surface</code></span>
-          <span class="badge" data-variant="success">Live example</span>
-        </div>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Class</th>
+              <th scope="col">Use</th>
+              <th scope="col">Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row"><code>grid</code></th>
+              <td>Responsive card or content grid.</td>
+              <td>
+                <div class="grid" aria-label="Grid helper example">
+                  <span class="badge">One</span>
+                  <span class="badge">Two</span>
+                  <span class="badge">Three</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row"><code>stack</code></th>
+              <td>Vertical flow with consistent spacing.</td>
+              <td>
+                <div class="stack" aria-label="Stack helper example">
+                  <span class="badge">First</span>
+                  <span class="badge">Second</span>
+                  <span class="badge">Third</span>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row"><code>cluster</code></th>
+              <td>Horizontal wrapping group.</td>
+              <td>
+                <div class="cluster" aria-label="Cluster helper example">
+                  <span class="badge">Alpha</span>
+                  <span class="badge">Beta</span>
+                  <span class="badge">Gamma</span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </article>
 
       <article id="utilities" data-jumpable data-jump-label="Text utilities" data-jump-aliases="lead muted compact hidden">
@@ -391,12 +534,13 @@
 
       <article id="enhance" data-jumpable data-jump-label="Enhance script" data-jump-aliases="autolabels hamburger enhance">
         <header>
-          <h2>classic.enhance.js</h2>
+          <h2>platinum.js</h2>
           <p class="muted">Optional markup repair. The CSS is useful without it.</p>
         </header>
         <ul>
           <li>Converts bare form text before controls into real labels, with matching input <code>id</code>s.</li>
           <li>Adds a hamburger toggle to layout header navigation on narrow screens.</li>
+          <li>Adds a collapsible <code>Sections</code> toggle to sidebar navigation on narrow screens.</li>
           <li>Disable auto-labels per form with <code>data-classic-no-autolabels</code>.</li>
         </ul>
         <pre><code>&lt;form data-classic-no-autolabels&gt;
@@ -441,9 +585,13 @@
           <h2>Accessibility</h2>
         </header>
         <ul>
-          <li>Prefer real labels for forms. Bare form text is only visual until <code>classic.enhance.js</code> upgrades it.</li>
+          <li>Prefer real labels for forms. Bare form text is only visual until <code>platinum.js</code> upgrades it.</li>
           <li>Focus states use <code>:focus-visible</code> and are kept intact.</li>
-          <li>Use ARIA states for state, not decoration: <code>aria-current</code>, <code>aria-invalid</code>, <code>aria-pressed</code>, <code>aria-busy</code>.</li>
+          <li>Use ARIA states for state, not decoration: <code>aria-current</code>, <code>aria-invalid</code>, <code>aria-pressed</code>, <code>aria-busy</code>, <code>aria-expanded</code>, <code>aria-selected</code>, <code>aria-checked</code>, <code>aria-required</code>, <code>aria-readonly</code>, and <code>aria-sort</code>.</li>
+          <li>Use any valid <code>aria-current</code> value for current links, tabs, pagination, and steps.</li>
+          <li>Use <code>aria-invalid="true"</code> only after validation has failed, and pair it with useful help or error text in application markup.</li>
+          <li>Use <code>aria-pressed="true"</code> only for toggle buttons.</li>
+          <li>Mobile header and sidebar menus close on Escape and return focus to their toggle.</li>
           <li>The command palette restores focus on close and exposes results as a combobox/listbox pair.</li>
           <li>Motion is reduced under <code>prefers-reduced-motion: reduce</code>.</li>
         </ul>
@@ -451,10 +599,29 @@
     </main>
 
     <footer>
-      <small>classic.css documentation. Demos: <a href="demo/base.html">base</a>, <a href="demo/forms.html">forms</a>.</small>
+      <small>platinum.css documentation. Demos: <a href="demo/base.html">base</a>, <a href="demo/forms.html">forms</a>.</small>
     </footer>
 
-    <script src="classic.enhance.js"></script>
-    <script src="classic.commands.js"></script>
+    <script>
+      (function () {
+        const button = document.querySelector('[data-download-all]');
+        const files = ['platinum.css', 'platinum.js'];
+
+        if (!button) return;
+
+        button.addEventListener('click', function () {
+          files.forEach(function (file) {
+            const link = document.createElement('a');
+            link.href = file;
+            link.download = file;
+            link.hidden = true;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+          });
+        });
+      }());
+    </script>
+    <script src="platinum.js"></script>
   </body>
 </html>
