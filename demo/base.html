@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>platinum.css - Base Styles</title>
+    <title>platinum.css - Style Hierarchy</title>
     <link rel="stylesheet" href="../platinum.css">
   </head>
   <body class="layout-topbar">
@@ -12,7 +12,7 @@
         <a class="brand" href="../index.html"><img class="brand-logo" src="../assets/logo.svg" width="1432" height="391" alt="platinum.css"></a>
         <ul>
           <li><a href="../index.html">Docs</a></li>
-          <li><a href="base.html" aria-current="page">Base</a></li>
+          <li><a href="base.html" aria-current="page">Hierarchy</a></li>
           <li><a href="forms.html">Forms</a></li>
           <li><a class="cluster" href="../index.html#downloads"><span aria-hidden="true">&#x2913;</span><span>Downloads</span></a></li>
           <li>
@@ -26,448 +26,416 @@
     </header>
 
     <main>
-      <section class="cluster" aria-labelledby="intro-title" data-jumpable data-jump-label="Base styles" data-jump-aliases="intro overview elements">
+      <section aria-labelledby="intro-title" data-jumpable data-jump-label="Style hierarchy" data-jump-aliases="intro overview base">
         <div>
           <p class="cluster">
-            <span class="badge" data-variant="info">Demo</span>
+            <span class="badge" data-variant="info">Guide</span>
             <span class="badge" data-variant="info">Topbar layout</span>
           </p>
-          <h1 id="intro-title">Base Styles</h1>
-          <p class="lead">Prose, tables, figures, lists, code, and document structure styled by the shared stylesheet.</p>
+          <h1 id="intro-title">Style Hierarchy</h1>
+          <p class="lead">Use the earliest truthful hook:<br>HTML, state, roles, variants.<br>Layout helpers, tokens, then custom CSS.</p>
         </div>
-        <div class="toolbar" role="group" aria-label="Base style actions">
-          <a href="forms.html" class="button">Open Forms</a>
-          <a href="#component-examples" class="button secondary">View Components</a>
-          <a href="#density-table" class="button outline">Jump to Table</a>
-        </div>
-      </section>
-
-      <section class="grid" aria-label="Layout summary">
-        <div class="stat">
-          <small>Layout</small>
-          <strong>Top</strong>
-          <span class="status">Menu bar</span>
-        </div>
-        <div class="stat">
-          <small>Content</small>
-          <strong>38</strong>
-          <span class="status" data-variant="info">Elements</span>
-        </div>
-        <div class="stat">
-          <small>Mode</small>
-          <strong>OS 9</strong>
-          <span class="status" data-variant="warning">Platinum</span>
+        <div class="toolbar" role="group" aria-label="Style hierarchy actions">
+          <a href="../index.html" class="button">Open Docs</a>
+          <a href="forms.html" class="button secondary">Open Forms</a>
+          <a href="#decision-matrix" class="button outline">Decision Matrix</a>
         </div>
       </section>
 
-      <section class="grid" aria-labelledby="principles-title">
-        <article data-jumpable data-jump-label="Library principles" data-jump-aliases="principles goals">
-          <header>
-            <h2 id="principles-title">Library Principles</h2>
-            <p class="muted">The quick design brief, tested as normal content.</p>
-          </header>
-          <ol>
-            <li>Style semantic HTML before requiring classes.</li>
-            <li>Make interactive controls look tactile, raised, and focusable.</li>
-            <li>Use ARIA attributes for stateful styling where behavior belongs in a paired script.</li>
-            <li>Keep layouts predictable across topbar, sidebar, and mobile scroll shells.</li>
-          </ol>
-          <footer>
-            <small>Updated <time datetime="2026-05-13">May 13, 2026</time>.</small>
-          </footer>
-        </article>
-
-        <article>
-          <header>
-            <h2>Type Scale</h2>
-            <p class="muted">Heading stack, inline text, and rhythm.</p>
-          </header>
-          <h1>Heading One</h1>
-          <h2>Heading Two</h2>
-          <h3>Heading Three</h3>
-          <h4>Heading Four</h4>
-          <h5>Heading Five</h5>
-          <h6>Heading Six</h6>
-          <p>Body text can include <a href="#content-title">links</a>, <mark>marked text</mark>, <strong>strong text</strong>, <em>emphasis</em>, <abbr title="HyperText Markup Language">HTML</abbr>, <code>inline code</code>, <kbd>Tab</kbd>, and <samp>sample output</samp>.</p>
-        </article>
+      <section class="grid" aria-label="Hierarchy summary">
+        <div class="stat">
+          <small>First choice</small>
+          <strong>HTML</strong>
+          <span class="status" data-variant="success">Semantic</span>
+        </div>
+        <div class="stat">
+          <small>Second choice</small>
+          <strong>ARIA</strong>
+          <span class="status" data-variant="info">State</span>
+        </div>
+        <div class="stat">
+          <small>Last choice</small>
+          <strong>CSS</strong>
+          <span class="status" data-variant="warning">Custom</span>
+        </div>
       </section>
 
-      <section class="stack" aria-labelledby="content-title">
-        <article data-jumpable data-jump-label="Long form article" data-jump-aliases="article content prose">
-            <header>
-              <h2 id="content-title">Long-Form Article</h2>
-              <p class="muted">A realistic article with mixed semantic content.</p>
-            </header>
-            <p>Classic interfaces should make structure obvious. This paragraph checks rhythm, contrast, and spacing against adjacent lists, quoted material, and dense metadata.</p>
-            <blockquote>
-              <p>Depth can be a usability affordance when it tells the eye what is interactive, grouped, or foregrounded.</p>
-              <footer><small>Design note from the mockup brief</small></footer>
-            </blockquote>
-            <div class="grid">
-              <section>
-                <h3>Unordered List</h3>
-                <ul>
-                  <li>Controls need clear raised and pressed states.</li>
-                  <li>Panels should have visible edges without looking decorative.</li>
-                  <li>Mobile should collapse to readable vertical flow.</li>
-                </ul>
-              </section>
-              <section>
-                <h3>Definition List</h3>
-                <dl>
-                  <dt>Surface</dt>
-                  <dd>A bounded area with a visible edge and slight elevation.</dd>
-                  <dt>Focus</dt>
-                  <dd>An unmistakable outline that survives dense layouts.</dd>
-                  <dt>Measure</dt>
-                  <dd>A line length tuned for reading rather than filling all available width.</dd>
-                </dl>
-              </section>
+      <article id="decision-matrix" data-jumpable data-jump-label="Decision matrix" data-jump-aliases="order rules priority">
+        <header>
+          <h2>Default Order</h2>
+          <p class="muted">Use this order when deciding how to get a platinum.css style.</p>
+        </header>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Priority</th>
+              <th scope="col">Use</th>
+              <th scope="col">When</th>
+              <th scope="col">Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Semantic HTML</td>
+              <td>The element already means the thing you are building.</td>
+              <td><code>&lt;button&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;details&gt;</code></td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Native or ARIA state</td>
+              <td>The UI state must be exposed to assistive technology.</td>
+              <td><code>disabled</code>, <code>aria-current</code>, <code>aria-invalid</code></td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>ARIA role</td>
+              <td>No native element maps cleanly to the widget pattern.</td>
+              <td><code>role="tab"</code>, <code>role="listbox"</code>, <code>role="progressbar"</code></td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>Variant class or data attribute</td>
+              <td>You are choosing a visual variant, not describing state.</td>
+              <td><code>class="secondary"</code>, <code>data-variant="warning"</code></td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>Layout helper</td>
+              <td>You need arrangement, spacing, or a page shell.</td>
+              <td><code>layout-sidebar</code>, <code>grid</code>, <code>stack</code>, <code>cluster</code></td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>Theme token</td>
+              <td>The style should change everywhere consistently.</td>
+              <td><code>--primary</code>, <code>--button-face</code>, <code>--radius-3</code></td>
+            </tr>
+            <tr>
+              <th scope="row">7</th>
+              <td>Custom CSS</td>
+              <td>The project has a new pattern outside the library.</td>
+              <td><code>.lesson-card</code>, <code>.billing-summary</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+
+      <article id="semantic-html" data-jumpable data-jump-label="Semantic HTML" data-jump-aliases="elements native defaults">
+        <header>
+          <h2>1. Semantic HTML</h2>
+          <p class="muted">Start with the element that carries the meaning. The stylesheet handles the baseline chrome.</p>
+        </header>
+        <div class="grid">
+          <section>
+            <h3>Document Structure</h3>
+            <p>Articles, headings, paragraphs, lists, tables, blockquotes, code, details, and buttons are styled directly.</p>
+            <details open>
+              <summary>Native disclosure</summary>
+              <p>No class is needed for this block to look like a disclosure control.</p>
+            </details>
+          </section>
+          <section>
+            <h3>Native Controls</h3>
+            <form action="#" method="get">
+              <label for="semantic-title">Title</label>
+              <input id="semantic-title" name="semantic-title" value="Intro notes">
+
+              <label for="semantic-level">Level</label>
+              <select id="semantic-level" name="semantic-level">
+                <option>Introductory</option>
+                <option>Advanced</option>
+              </select>
+
+              <div class="cluster">
+                <button type="reset">Reset</button>
+                <button type="submit">Save</button>
+              </div>
+            </form>
+          </section>
+        </div>
+        <pre><code>&lt;article&gt;
+  &lt;header&gt;
+    &lt;h2&gt;Lesson Notes&lt;/h2&gt;
+  &lt;/header&gt;
+  &lt;p&gt;Use document elements first.&lt;/p&gt;
+  &lt;details open&gt;
+    &lt;summary&gt;Native disclosure&lt;/summary&gt;
+    &lt;p&gt;No class needed.&lt;/p&gt;
+  &lt;/details&gt;
+&lt;/article&gt;
+
+&lt;form&gt;
+  &lt;label for="title"&gt;Title&lt;/label&gt;
+  &lt;input id="title" name="title"&gt;
+  &lt;button&gt;Save&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+      </article>
+
+      <article id="state-hooks" data-jumpable data-jump-label="State hooks" data-jump-aliases="aria state attributes current invalid disabled">
+        <header>
+          <h2>2. Native and ARIA State</h2>
+          <p class="muted">State should live in the DOM attribute that describes the actual state.</p>
+        </header>
+        <div class="grid">
+          <section>
+            <h3>Controls</h3>
+            <div class="stack">
+              <div class="cluster">
+                <button type="button" aria-pressed="true">Pressed</button>
+                <button type="button" aria-busy="true">Saving</button>
+                <button type="button" disabled>Disabled</button>
+              </div>
+              <form action="#" method="get">
+                <label for="state-handle">Handle</label>
+                <input id="state-handle" name="state-handle" value="Bad handle!" aria-invalid="true" aria-describedby="state-handle-error">
+                <small id="state-handle-error" data-variant="danger">Use lowercase letters and dashes.</small>
+              </form>
             </div>
-            <footer>
-              <address>
-                Maintained by <a href="mailto:classic@example.test">Platinum.css Working Notes</a>
-              </address>
-            </footer>
-          </article>
-
-          <article data-jumpable data-jump-label="Figure and media" data-jump-aliases="figure media svg">
-            <header>
-              <h2 id="figure-title">Figure and Media</h2>
-              <p class="muted">Inline SVG stands in for screenshots, diagrams, or product images.</p>
-            </header>
-            <figure>
-              <svg viewBox="0 0 760 260" role="img" aria-labelledby="mock-window-title mock-window-desc">
-                <title id="mock-window-title">Classic window diagram</title>
-                <desc id="mock-window-desc">A platinum window with a top bar, sidebar, and content pane.</desc>
-                <rect width="760" height="260" fill="#c7c7c7"></rect>
-                <rect x="28" y="24" width="704" height="212" fill="#eeeeee" stroke="#242424" stroke-width="2"></rect>
-                <rect x="30" y="26" width="700" height="30" fill="#d7d7d7"></rect>
-                <rect x="48" y="74" width="150" height="138" fill="#dddddd" stroke="#4c4c4c"></rect>
-                <rect x="222" y="74" width="462" height="34" fill="#ffffff" stroke="#4c4c4c"></rect>
-                <rect x="222" y="126" width="462" height="86" fill="#ffffff" stroke="#4c4c4c"></rect>
-                <circle cx="54" cy="41" r="7" fill="#8b2828"></circle>
-                <circle cx="76" cy="41" r="7" fill="#835f12"></circle>
-                <circle cx="98" cy="41" r="7" fill="#2f6a3c"></circle>
-              </svg>
-              <figcaption>SVG, figure, caption, and image scaling should behave without additional page CSS.</figcaption>
-            </figure>
-          </article>
-
-          <article data-jumpable data-jump-label="Dense table" data-jump-aliases="table data density">
-            <header>
-              <h2 id="density-table">Dense Table</h2>
-              <p class="muted">Wide tables should scroll horizontally on small screens.</p>
-            </header>
+          </section>
+          <section>
+            <h3>Navigation and Data</h3>
+            <nav aria-label="Page state example">
+              <ol class="pagination">
+                <li><a href="#state-hooks">1</a></li>
+                <li><a href="#state-hooks" aria-current="page">2</a></li>
+                <li><a href="#state-hooks">3</a></li>
+              </ol>
+            </nav>
             <table>
-              <caption class="visually-hidden">Platinum.css element coverage table</caption>
               <thead>
                 <tr>
-                  <th aria-sort="ascending">Element</th>
-                  <th>Purpose</th>
-                  <th>Default Treatment</th>
-                  <th>State Hook</th>
-                  <th>Status</th>
+                  <th scope="col" aria-sort="ascending">Name</th>
+                  <th scope="col">Status</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><code>article</code></td>
-                  <td>Independent content block</td>
-                  <td>Raised panel with header and footer support</td>
-                  <td>None</td>
-                  <td><span class="status">Ready</span></td>
+                  <td>Unit one</td>
+                  <td><span class="status" data-variant="success">Ready</span></td>
                 </tr>
                 <tr>
-                  <td><code>details</code></td>
-                  <td>Native disclosure</td>
-                  <td>Low elevation disclosure block</td>
-                  <td><code>open</code></td>
+                  <td>Unit two</td>
                   <td><span class="status" data-variant="warning">Review</span></td>
-                </tr>
-                <tr>
-                  <td><code>button</code></td>
-                  <td>Primary command</td>
-                  <td>Beveled physical control</td>
-                  <td><code>aria-pressed</code>, <code>aria-busy</code>, <code>aria-expanded</code></td>
-                  <td><span class="status">Ready</span></td>
-                </tr>
-                <tr>
-                  <td><code>input</code></td>
-                  <td>Form entry</td>
-                  <td>Sunken text field or custom native control</td>
-                  <td><code>aria-invalid</code>, <code>aria-required</code>, <code>aria-readonly</code></td>
-                  <td><span class="status" data-variant="info">Expanded</span></td>
                 </tr>
               </tbody>
             </table>
-          </article>
+          </section>
+        </div>
+        <pre><code>&lt;button aria-pressed="true"&gt;Pressed&lt;/button&gt;
+&lt;button aria-busy="true"&gt;Saving&lt;/button&gt;
+&lt;button disabled&gt;Disabled&lt;/button&gt;
 
-          <article data-jumpable data-jump-label="Code block" data-jump-aliases="code pre keyboard">
-            <header>
-              <h2 id="code-title">Code and Preformatted Text</h2>
-              <p class="muted">Tests overflow, monospace color, and keyboard hints.</p>
-            </header>
-            <p>Use <kbd>Tab</kbd> and <kbd>Shift</kbd> + <kbd>Tab</kbd> to inspect focus states in the test pages.</p>
-            <pre><code>button[aria-busy="true"] {
-  pointer-events: none;
-}
+&lt;input aria-invalid="true" aria-describedby="handle-error"&gt;
+&lt;small id="handle-error" data-variant="danger"&gt;Use lowercase letters and dashes.&lt;/small&gt;
 
-body.layout-sidebar {
-  grid-template-columns: 16rem minmax(0, 1fr);
-}</code></pre>
-          </article>
-      </section>
+&lt;a href="/docs" aria-current="page"&gt;Docs&lt;/a&gt;
+&lt;th aria-sort="ascending"&gt;Name&lt;/th&gt;</code></pre>
+      </article>
 
-      <section id="component-examples" class="stack" aria-labelledby="component-examples-title" data-jumpable data-jump-label="Component examples" data-jump-aliases="components buttons notices tabs menus">
+      <article id="roles" data-jumpable data-jump-label="ARIA roles" data-jump-aliases="roles widgets tab listbox progressbar">
         <header>
-          <h2 id="component-examples-title">Component Examples</h2>
-          <p class="muted">Buttons, tabs, notices, menus, pagination, stats, progress indicators, dialogs, and compact app surfaces.</p>
+          <h2>3. Roles for Composite Widgets</h2>
+          <p class="muted">Use roles when a real widget pattern needs script-managed state and keyboard behavior.</p>
         </header>
-
-        <section id="component-stats" class="grid" aria-label="Component stats" data-jumpable data-jump-label="Stats" data-jump-aliases="metrics counters">
-          <div class="stat">
-            <small>Open lessons</small>
-            <strong>24</strong>
-            <span class="status">Healthy</span>
-          </div>
-          <div class="stat">
-            <small>Review queue</small>
-            <strong>7</strong>
-            <span class="status" data-variant="warning">Attention</span>
-          </div>
-          <div class="stat">
-            <small>Broken links</small>
-            <strong>2</strong>
-            <span class="status" data-variant="danger">Fix</span>
-          </div>
-          <div class="stat">
-            <small>Draft modules</small>
-            <strong>13</strong>
-            <span class="status" data-variant="info">Queued</span>
-          </div>
-        </section>
-
-        <section class="stack" aria-label="Component examples">
-          <article id="component-buttons" data-jumpable data-jump-label="Buttons" data-jump-aliases="button states controls">
-            <header>
-              <h2>Buttons</h2>
-              <p class="muted">Variants, busy state, pressed state, disabled state, and role-based buttons.</p>
-            </header>
-            <div class="stack">
-              <div class="cluster">
-                <button type="button">Default</button>
-                <button type="button" class="secondary">Secondary</button>
-                <button type="button" class="outline">Outline</button>
-                <button type="button" class="contrast">Contrast</button>
-                <button type="button" class="ghost">Ghost</button>
-              </div>
-              <div class="cluster">
-                <button type="button" aria-pressed="true">Pressed</button>
-                <button type="button" aria-pressed="mixed">Mixed</button>
-                <button type="button" aria-haspopup="menu" aria-expanded="true" aria-controls="base-menu-state">Expanded</button>
-                <button type="button" aria-busy="true">Working</button>
-                <button type="button" disabled>Disabled</button>
-                <a href="#component-buttons" class="button">Anchor Button</a>
-              </div>
-              <ul id="base-menu-state" role="menu" aria-label="Button state menu">
-                <li role="menuitemcheckbox" aria-checked="true">Course shell</li>
-                <li role="menuitemcheckbox" aria-checked="mixed">Rubric sync</li>
-              </ul>
-            </div>
-          </article>
-
-          <article id="component-notices" data-jumpable data-jump-label="Notices" data-jump-aliases="alerts messages variants">
-            <header>
-              <h2>Notices</h2>
-              <p class="muted">Default, info, success, warning, and danger variants.</p>
-            </header>
-            <div class="stack">
-              <div class="notice">Neutral notice with default informational treatment.</div>
-              <div class="notice" data-variant="info">Informational notice for general feedback.</div>
-              <div class="notice" data-variant="success">The update completed successfully.</div>
-              <div class="notice" data-variant="warning">A paired script may be needed for this interaction.</div>
-              <div role="alert" data-variant="danger">Unable to save because a required field is missing.</div>
-            </div>
-          </article>
-
-          <article id="component-tabs" data-jumpable data-jump-label="Tabs" data-jump-aliases="tablist panels">
-            <header>
-              <h2>Tabs</h2>
-              <p class="muted">Driven by ARIA roles; switching behavior belongs to a paired script.</p>
-            </header>
+        <div class="grid">
+          <section>
+            <h3>Tabs</h3>
             <div class="tab-set">
-              <nav class="tabs" aria-label="Example sections">
-                <a id="base-tab-overview" class="tab" href="#component-tabs" aria-current="page">Overview</a>
-                <a class="tab" href="#component-tabs">Activity</a>
-                <a class="tab" href="#component-tabs">Settings</a>
-                <a class="tab" href="#component-tabs">History</a>
+              <nav class="tabs" aria-label="Project sections">
+                <a id="role-tab-overview" class="tab" href="#roles" aria-current="page">Overview</a>
+                <a class="tab" href="#roles">Activity</a>
+                <a class="tab" href="#roles">Settings</a>
               </nav>
-              <section class="tab-panel stack" role="tabpanel" aria-labelledby="base-tab-overview">
-                <div>
-                  <h3>Overview</h3>
-                  <p class="compact">This panel is a static mockup. Behavior can be added by a small paired script later.</p>
-                </div>
-                <div class="cluster">
-                  <span class="badge" data-variant="info">Draft</span>
-                  <span class="badge" data-variant="success">Accessible</span>
-                  <span class="badge" data-variant="warning">Needs Script</span>
-                  <span class="badge">Semantic</span>
-                </div>
+              <section class="tab-panel" role="tabpanel" aria-labelledby="role-tab-overview">
+                <h4>Overview</h4>
+                <p class="compact">Static link tabs can use <code>aria-current</code>. Scripted ARIA tabs can use <code>role="tab"</code> with <code>aria-selected</code>.</p>
               </section>
             </div>
-          </article>
-
-          <article id="component-menus" data-jumpable data-jump-label="Menus and toolbar" data-jump-aliases="menu toolbar commands">
-            <header>
-              <h2>Menus and Toolbar</h2>
-              <p class="muted">Command lists, shortcut text, and compact tool surfaces.</p>
-            </header>
-            <div class="toolbar" role="toolbar" aria-label="Editor toolbar">
-              <button type="button" aria-label="Bold" aria-pressed="true">B</button>
-              <button type="button" aria-label="Italic">I</button>
-              <button type="button" aria-label="Underline">U</button>
-              <button type="button" class="secondary">Link</button>
-              <button type="button" class="secondary">Code</button>
-            </div>
-            <ul class="menu">
-              <li><a href="#component-menus">Edit lesson <span class="muted">Ctrl E</span></a></li>
-              <li><a href="#component-menus">Duplicate <span class="muted">Ctrl D</span></a></li>
-              <li><a href="#component-menus">Move to draft <span class="muted">Ctrl M</span></a></li>
-              <li><a href="#component-menus">Archive <span class="muted">Ctrl A</span></a></li>
-            </ul>
-          </article>
-
-          <article id="component-disclosure" data-jumpable data-jump-label="Disclosure" data-jump-aliases="details summary">
-            <header>
-              <h2>Disclosure</h2>
-              <p class="muted">Native details and summary styling.</p>
-            </header>
-            <details open>
-              <summary>What is styled by default?</summary>
-              <p>Text, links, lists, tables, code, forms, buttons, articles, details, dialogs, and ARIA-driven states.</p>
-            </details>
-            <details>
-              <summary>Does it require classes?</summary>
-              <p>No for the basics. Classes are used for layout helpers, notices, badges, and app-oriented compositions.</p>
-            </details>
-            <details>
-              <summary>How does mobile behave?</summary>
-              <p>The page shells collapse into vertical flow, and toolbars become stacked full-width controls.</p>
-            </details>
-          </article>
-
-          <article id="component-progress" data-jumpable data-jump-label="Progress" data-jump-aliases="progress meter">
-            <header>
-              <h2>Progress</h2>
-              <p class="muted">Native progress, native meter, and ARIA value widgets.</p>
-            </header>
-            <label for="build">Build progress</label>
-            <progress id="build" value="72" max="100">72%</progress>
-            <label for="sync">Background sync (indeterminate)</label>
-            <progress id="sync">syncing</progress>
-            <label for="quality">Quality score</label>
-            <meter id="quality" min="0" max="100" low="45" high="80" optimum="90" value="86">86</meter>
-            <label for="risk">Risk score</label>
-            <meter id="risk" min="0" max="100" low="35" high="70" optimum="15" value="62">62</meter>
-            <label for="errors">Error budget used</label>
-            <meter id="errors" min="0" max="100" low="35" high="70" optimum="15" value="88">88</meter>
-            <label id="aria-progress-label">ARIA progress</label>
-            <div role="progressbar" aria-labelledby="aria-progress-label" aria-valuemin="0" aria-valuemax="100" aria-valuenow="72" style="--value: 72%"></div>
-            <label id="aria-slider-label">ARIA slider</label>
-            <div role="slider" aria-labelledby="aria-slider-label" aria-valuemin="0" aria-valuemax="10" aria-valuenow="6" style="--value: 60%" tabindex="0"></div>
-          </article>
-
-          <article id="component-dialog" data-jumpable data-jump-label="Dialog" data-jump-aliases="modal preview">
-            <header>
-              <h2>Dialog</h2>
-              <p class="muted">A static preview of native dialog styling.</p>
-            </header>
-            <dialog class="dialog-preview" aria-labelledby="dialog-title" open>
-              <h3 id="dialog-title">Confirm Publish</h3>
-              <p>This mock dialog uses the same styles as a native modal while staying in document flow for testing.</p>
-              <div class="cluster">
-                <button type="button">Publish</button>
-                <button type="button" class="secondary">Cancel</button>
-              </div>
-            </dialog>
-          </article>
-
-          <article id="component-window" data-jumpable data-jump-label="Window chrome" data-jump-aliases="window titlebar statusbar">
-            <header>
-              <h2>Window Chrome</h2>
-              <p class="muted">A framed application surface with titlebar, pane, and statusbar.</p>
-            </header>
-            <div class="window">
-              <div class="window-titlebar">Untitled Document</div>
-              <div class="window-pane">
-                <p class="compact">Window container with titlebar, pane, and statusbar.</p>
-              </div>
-              <div class="window-statusbar">Ready</div>
-            </div>
-          </article>
-
-          <article id="component-list" data-jumpable data-jump-label="Compact list" data-jump-aliases="list rows avatars">
-            <header>
-              <h2>Compact List</h2>
-              <p class="muted">Avatars, badges, statuses, and dense rows.</p>
-            </header>
+          </section>
+          <section>
+            <h3>Selection and Values</h3>
             <div class="stack">
-              <div class="cluster">
-                <span class="avatar">HS</span>
-                <div>
-                  <strong>Hypermedia Systems</strong>
-                  <p class="compact muted">Chapter refresh</p>
-                </div>
-                <span class="badge" data-variant="success">Ready</span>
-              </div>
-              <div class="cluster">
-                <span class="avatar">CSS</span>
-                <div>
-                  <strong>Platinum.css</strong>
-                  <p class="compact muted">Button and layout pass</p>
-                </div>
-                <span class="badge" data-variant="warning">Review</span>
-              </div>
-            </div>
-          </article>
-
-          <article id="component-aria-states" data-jumpable data-jump-label="ARIA state defaults" data-jump-aliases="aria checked selected sort live">
-            <header>
-              <h2>ARIA State Defaults</h2>
-              <p class="muted">Stateful ARIA attributes get visible defaults for classroom examples.</p>
-            </header>
-            <div class="stack">
-              <span role="checkbox" aria-checked="true" tabindex="0">Submitted</span>
-              <span role="checkbox" aria-checked="mixed" tabindex="0">Partial review</span>
-              <span role="radio" aria-checked="true" tabindex="0">Comfortable density</span>
-              <span role="switch" aria-checked="true" tabindex="0">Announcements</span>
-              <div role="status">Changes saved for this lesson.</div>
               <ul role="listbox" aria-label="Review queue" aria-multiselectable="true">
                 <li role="option" aria-selected="true" tabindex="0">Lecture notes</li>
                 <li role="option" tabindex="-1">Lab rubric</li>
               </ul>
+              <label id="role-progress-label">Completion</label>
+              <div role="progressbar" aria-labelledby="role-progress-label" aria-valuemin="0" aria-valuemax="100" aria-valuenow="72" style="--value: 72%"></div>
+              <label id="role-slider-label">Density</label>
+              <div role="slider" aria-labelledby="role-slider-label" aria-valuemin="0" aria-valuemax="10" aria-valuenow="6" style="--value: 60%" tabindex="0"></div>
             </div>
-          </article>
-        </section>
+          </section>
+        </div>
+        <pre><code>&lt;button role="tab" aria-selected="true" aria-controls="overview"&gt;Overview&lt;/button&gt;
+&lt;section id="overview" role="tabpanel"&gt;...&lt;/section&gt;
 
-        <article aria-labelledby="component-pagination-title">
-          <header>
-            <h2 id="component-pagination-title">Pagination</h2>
-            <p class="muted">Links get tactile edges without needing button classes.</p>
-          </header>
-          <nav aria-label="Pagination">
-            <ol class="pagination">
-              <li><a href="#component-pagination-title" aria-label="Previous page">Prev</a></li>
-              <li><a href="#component-pagination-title">1</a></li>
-              <li><a href="#component-pagination-title" aria-current="page">2</a></li>
-              <li><a href="#component-pagination-title">3</a></li>
-              <li><a href="#component-pagination-title">4</a></li>
-              <li><a href="#component-pagination-title" aria-label="Next page">Next</a></li>
-            </ol>
-          </nav>
-        </article>
-      </section>
+&lt;ul role="listbox" aria-multiselectable="true"&gt;
+  &lt;li role="option" aria-selected="true" tabindex="0"&gt;Lecture notes&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div role="progressbar" aria-valuenow="72" style="--value: 72%"&gt;&lt;/div&gt;</code></pre>
+      </article>
+
+      <article id="variant-hooks" data-jumpable data-jump-label="Variant hooks" data-jump-aliases="classes variants data">
+        <header>
+          <h2>4. Classes and Data Attributes</h2>
+          <p class="muted">Use these for visual variants, composition patterns, and explicit opt-ins.</p>
+        </header>
+        <div class="grid">
+          <section>
+            <h3>Class Variants</h3>
+            <div class="stack">
+              <div class="cluster">
+                <button type="button">Primary</button>
+                <button type="button" class="secondary">Secondary</button>
+                <button type="button" class="outline">Outline</button>
+                <a href="#variant-hooks" class="button">Anchor Button</a>
+              </div>
+              <div class="toolbar" role="toolbar" aria-label="Example toolbar">
+                <button type="button" aria-label="Bold" aria-pressed="true">B</button>
+                <button type="button" aria-label="Italic">I</button>
+                <button type="button" class="secondary">Link</button>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h3>Data Variants</h3>
+            <div class="stack">
+              <div class="notice">Default notice.</div>
+              <div class="notice" data-variant="info">Informational notice.</div>
+              <div class="notice" data-variant="warning">Warning notice.</div>
+              <div role="alert" data-variant="danger">Danger alert.</div>
+            </div>
+          </section>
+        </div>
+        <pre><code>&lt;button&gt;Primary&lt;/button&gt;
+&lt;button class="secondary"&gt;Secondary&lt;/button&gt;
+&lt;a href="/download" class="button"&gt;Anchor Button&lt;/a&gt;
+
+&lt;div class="notice" data-variant="warning"&gt;Warning notice.&lt;/div&gt;
+&lt;span class="badge" data-variant="info"&gt;Info&lt;/span&gt;</code></pre>
+      </article>
+
+      <article id="layout-helpers" data-jumpable data-jump-label="Layout helpers" data-jump-aliases="layout grid stack cluster shells">
+        <header>
+          <h2>5. Layout Helpers</h2>
+          <p class="muted">Use helper classes for arrangement. They should not replace semantic structure.</p>
+        </header>
+        <div class="grid">
+          <section>
+            <h3>Composition</h3>
+            <div class="stack">
+              <div class="cluster" aria-label="Cluster example">
+                <span class="badge">Alpha</span>
+                <span class="badge">Beta</span>
+                <span class="badge">Gamma</span>
+              </div>
+              <div class="grid" aria-label="Grid example">
+                <span class="status">One</span>
+                <span class="status" data-variant="info">Two</span>
+                <span class="status" data-variant="success">Three</span>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h3>Page Shells</h3>
+            <dl>
+              <dt><code>layout-topbar</code></dt>
+              <dd>Top navigation with centered document flow.</dd>
+              <dt><code>layout-sidebar</code></dt>
+              <dd>Top navigation, sidebar navigation, and main content.</dd>
+              <dt><code>layout-scroll</code></dt>
+              <dd>Narrow vertical flow for focused pages and forms.</dd>
+            </dl>
+          </section>
+        </div>
+        <pre><code>&lt;body class="layout-sidebar"&gt;
+  &lt;header&gt;...&lt;/header&gt;
+  &lt;aside class="sidebar"&gt;...&lt;/aside&gt;
+  &lt;main&gt;...&lt;/main&gt;
+&lt;/body&gt;
+
+&lt;div class="stack"&gt;
+  &lt;div class="cluster"&gt;...&lt;/div&gt;
+  &lt;div class="grid"&gt;...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </article>
+
+      <article id="tokens" data-jumpable data-jump-label="Theme tokens" data-jump-aliases="css variables custom properties theming">
+        <header>
+          <h2>6. Theme Tokens</h2>
+          <p class="muted">Override tokens when the change should apply consistently across components.</p>
+        </header>
+        <div class="window" style="--primary: #245c8f; --button-face-hover: #e7eef8; --radius-3: 8px;">
+          <div class="window-titlebar">Scoped Token Preview</div>
+          <div class="window-pane">
+            <p class="compact">This preview overrides a few tokens on the container, so descendants inherit the change.</p>
+            <div class="cluster">
+              <button type="button">Save</button>
+              <button type="button" class="secondary">Cancel</button>
+              <span class="badge" data-variant="info">Scoped</span>
+            </div>
+          </div>
+          <div class="window-statusbar">Tokens inherit through normal CSS.</div>
+        </div>
+        <pre><code>:root {
+  --primary: #245c8f;
+  --primary-hover: #16436d;
+  --button-face-hover: #e7eef8;
+  --radius-3: 8px;
+}</code></pre>
+      </article>
+
+      <article id="custom-css" data-jumpable data-jump-label="Custom CSS" data-jump-aliases="escape hatch project css">
+        <header>
+          <h2>7. Custom CSS Last</h2>
+          <p class="muted">Add project CSS when the library does not contain the concept. Keep the new class narrow and semantic.</p>
+        </header>
+        <div class="notice" data-variant="warning">
+          Use a custom class for a real project pattern, not for a state that already has an HTML or ARIA attribute.
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Prefer</th>
+              <th scope="col">Instead of</th>
+              <th scope="col">Reason</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>aria-current="page"</code></td>
+              <td><code>class="active"</code></td>
+              <td>Current location is real state.</td>
+            </tr>
+            <tr>
+              <td><code>aria-invalid="true"</code></td>
+              <td><code>class="error"</code></td>
+              <td>Validation state should be exposed.</td>
+            </tr>
+            <tr>
+              <td><code>data-variant="warning"</code></td>
+              <td><code>class="yellow"</code></td>
+              <td>The intent matters more than the color.</td>
+            </tr>
+            <tr>
+              <td><code>--primary</code></td>
+              <td>Overriding every selected component</td>
+              <td>Tokens keep the system coherent.</td>
+            </tr>
+          </tbody>
+        </table>
+        <pre><code>.billing-summary {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: minmax(0, 1fr) max-content;
+}
+
+.billing-summary [data-total] {
+  font-family: var(--font-heading);
+}</code></pre>
+      </article>
     </main>
 
     <footer>

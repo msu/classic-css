@@ -5,8 +5,8 @@ crisp-edged. Empty never looks disabled; dimming is the only unavailable signal.
 
 ## Wells and controls
 
-- Text wells: depth from a tight inset shadow (1px, no dispersion), soft gray 1px
-  border, square corners, 1.9rem. Placeholder-gray (#878787) for all passive glyphs.
+- Text wells: depth from a tight inset shadow, soft gray 1px border, `--radius-2`
+  corners, 1.9rem. Placeholder-gray (#878787) for all passive glyphs.
 - Select: OS9 popup button - flat face, `--button-edge` border, inset divider stopping
   short of top/bottom, black double-chevron, hard 1px shadow.
 - Checkbox/radio: 1rem empty wells, crisp border, hard shadow; bold black overshooting
@@ -37,8 +37,8 @@ crisp-edged. Empty never looks disabled; dimming is the only unavailable signal.
 
 ## Validation and structure
 
-- Tokens `--invalid` #c62828 / `--valid` #2e7d32, brighter than text `--danger`/`--success`;
-  full 2px border, no halo.
+- Tokens `--invalid` #c62828 / `--valid` #2e7d32, brighter than text
+  `--danger`/`--success`; full-color border, no halo.
 - `:user-invalid` gets the red border (native constraints, post-interaction; separate
   rule so old engines keep the aria rule). No `:user-valid` auto-green: noise.
 - Messages: `small[data-variant]` colors via the `--variant` map + `aria-describedby` -

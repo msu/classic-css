@@ -60,7 +60,8 @@
         color-scheme: light;
 
         /* Typography */
-        --font-sans: Verdana, Geneva, Tahoma, sans-serif;
+        --font-sans: Helvetica, Arial, sans-serif;
+        --font-heading: Chicago, "ChicagoFLF", Charcoal, Helvetica, Arial, sans-serif;
         --font-serif: "Palatino Linotype", Palatino, "Book Antiqua", serif;
         --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
 
@@ -91,21 +92,21 @@
         /* Classic bevel chrome */
         --highlight: #ffffff;
         --lowlight: #777777;
-        --button-face: #d7d7d7;
-        --button-face-light: #f8f8f8;
-        --button-face-hover: #e4e4e4;
-        --button-face-mid: #c9c9c9;
-        --button-face-dark: #9d9d9d;
+        --button-face: #f7f7f8;
+        --button-face-light: #ffffff;
+        --button-face-hover: #e9e5ff;
+        --button-face-mid: #e8ebef;
+        --button-face-dark: #c9c2eb;
         --button-edge: #242424;
-        --button-groove: #6d6d6d;
-        --button-secondary-face: #c9d1d8;
-        --button-secondary-face-hover: #d7e0e7;
-        --button-secondary-face-pressed: #b7c0c8;
-        --button-secondary-edge: #4d5963;
-        --button-secondary-highlight: #f7fbff;
-        --button-blue-face: #dce7fb;
-        --button-blue-mid: #9db7e3;
-        --button-blue-dark: #5b7eb8;
+        --button-groove: #9d9da3;
+        --button-secondary-face: #edf0f4;
+        --button-secondary-face-hover: #f8f9fb;
+        --button-secondary-face-pressed: #c4cad3;
+        --button-secondary-edge: #6f7784;
+        --button-secondary-highlight: #ffffff;
+        --button-blue-face: #e9e5ff;
+        --button-blue-mid: #c8c0ee;
+        --button-blue-dark: #877dca;
         --terminal-bg: #050505;
         --terminal-border: #2c2c2c;
         --terminal-text: #f7f3e8;
@@ -223,7 +224,7 @@
     h5,
     h6 {
         color: var(--text);
-        font-family: var(--font-sans);
+        font-family: var(--font-heading);
         font-weight: 700;
         letter-spacing: 0;
         line-height: 1.08;
@@ -255,7 +256,7 @@
 
     h5,
     h6 {
-        font-family: var(--font-sans);
+        font-family: var(--font-heading);
         font-size: 1rem;
         text-transform: uppercase;
     }
@@ -892,10 +893,13 @@
     }
 
     button.classic-nav-toggle[aria-expanded="true"] {
-        background: linear-gradient(180deg, var(--button-face-dark), #b2b2b2 55%, #c4c4c4);
+        background: linear-gradient(180deg, var(--button-face-dark), #d8d2f7 58%, #eeeaff);
+        border-color: #8076c0;
         box-shadow:
-            1px 1px 2px rgba(0, 0, 0, 0.35) inset,
-            -1px -1px 0 rgba(255, 255, 255, 0.3) inset;
+            1px 2px 2px rgba(44, 35, 92, 0.38) inset,
+            -1px -1px 0 rgba(255, 255, 255, 0.45) inset,
+            0 1px 0 rgba(255, 255, 255, 0.42),
+            0 2px 1px rgba(0, 0, 0, 0.2);
     }
 
     @media (min-width: 48.001rem) {
@@ -1002,17 +1006,18 @@
     }
 
     /* Buttons */
-    /* OS9 platinum: thin uniform border, shading lives inside the outline. */
+    /* CleanShot-style glossy button: soft face, lavender hover, tight shadow. */
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button) {
         align-items: center;
         appearance: none;
-        background: linear-gradient(180deg, var(--button-face-light), var(--button-face) 46%, var(--button-face-mid));
+        background: linear-gradient(180deg, var(--button-face-light), var(--button-face) 58%, var(--button-face-mid));
         border: 1px solid var(--button-groove);
-        border-radius: var(--radius-3);
+        border-radius: calc(var(--radius-3) + 1px);
         box-shadow:
-            1px 1px 0 rgba(255, 255, 255, 0.85) inset,
-            -1px -1px 0 rgba(0, 0, 0, 0.12) inset,
-            1px 1px 0 rgba(0, 0, 0, 0.16);
+            0 1px 0 rgba(255, 255, 255, 0.95) inset,
+            0 -2px 0 rgba(0, 0, 0, 0.11) inset,
+            0 1px 0 rgba(255, 255, 255, 0.64),
+            0 2px 1px rgba(0, 0, 0, 0.28);
         color: var(--text);
         display: inline-flex;
         font-weight: 700;
@@ -1025,6 +1030,7 @@
         text-align: center;
         text-decoration: none;
         user-select: none;
+        --press-offset: 2px;
     }
 
     body.layout-sidebar>.sidebar button.classic-sidebar-toggle {
@@ -1036,35 +1042,46 @@
     }
 
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button):hover {
-        background: linear-gradient(180deg, var(--highlight), var(--button-face-hover) 46%, var(--button-face));
+        background: linear-gradient(180deg, #f8f6ff, var(--button-face-hover) 58%, #d8d1fb);
+        border-color: #958bd6;
+        box-shadow:
+            0 0 0 2px rgba(139, 125, 202, 0.16),
+            0 1px 0 rgba(255, 255, 255, 0.9) inset,
+            0 -3px 0 rgba(76, 61, 160, 0.18) inset,
+            0 1px 0 rgba(255, 255, 255, 0.7),
+            0 3px 2px rgba(0, 0, 0, 0.23);
         color: var(--text);
         text-decoration: none;
     }
 
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button):active {
-        background: linear-gradient(180deg, var(--button-face-dark), #b2b2b2 55%, #c4c4c4);
+        background: linear-gradient(180deg, var(--button-face-dark), #d8d2f7 58%, #eeeaff);
+        border-color: #8076c0;
         box-shadow:
-            1px 1px 2px rgba(0, 0, 0, 0.35) inset,
-            -1px -1px 0 rgba(255, 255, 255, 0.3) inset;
-        transform: translate(1px, 1px);
+            2px 2px 2px rgba(44, 35, 92, 0.46) inset,
+            -1px -1px 0 rgba(255, 255, 255, 0.38) inset,
+            0 1px 0 rgba(255, 255, 255, 0.32);
+        transform: translate(var(--press-offset), var(--press-offset));
     }
 
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button)[aria-pressed="true"] {
-        background: linear-gradient(180deg, var(--button-face-dark), #b2b2b2 55%, #c4c4c4);
+        background: linear-gradient(180deg, var(--button-face-dark), #d8d2f7 58%, #eeeaff);
+        border-color: #8076c0;
         box-shadow:
-            1px 1px 2px rgba(0, 0, 0, 0.35) inset,
-            -1px -1px 0 rgba(255, 255, 255, 0.3) inset;
-        transform: translate(1px, 1px);
+            2px 2px 2px rgba(44, 35, 92, 0.46) inset,
+            -1px -1px 0 rgba(255, 255, 255, 0.38) inset,
+            0 1px 0 rgba(255, 255, 255, 0.32);
+        transform: translate(var(--press-offset), var(--press-offset));
     }
 
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button)[aria-pressed="mixed"] {
         background:
-            repeating-linear-gradient(135deg, color-mix(in srgb, var(--button-secondary-face) 86%, var(--surface)) 0 0.38rem, var(--button-secondary-face) 0.38rem 0.76rem);
-        border-color: var(--button-secondary-edge) var(--button-secondary-highlight) var(--button-secondary-highlight) var(--button-secondary-edge);
+            repeating-linear-gradient(135deg, color-mix(in srgb, var(--button-secondary-face-hover) 84%, var(--surface)) 0 0.38rem, var(--button-secondary-face-hover) 0.38rem 0.76rem);
+        border-color: #8076c0;
         box-shadow:
-            1px 1px 0 var(--button-groove) inset,
+            2px 2px 2px rgba(44, 35, 92, 0.42) inset,
             -1px -1px 0 var(--button-face-light) inset;
-        transform: translate(1px, 1px);
+        transform: translate(var(--press-offset), var(--press-offset));
     }
 
     :is(button, [role="button"], .button)[aria-expanded]:not(.classic-nav-toggle):not(.classic-sidebar-toggle)::after,
@@ -1083,13 +1100,21 @@
     }
 
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button).secondary {
-        background: linear-gradient(180deg, #e8eef4, #d0d9e1 46%, #bcc6cf);
-        color: var(--text);
+        background: linear-gradient(180deg, var(--button-secondary-highlight), var(--button-secondary-face) 58%, #dbe0e7);
+        border-color: var(--button-secondary-edge);
+        color: #202833;
     }
 
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button).secondary:hover {
-        background: linear-gradient(180deg, #f3f8fc, #dde6ed 46%, #c9d3dc);
-        color: var(--text);
+        background: linear-gradient(180deg, #ffffff, var(--button-secondary-face-hover) 58%, #d2d8e1);
+        border-color: #606977;
+        box-shadow:
+            0 0 0 2px rgba(96, 105, 119, 0.14),
+            0 1px 0 rgba(255, 255, 255, 0.9) inset,
+            0 -3px 0 rgba(72, 82, 96, 0.15) inset,
+            0 1px 0 rgba(255, 255, 255, 0.7),
+            0 3px 2px rgba(0, 0, 0, 0.21);
+        color: #1a222d;
     }
 
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button).contrast {
@@ -1104,16 +1129,31 @@
     }
 
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button).outline {
-        background: linear-gradient(180deg, #eef3fd, #dbe5f8 46%, #c2d1ec);
+        background: linear-gradient(180deg, #ffffff, #f8f9ff 58%, #eef1ff);
+        border-color: #9da7c8;
         color: #0d2d61;
     }
 
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button).secondary:active {
-        background: linear-gradient(180deg, #8f9aa4, #a7b1ba 55%, var(--button-secondary-face-pressed));
+        background: linear-gradient(180deg, #a6adb8, var(--button-secondary-face-pressed) 58%, #eef1f5);
+        border-color: #545e6b;
+        box-shadow:
+            2px 2px 2px rgba(32, 40, 51, 0.42) inset,
+            -1px -1px 0 rgba(255, 255, 255, 0.38) inset,
+            0 1px 0 rgba(255, 255, 255, 0.32);
+    }
+
+    :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button).secondary[aria-pressed="true"] {
+        background: linear-gradient(180deg, #a6adb8, var(--button-secondary-face-pressed) 58%, #eef1f5);
+        border-color: #545e6b;
+        box-shadow:
+            2px 2px 2px rgba(32, 40, 51, 0.42) inset,
+            -1px -1px 0 rgba(255, 255, 255, 0.38) inset,
+            0 1px 0 rgba(255, 255, 255, 0.32);
     }
 
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button).outline:active {
-        background: linear-gradient(180deg, #7f99c4, var(--button-blue-mid) 55%, #c9d8f2);
+        background: linear-gradient(180deg, #c6c0e6, var(--button-blue-mid) 58%, #eeeaff);
     }
 
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button).contrast:active {
@@ -1269,8 +1309,10 @@
         appearance: none;
         background: #ffffff;
         border: 1px solid var(--border);
-        border-radius: 0;
-        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.22) inset;
+        border-radius: var(--radius-2);
+        box-shadow:
+            1px 1px 2px rgba(0, 0, 0, 0.34) inset,
+            -1px -1px 0 rgba(255, 255, 255, 0.88) inset;
         color: var(--text);
         font-weight: 400;
         min-height: 1.9rem;
@@ -1303,7 +1345,7 @@
             linear-gradient(180deg, var(--button-groove), var(--button-groove)) calc(100% - 1.6rem) 50% / 1px calc(100% - 0.55rem) no-repeat,
             #f4f4f4;
         border: 1px solid var(--button-edge);
-        border-radius: var(--radius-1);
+        border-radius: var(--radius-2);
         box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.35);
         padding-right: 2rem;
     }
@@ -1347,7 +1389,7 @@
     }
 
     input[type="email"] {
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><text x="9.7" y="8.4" font-family="Verdana,sans-serif" font-size="10" font-weight="bold" text-anchor="end" fill="%23878787">@</text></svg>') calc(100% - 0.5rem) 50% / 1rem no-repeat #ffffff;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><text x="9.7" y="8.4" font-family="Helvetica,Arial,sans-serif" font-size="10" font-weight="bold" text-anchor="end" fill="%23878787">@</text></svg>') calc(100% - 0.5rem) 50% / 1rem no-repeat #ffffff;
     }
 
     input[type="tel"] {
@@ -1570,14 +1612,14 @@
     select[aria-invalid]:not([aria-invalid="false"]),
     textarea[aria-invalid]:not([aria-invalid="false"]),
     :is([role="textbox"], [role="searchbox"], [role="combobox"], [role="spinbutton"])[aria-invalid]:not([aria-invalid="false"]) {
-        border-color: var(--danger) #ffffff #ffffff var(--danger);
+        border-color: var(--invalid);
     }
 
     input[aria-invalid="false"],
     select[aria-invalid="false"],
     textarea[aria-invalid="false"],
     :is([role="textbox"], [role="searchbox"], [role="combobox"], [role="spinbutton"])[aria-invalid="false"] {
-        border-color: var(--success) #ffffff #ffffff var(--success);
+        border-color: var(--valid);
     }
 
     /* Field messages: pair the border tint with visible text */
@@ -2042,7 +2084,7 @@
             1px 1px 0 var(--highlight) inset,
             -1px -1px 0 var(--button-groove) inset,
             0 2px 0 #5f5f5f,
-            1px 3px 5px rgba(0, 0, 0, 0.22);
+            1px 3px 2px rgba(0, 0, 0, 0.22);
         content: "";
         height: 1.45rem;
         left: var(--value, 50%);
@@ -2068,15 +2110,16 @@
     [role="tablist"] {
         align-items: flex-end;
         background:
-            linear-gradient(180deg, color-mix(in srgb, var(--surface-3) 78%, var(--highlight)), var(--button-face-mid));
-        border: 1px solid var(--border-strong);
-        border-radius: var(--radius-2) var(--radius-2) 0 0;
+            linear-gradient(180deg, #f8f9fb, #eceff4);
+        border: 1px solid var(--button-groove);
+        border-radius: var(--radius-3) var(--radius-3) 0 0;
         box-shadow:
-            1px 1px 0 var(--highlight) inset,
-            -1px 0 0 color-mix(in srgb, var(--lowlight) 75%, transparent) inset;
+            0 1px 0 rgba(255, 255, 255, 0.9) inset,
+            0 -1px 0 rgba(0, 0, 0, 0.08) inset;
         display: flex;
         flex-wrap: nowrap;
-        gap: 0;
+        gap: 1px;
+        justify-content: flex-start;
         min-width: 0;
         overflow-x: auto;
         overflow-y: hidden;
@@ -2089,29 +2132,30 @@
     [role="tab"] {
         align-items: center;
         background:
-            linear-gradient(180deg, var(--button-face-light), var(--button-face) 56%, var(--button-face-mid));
-        border-color: var(--highlight) var(--button-edge) var(--button-edge) var(--highlight);
+            linear-gradient(180deg, var(--button-face-light), var(--button-face) 58%, var(--button-face-mid));
+        border-color: var(--button-groove) var(--button-groove) color-mix(in srgb, var(--button-groove) 82%, var(--surface)) var(--button-groove);
         border-style: solid;
-        border-width: 2px 2px 1px;
-        border-radius: var(--radius-2) var(--radius-2) 0 0;
+        border-width: 1px;
+        border-radius: var(--radius-3) var(--radius-3) 0 0;
         box-shadow:
-            1px 1px 0 var(--highlight) inset,
-            -1px 0 0 var(--button-groove) inset;
+            0 1px 0 rgba(255, 255, 255, 0.9) inset,
+            0 -2px 0 rgba(0, 0, 0, 0.07) inset,
+            0 2px 1px rgba(0, 0, 0, 0.12);
         color: var(--muted-strong);
         display: inline-flex;
         flex: 0 0 auto;
         font-weight: 700;
         line-height: 1.2;
-        margin-right: -1px;
         max-width: min(18rem, calc(100vw - 4rem));
-        min-height: 2.25rem;
+        min-height: 2.16rem;
         min-width: 0;
         overflow: hidden;
-        padding: 0.45rem 0.9rem 0.52rem;
+        padding: 0.4rem 0.88rem 0.46rem;
         position: relative;
         text-decoration: none;
         text-overflow: ellipsis;
         white-space: nowrap;
+        --press-offset: 1px;
     }
 
     nav.tabs a.tab:visited,
@@ -2123,15 +2167,15 @@
     .tab[aria-current]:not([aria-current="false"]),
     [role="tab"][aria-selected="true"] {
         background:
-            linear-gradient(180deg, var(--highlight), var(--surface) 54%, var(--surface));
-        border-color: var(--button-edge) var(--button-edge) var(--surface) var(--button-edge);
+            linear-gradient(180deg, #ffffff, #f8f9ff 58%, var(--surface));
+        border-color: #9da7c8 #9da7c8 var(--surface) #9da7c8;
         box-shadow:
-            1px 1px 0 var(--highlight) inset,
-            0 2px 0 color-mix(in srgb, var(--primary) 86%, var(--highlight)) inset;
+            0 1px 0 var(--highlight) inset,
+            0 2px 0 color-mix(in srgb, var(--primary) 42%, transparent) inset;
         color: var(--primary-active);
         margin-bottom: -1px;
-        min-height: 2.45rem;
-        padding-bottom: 0.66rem;
+        min-height: 2.28rem;
+        padding-bottom: 0.5rem;
         z-index: 1;
     }
 
@@ -2139,15 +2183,40 @@
     .tab:hover,
     [role="tab"]:hover {
         background:
-            linear-gradient(180deg, var(--highlight), var(--button-face-hover) 56%, var(--button-face));
-        color: var(--primary);
+            linear-gradient(180deg, #ffffff, #f4f3ff 58%, #e8e5ff);
+        border-color: #a69cdd;
+        color: var(--primary-hover);
     }
 
     nav.tabs a.tab[aria-current]:not([aria-current="false"]):hover,
     .tab[aria-current]:not([aria-current="false"]):hover,
     [role="tab"][aria-selected="true"]:hover {
         background:
-            linear-gradient(180deg, var(--highlight), var(--surface) 54%, var(--surface));
+            linear-gradient(180deg, #ffffff, #f8f9ff 58%, var(--surface));
+        color: var(--primary-active);
+    }
+
+    nav.tabs a.tab:active,
+    .tab:active,
+    [role="tab"]:active {
+        background:
+            linear-gradient(180deg, #d8d2f7, #e8e5ff 58%, #f8f6ff);
+        border-color: #8f85ca;
+        box-shadow:
+            1px 2px 2px rgba(44, 35, 92, 0.32) inset,
+            -1px -1px 0 rgba(255, 255, 255, 0.42) inset;
+        color: var(--primary-active);
+    }
+
+    nav.tabs a.tab[aria-current]:not([aria-current="false"]):active,
+    .tab[aria-current]:not([aria-current="false"]):active,
+    [role="tab"][aria-selected="true"]:active {
+        background:
+            linear-gradient(180deg, #e4e0fa, #f0edff 58%, var(--surface));
+        border-color: #8f85ca #8f85ca var(--surface) #8f85ca;
+        box-shadow:
+            1px 2px 2px rgba(44, 35, 92, 0.24) inset,
+            0 2px 0 color-mix(in srgb, var(--primary) 34%, transparent) inset;
         color: var(--primary-active);
     }
 
@@ -2155,11 +2224,11 @@
     .tabs + :where(.tab-panel, [role="tabpanel"]),
     [role="tablist"] + :where(.tab-panel, [role="tabpanel"]) {
         background: var(--surface);
-        border: 1px solid var(--border-strong);
+        border: 1px solid var(--button-groove);
         border-top: 0;
         box-shadow:
-            1px 0 0 var(--highlight) inset,
-            -1px -1px 0 var(--lowlight) inset;
+            0 1px 0 var(--highlight) inset,
+            0 2px 1px rgba(0, 0, 0, 0.14);
         margin-top: 0;
         padding: var(--space-4);
     }
@@ -2174,8 +2243,8 @@
     }
 
     :where(nav.tabs, .tabs, [role="tablist"])[aria-orientation="vertical"] :where(.tab, [role="tab"]) {
-        border-radius: var(--radius-2);
-        border-width: 2px;
+        border-radius: var(--radius-3);
+        border-width: 1px;
         justify-content: flex-start;
         margin-right: 0;
         max-width: none;
@@ -2184,10 +2253,10 @@
 
     :where(nav.tabs, .tabs, [role="tablist"])[aria-orientation="vertical"] :where(.tab, [role="tab"])[aria-current]:not([aria-current="false"]),
     :where(nav.tabs, .tabs, [role="tablist"])[aria-orientation="vertical"] [role="tab"][aria-selected="true"] {
-        border-color: var(--button-edge) var(--button-edge) var(--button-edge) var(--primary);
+        border-color: #9da7c8 #9da7c8 #9da7c8 var(--primary);
         margin-bottom: 0;
-        min-height: 2.25rem;
-        padding-bottom: 0.52rem;
+        min-height: 2.16rem;
+        padding-bottom: 0.46rem;
     }
 
     .toolbar {
@@ -2542,7 +2611,7 @@
         align-items: center;
         display: flex;
         flex-wrap: wrap;
-        gap: var(--space-2);
+        gap: var(--space-1);
         list-style: none;
         padding-left: 0;
     }
@@ -2553,33 +2622,70 @@
 
     .pagination a {
         align-items: center;
-        background: var(--button-face);
-        border: 2px solid;
-        border-color: var(--highlight) var(--button-edge) var(--button-edge) var(--highlight);
-        border-radius: var(--radius-3);
+        background: linear-gradient(180deg, var(--button-face-light), var(--button-face) 58%, var(--button-face-mid));
+        border: 1px solid var(--button-groove);
+        border-radius: calc(var(--radius-3) + 1px);
         box-shadow:
-            1px 1px 0 var(--button-face-light) inset,
-            -1px -1px 0 var(--button-groove) inset;
+            0 1px 0 rgba(255, 255, 255, 0.95) inset,
+            0 -2px 0 rgba(0, 0, 0, 0.1) inset,
+            0 1px 0 rgba(255, 255, 255, 0.64),
+            0 2px 1px rgba(0, 0, 0, 0.23);
+        color: var(--text);
         display: inline-flex;
+        font-weight: 700;
         justify-content: center;
-        min-height: var(--control-height);
-        min-width: 2.75rem;
-        padding: 0.5rem 0.9rem 0.56rem;
+        line-height: 1.2;
+        min-height: 2rem;
+        min-width: 2.45rem;
+        padding: 0.32rem 0.78rem 0.38rem;
         text-decoration: none;
         user-select: none;
+        --press-offset: 2px;
     }
 
     .pagination a:visited {
         color: var(--text);
     }
 
-    .pagination a[aria-current]:not([aria-current="false"]) {
-        background: var(--surface);
-        border-color: color-mix(in srgb, var(--primary) 22%, var(--border-strong));
+    .pagination a:hover {
+        background: linear-gradient(180deg, #f8f6ff, var(--button-face-hover) 58%, #d8d1fb);
+        border-color: #958bd6;
         box-shadow:
-            1px 1px 0 color-mix(in srgb, var(--button-groove) 45%, transparent) inset,
-            -1px -1px 0 var(--highlight) inset;
-        color: var(--primary);
+            0 0 0 2px rgba(139, 125, 202, 0.14),
+            0 1px 0 rgba(255, 255, 255, 0.9) inset,
+            0 -3px 0 rgba(76, 61, 160, 0.16) inset,
+            0 1px 0 rgba(255, 255, 255, 0.7),
+            0 3px 2px rgba(0, 0, 0, 0.2);
+        color: var(--text);
+        text-decoration: none;
+    }
+
+    .pagination a[aria-current]:not([aria-current="false"]) {
+        background: linear-gradient(180deg, #ffffff, #f8f9ff 58%, #eef1ff);
+        border-color: #647aa8;
+        box-shadow:
+            0 0 0 2px color-mix(in srgb, var(--primary) 18%, transparent),
+            0 1px 0 var(--highlight) inset,
+            0 -2px 0 rgba(13, 45, 97, 0.1) inset,
+            0 2px 1px rgba(0, 0, 0, 0.23);
+        color: var(--primary-active);
+    }
+
+    .pagination a[aria-current]:not([aria-current="false"]):hover {
+        background: linear-gradient(180deg, #ffffff, #f4f6ff 58%, #e3e9fb);
+        color: var(--primary-active);
+    }
+
+    .pagination a:active,
+    .pagination a[aria-current]:not([aria-current="false"]):active {
+        background: linear-gradient(180deg, var(--button-face-dark), #d8d2f7 58%, #eeeaff);
+        border-color: #8076c0;
+        box-shadow:
+            2px 2px 2px rgba(44, 35, 92, 0.46) inset,
+            -1px -1px 0 rgba(255, 255, 255, 0.38) inset,
+            0 1px 0 rgba(255, 255, 255, 0.32);
+        color: var(--primary-active);
+        text-decoration: none;
     }
 
     /* Window chrome and command palette */
@@ -2806,7 +2912,7 @@
 
     /* Press is much faster than the release so controls feel light. */
     :is(button, input[type="button"], input[type="submit"], input[type="reset"], [role="button"], .button, .menu a, .menu button, .pagination a, [role="tab"], nav a):active {
-        transform: translate(1px, 1px);
+        transform: translate(var(--press-offset, 1px), var(--press-offset, 1px));
         transition-duration: 15ms;
     }
 

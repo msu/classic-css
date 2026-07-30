@@ -3,8 +3,10 @@
 Flavor: document, not landing page. Type is set once and does not scale with the window,
 like a classic Mac app.
 
-- Stack: `Verdana, Geneva, Tahoma, sans-serif`. Real bold faces, identical Mac/Windows,
-  peak early-web. Geneva-first rejected: synthetic bold made headings mushy.
+- Body stack: `Helvetica, Arial, sans-serif`.
+- Heading stack: `Chicago, "ChicagoFLF", Charcoal, Helvetica, Arial, sans-serif`.
+  The Chicago faces carry the classic Mac headline shape; Helvetica keeps body copy
+  neutral and legible when the system does not have Chicago.
 - Scale (all widths): h1 2.9 / h2 2.1 / h3 1.6 / h4 1.25rem; h5/h6 1rem uppercase.
   No viewport-based bumps.
 - Headings: 700, heavy is intentional.

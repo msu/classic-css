@@ -13,7 +13,7 @@
         <a class="brand" href="index.html"><img class="brand-logo" src="assets/logo.svg" width="1432" height="391" alt="platinum.css"></a>
         <ul>
           <li><a href="index.html" aria-current="page">Docs</a></li>
-          <li><a href="demo/base.html">Base</a></li>
+          <li><a href="demo/base.html">Hierarchy</a></li>
           <li><a href="demo/forms.html">Forms</a></li>
           <li><a class="cluster" href="#downloads"><span aria-hidden="true">&#x2913;</span><span>Downloads</span></a></li>
           <li>
@@ -370,13 +370,13 @@
 &lt;th aria-sort="ascending"&gt;Assignment&lt;/th&gt;
 &lt;div role="progressbar" aria-valuenow="72" style="--value: 72%"&gt;&lt;/div&gt;</code></pre>
 
-        <h3>Tabs</h3>
+        <h3 id="component-tabs">Tabs</h3>
         <div class="tab-set">
           <nav class="tabs" aria-label="Project sections">
-            <a id="project-tab-overview" class="tab" href="#components" aria-current="page">Overview</a>
-            <a class="tab" href="#components">Activity</a>
-            <a class="tab" href="#components">Settings</a>
-            <a class="tab" href="#components">History</a>
+            <a id="project-tab-overview" class="tab" href="#component-tabs" aria-current="page">Overview</a>
+            <a class="tab" href="#component-tabs">Activity</a>
+            <a class="tab" href="#component-tabs">Settings</a>
+            <a class="tab" href="#component-tabs">History</a>
           </nav>
           <section class="tab-panel stack" role="tabpanel" aria-labelledby="project-tab-overview">
             <div>
@@ -392,9 +392,9 @@
         </div>
         <pre><code>&lt;div class="tab-set"&gt;
   &lt;nav class="tabs" aria-label="Project sections"&gt;
-    &lt;a id="project-tab-overview" class="tab" href="#" aria-current="page"&gt;Overview&lt;/a&gt;
-    &lt;a class="tab" href="#"&gt;Activity&lt;/a&gt;
-    &lt;a class="tab" href="#"&gt;Settings&lt;/a&gt;
+    &lt;a id="project-tab-overview" class="tab" href="#component-tabs" aria-current="page"&gt;Overview&lt;/a&gt;
+    &lt;a class="tab" href="#component-tabs"&gt;Activity&lt;/a&gt;
+    &lt;a class="tab" href="#component-tabs"&gt;Settings&lt;/a&gt;
   &lt;/nav&gt;
   &lt;section class="tab-panel" role="tabpanel" aria-labelledby="project-tab-overview"&gt;
     &lt;h4&gt;Overview&lt;/h4&gt;
@@ -443,15 +443,15 @@
         <h3>Pagination</h3>
         <nav aria-label="Pagination example">
           <ol class="pagination">
-            <li><a href="#components">Prev</a></li>
-            <li><a href="#components">1</a></li>
-            <li><a href="#components" aria-current="page">2</a></li>
-            <li><a href="#components">3</a></li>
-            <li><a href="#components">Next</a></li>
+            <li><a href="#component-tabs" aria-label="Previous page">Prev</a></li>
+            <li><a href="#component-tabs">1</a></li>
+            <li><a href="#component-tabs" aria-current="page">2</a></li>
+            <li><a href="#component-tabs">3</a></li>
+            <li><a href="#component-tabs" aria-label="Next page">Next</a></li>
           </ol>
         </nav>
         <pre><code>&lt;ol class="pagination"&gt;
-  &lt;li&gt;&lt;a href="#" aria-current="page"&gt;2&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="#component-tabs" aria-current="page"&gt;2&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;</code></pre>
 
         <h3>Others</h3>
@@ -599,7 +599,7 @@
     </main>
 
     <footer>
-      <small>platinum.css documentation. Demos: <a href="demo/base.html">base</a>, <a href="demo/forms.html">forms</a>.</small>
+      <small>platinum.css documentation. Demos: <a href="demo/base.html">hierarchy</a>, <a href="demo/forms.html">forms</a>.</small>
     </footer>
 
     <script>

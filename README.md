@@ -2,7 +2,7 @@
 
 [Platinum.css Demo](https://msu.github.io/classic-css/)
 
-`platinum.css` is a single-file CSS library for semantic HTML with an old desktop interface feel. It aims for a fixed-light, OS 9 / Windows 95 inspired style: platinum surfaces, visible bevels, sunken inputs, simple physical buttons, and page layouts that work without a build step.
+`platinum.css` is a single-file CSS library for semantic HTML with an old desktop interface feel. It aims for a fixed-light, OS 9 / Windows 95 inspired style: platinum surfaces, visible bevels, sunken inputs, soft glossy buttons, and page layouts that work without a build step.
 
 ## Goals
 
@@ -45,7 +45,7 @@ Opt-in classes are for extras:
 - `platinum.js`: optional progressive-enhancement helpers and command palette behavior.
 - `assets/logo.svg`: documentation/demo brand logo.
 - `assets/github-mark.svg`: documentation/demo GitHub navigation mark.
-- `demo/base.html`: base styles demo for prose, tables, figures, lists, code, document structure, and component examples.
+- `demo/base.html`: style-use hierarchy guide for choosing semantic HTML, ARIA states, roles, variant hooks, layout helpers, tokens, and custom CSS.
 - `demo/forms.html`: form fixture for bare text/input pairs, label/input pairs, fieldsets, validation states, and native controls.
 
 ## Usage
@@ -227,7 +227,7 @@ Header navigation links in topbar, sidebar, and scroll layouts render as compact
 
 Buttons style automatically on `button`, button-like inputs, `[role="button"]`, and `.button`.
 
-- `secondary`: cool-gray command button.
+- `secondary`: cool gray command button.
 - `outline`: pale blue alternate button.
 - `contrast`: dark high-contrast button.
 - `ghost`: link-like button without bevel chrome.
@@ -317,7 +317,7 @@ These classes are available when no native element or ARIA role carries the comp
 
 ## Demo
 
-Open `demo/base.html` in a browser, or serve the folder from the repository root:
+Open `demo/base.html` for the style hierarchy guide, or serve the folder from the repository root:
 
 ```sh
 python -m http.server
